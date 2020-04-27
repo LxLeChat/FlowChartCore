@@ -21,17 +21,6 @@ namespace FlowChartCore
             return ValidTypes;
         }
 
-        public static Node CastedItem( Ast item , int Depth, int Position, Node Parent) {
-            switch (item)
-            {
-                case Ast a when item is ForEachStatementAst : 
-                    return ((ForEachStatementAst)item).CreateNodeFromAst(Depth,Position,Parent);
-                case Ast a when item is ForStatementAst : 
-                    return ((ForStatementAst)item).CreateNodeFromAst(Depth,Position,Parent);
-            }
-            return null;
-        }
-
         public static List<Node> ParseScriptBlock(ScriptBlock scriptBlock){
 
             List<Node> Nodes = new List<Node>();
@@ -41,7 +30,7 @@ namespace FlowChartCore
             int Position = 1;
 
             foreach ( var block in enumerable ) {
-                Nodes.Add(FlowChartCore.Utility.CastedItem(block,0,Position,null));
+                Nodes.Add( block.CreateNode(0,Position,null) );
                 Position++;
             }
 
