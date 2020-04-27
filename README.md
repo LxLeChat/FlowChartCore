@@ -5,6 +5,11 @@
  The main goal is to generate a dot graph, then it will be consumed by GraphViz, or any tool accepting dot language.
  The result of the dot being consumed, will be a PowerShell Script FlowChart.
 
+## Importing the dll
+``` powershell
+Import-module .\Flowchartcore.dll
+```
+
 ## Utility Method Implemented:
 - ParseScriptBlock
 Given the following PowerShell scriptblock:
