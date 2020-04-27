@@ -1,0 +1,9 @@
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\bin\Debug\netcoreapp3.1\FlowchartCore.deps.json
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\bin\Debug\netcoreapp3.1\FlowchartCore.dll
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\bin\Debug\netcoreapp3.1\FlowchartCore.pdb
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\obj\Debug\netcoreapp3.1\FlowchartCore.csprojAssemblyReference.cache
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\obj\Debug\netcoreapp3.1\FlowchartCore.csproj.CoreCompileInputs.cache
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\obj\Debug\netcoreapp3.1\FlowchartCore.AssemblyInfoInputs.cache
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\obj\Debug\netcoreapp3.1\FlowchartCore.AssemblyInfo.cs
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\obj\Debug\netcoreapp3.1\FlowchartCore.dll
+C:\Users\Lx\GitPerso\FlowChartCore\FlowChartCore\Code\obj\Debug\netcoreapp3.1\FlowchartCore.pdb
