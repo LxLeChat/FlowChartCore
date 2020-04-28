@@ -4,12 +4,11 @@ using System.Management.Automation;
 using System.Collections.Generic;
 using FlowChartCore;
 
+// refaire les commentaires: au dessus de chaque classe
 namespace ExtensionMethods
 {
     public static class ASTExtensions
     {
-
-
         // Extensions Methods To Help Create Nodes From an unknown Ast
         // Special case for StatementBlockAST... Go to Extension Methods for this type
         public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent)
@@ -27,9 +26,50 @@ namespace ExtensionMethods
             }
             return null;
         }
-        
 
+    }
+    
+    public static class SwitchStatementExtensions
+    {
+        // SwitchStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent)
+        {
+            return new SwitchNode(_ast,_depth,_position,_parent);
+        }
 
+        // Return Else Clause as a StatementBlockAst
+        public static StatementBlockAst GetDefault (this SwitchStatementAst _ast)
+        {
+            // throw new NotImplementedException("Not implemented at the moment");
+            if ( _ast.Default != null ) {
+                return _ast.Default;
+            }
+            return null;
+
+        }
+
+        // Return ElseIf Clauses as a list of StatementBlockAst
+        public static IEnumerable<StatementBlockAst> GetCases (this SwitchStatementAst _ast)
+        {
+            if (_ast.Clauses.Count > 1)
+            {
+                List<StatementBlockAst> Cases = new List<StatementBlockAst>();
+                for (int i = 0; i < _ast.Clauses.Count; i++)
+                {
+                    Cases.Add(_ast.Clauses[i].Item2);
+                }
+
+                return Cases;
+            }
+            return null;
+        }
+
+    }
+    
+    public static class StatementBlockExtensions {
         // StatementBlockAst Extension Methods
         // - CreateNode() => Return ElseIf, Else, SwitchCaseNode... because there is no specific AST for this kind
         // - GetChildAst() => retourne only ASTs we are looking for ...
@@ -43,6 +83,12 @@ namespace ExtensionMethods
                 case FlowChartCore.StatementType.ElseIf : {
                     return new ElseIfNode(_ast, _depth, _position, _parent);
                 }
+                case FlowChartCore.StatementType.SwitchCase : {
+                    return new SwitchCaseNode(_ast, _depth, _position, _parent);
+                }
+                case FlowChartCore.StatementType.SwitchDefault : {
+                    return new SwitchDefaultNode(_ast, _depth, _position, _parent);
+                }
                 
             }
             return null;
@@ -52,9 +98,9 @@ namespace ExtensionMethods
         {
             return _ast.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast, false);
         }
-
-
-
+    }
+   
+    public static class ForEachStatementExtensions {
         // ForStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
@@ -71,7 +117,9 @@ namespace ExtensionMethods
         }
         
 
+    }
 
+    public static class ForStatementExtensions {
         // ForStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
@@ -86,8 +134,9 @@ namespace ExtensionMethods
             return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         }
 
+    }
 
-
+    public static class IfStatementExtensions {
         // IfStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
@@ -130,17 +179,6 @@ namespace ExtensionMethods
             return null;
         }
 
-
-
-        // SwitchStatementAst Extension Methods
-        // New Methods Available:
-        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
-        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent)
-        {
-            return new SwitchNode(_ast,_depth,_position,_parent);
-        }
-
-
     }
+
 }

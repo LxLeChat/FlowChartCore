@@ -12,8 +12,15 @@ $a = {
     $b = {
         foreach ($item in $collection) {
             switch ($a) {
-                1 {  }
-                Default {}
+                1 { for ($i = 0; $i -lt $array.Count; $i++) {
+                    
+                } }
+                2 { for ($i = 0; $i -lt $array.Count; $i++) {
+                    
+                } }
+                Default { foreach ($item in $collection) {
+                    
+                }}
             }
         }
     
