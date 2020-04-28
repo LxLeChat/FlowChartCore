@@ -7,6 +7,7 @@
 
 # Steps
  - Create Node structure referencing all types for, foreach, if etc..
+ - Add properties & methods for each types of nodes (like linkednodelist, ability to find a specific node by id/type up/down...)
  - Implement Graph Method to generate a dot file
 
 ## Importing the dll
@@ -64,11 +65,10 @@ Depth    : 1
 - [x] Discovering & Implementing Foreach
 - [x] Discovering & Implementing For
 - [x] Discovering & Implementing If / ElseIf / Else
-- [ ] Discovering & Implementing While
-- [ ] Discovering & Implementing DoWhile
-- [ ] Discovering & Implementing While
-- [ ] Discovering & Implementing DoUntil
+- [x] Discovering & Implementing While
+- [x] Discovering & Implementing DoWhile
+- [x] Discovering & Implementing DoUntil
 - [x] Discovering & Implementing Switch / Switch Case / Switch Default
-- [ ] Discovering & Implementing Foreach Try / Catch / Finally
+- [ ] Discovering & Implementing Try / Catch / Finally
 - [ ] Discovering & Implementing Loops Labels
 - [ ] Discovering & Implementing Keyword: Exit, Return, Break, Continue

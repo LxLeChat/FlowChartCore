@@ -14,6 +14,6 @@ $a = {
             foreach ($item in $collection) {
                 
             }
-        } while ($a)
+        } until ($a)
     
     }
