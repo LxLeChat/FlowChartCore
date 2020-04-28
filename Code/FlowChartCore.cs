@@ -7,7 +7,7 @@ namespace FlowChartCore
     public enum StatementType{
         Else,ElseIf,SwitchCase
     }
-    
+
     public abstract class Node
     {
         protected internal string name;
@@ -17,7 +17,7 @@ namespace FlowChartCore
         protected internal Node parent;
         public Node Parent { get=> parent; }
         protected internal int position;
-        // public int Position { get=> position; }
+        public int Position { get=> position; }
         protected internal int depth;
         public int Depth { get=> depth; }
 

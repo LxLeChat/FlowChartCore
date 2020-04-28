@@ -35,16 +35,21 @@ namespace FlowChartCore
 
             // Recuperaction des Elsefis
             IEnumerable<StatementBlockAst> ElseIfs = RawAst.GetElseIf();
-            foreach (var item in ElseIfs) {
-                // On appelle CreateNode qui est une extension de StatementBlockAST, avec un param enum qui identifie le elseif
-                children.Add(item.CreateNode(Depth+1,p,this,FlowChartCore.StatementType.ElseIf));
-                p++;
+            if (ElseIfs != null)
+            {
+                foreach (var item in ElseIfs) {
+                    // On appelle CreateNode qui est une extension de StatementBlockAST, avec un param enum qui identifie le elseif
+                    children.Add(item.CreateNode(Depth+1,p,this,FlowChartCore.StatementType.ElseIf));
+                    p++;
+                }
             }
-
+            
             // Recuperaction du Else
             StatementBlockAst Else = RawAst.GetElse();
             // On appelle CreateNode qui est une extension de StatementBlockAST, avec un param enum qui identifie le else
-            children.Add(Else.CreateNode(Depth+1,p,this,FlowChartCore.StatementType.Else));
+            if ( Else != null ) {
+                children.Add(Else.CreateNode(Depth+1,p,this,FlowChartCore.StatementType.Else));
+            }
         }
 
     }

@@ -10,17 +10,11 @@ $a = {
 }
 
     $b = {
-        if ($a) {
-            
-        } elseif ($a) {
-            for ($i = 0; $i -lt $array.Count; $i++) {
-                
+        foreach ($item in $collection) {
+            switch ($a) {
+                1 {  }
+                Default {}
             }
-        } elseif ($b) {
-            foreach ($item in $collection) {
-                
-            }
-        } else {
-            "prout"
         }
+    
     }

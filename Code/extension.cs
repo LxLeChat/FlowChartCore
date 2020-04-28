@@ -9,7 +9,7 @@ namespace ExtensionMethods
     public static class ASTExtensions
     {
 
-        
+
         // Extensions Methods To Help Create Nodes From an unknown Ast
         // Special case for StatementBlockAST... Go to Extension Methods for this type
         public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent)
@@ -22,6 +22,8 @@ namespace ExtensionMethods
                     return ((ForStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
                 case Ast a when _ast is IfStatementAst : 
                     return ((IfStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                case Ast a when _ast is SwitchStatementAst : 
+                    return ((SwitchStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
             }
             return null;
         }
@@ -127,6 +129,18 @@ namespace ExtensionMethods
             }
             return null;
         }
+
+
+
+        // SwitchStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent)
+        {
+            return new SwitchNode(_ast,_depth,_position,_parent);
+        }
+
 
     }
 }
