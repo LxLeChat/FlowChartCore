@@ -10,10 +10,20 @@ $a = {
 }
 
     $b = {
-        do {
+        try {
             foreach ($item in $collection) {
                 
             }
-        } until ($a)
+        }
+        catch {
+            for ($i = 0; $i -lt $array.Count; $i++) {
+                
+            }
+        }
+        finally {
+            if ($a) {
+                
+            }
+        }
     
     }

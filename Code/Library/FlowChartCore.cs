@@ -5,7 +5,7 @@ using System;
 namespace FlowChartCore
 {
     public enum StatementType{
-        Else,ElseIf,SwitchCase,SwitchDefault
+        Else,ElseIf,SwitchCase,SwitchDefault,Finally
     }
 
     public abstract class Node

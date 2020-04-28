@@ -29,46 +29,10 @@ namespace ExtensionMethods
                     return ((DoWhileStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
                 case Ast a when _ast is DoUntilStatementAst : 
                     return ((DoUntilStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
-            }
-            return null;
-        }
-
-    }
-    
-    public static class SwitchStatementExtensions
-    {
-        // SwitchStatementAst Extension Methods
-        // New Methods Available:
-        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
-        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent)
-        {
-            return new SwitchNode(_ast,_depth,_position,_parent);
-        }
-
-        // Return Else Clause as a StatementBlockAst
-        public static StatementBlockAst GetDefault (this SwitchStatementAst _ast)
-        {
-            // throw new NotImplementedException("Not implemented at the moment");
-            if ( _ast.Default != null ) {
-                return _ast.Default;
-            }
-            return null;
-
-        }
-
-        // Return ElseIf Clauses as a list of StatementBlockAst
-        public static IEnumerable<StatementBlockAst> GetCases (this SwitchStatementAst _ast)
-        {
-            if (_ast.Clauses.Count > 1)
-            {
-                List<StatementBlockAst> Cases = new List<StatementBlockAst>();
-                for (int i = 0; i < _ast.Clauses.Count; i++)
-                {
-                    Cases.Add(_ast.Clauses[i].Item2);
-                }
-
-                return Cases;
+                case Ast a when _ast is TryStatementAst : 
+                    return ((TryStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                case Ast a when _ast is CatchClauseAst : 
+                    return ((CatchClauseAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
             }
             return null;
         }
@@ -94,6 +58,9 @@ namespace ExtensionMethods
                 }
                 case FlowChartCore.StatementType.SwitchDefault : {
                     return new SwitchDefaultNode(_ast, _depth, _position, _parent);
+                }
+                case FlowChartCore.StatementType.Finally : {
+                    return new FinallyNode(_ast, _depth, _position, _parent);
                 }
                 
             }
@@ -187,6 +154,46 @@ namespace ExtensionMethods
 
     }
 
+    public static class SwitchStatementExtensions
+    {
+        // SwitchStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent)
+        {
+            return new SwitchNode(_ast,_depth,_position,_parent);
+        }
+
+        // Return Else Clause as a StatementBlockAst
+        public static StatementBlockAst GetDefault (this SwitchStatementAst _ast)
+        {
+            // throw new NotImplementedException("Not implemented at the moment");
+            if ( _ast.Default != null ) {
+                return _ast.Default;
+            }
+            return null;
+
+        }
+
+        // Return ElseIf Clauses as a list of StatementBlockAst
+        public static IEnumerable<StatementBlockAst> GetCases (this SwitchStatementAst _ast)
+        {
+            if (_ast.Clauses.Count > 1)
+            {
+                List<StatementBlockAst> Cases = new List<StatementBlockAst>();
+                for (int i = 0; i < _ast.Clauses.Count; i++)
+                {
+                    Cases.Add(_ast.Clauses[i].Item2);
+                }
+
+                return Cases;
+            }
+            return null;
+        }
+
+    }
+    
     public static class WhileStatementExtensions {
         // WhileStatementAst Extension Methods
         // New Methods Available:
@@ -232,6 +239,54 @@ namespace ExtensionMethods
         }
 
         public static IEnumerable<Ast> GetChildAst (this DoUntilStatementAst _ast)
+        {
+            return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
+        }
+
+    }
+
+    public static class TryStatementExtensions {
+        // TryStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
+        // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
+        public static TryNode CreateNodeFromAst(this TryStatementAst _ast, int _depth, int _position, Node _parent)
+        {
+            return new TryNode(_ast,_depth,_position,_parent);
+        }
+
+        public static IEnumerable<Ast> GetChildAst (this TryStatementAst _ast)
+        {
+            return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
+        }
+
+        public static IEnumerable<Ast> GetCatch (this TryStatementAst _ast)
+        {
+            return _ast.FindAll(Args => Args is CatchClauseAst && Args.Parent == _ast, false);
+        }
+
+        public static StatementBlockAst GetFinally (this TryStatementAst _ast)
+        {
+            // throw new NotImplementedException("Not implemented at the moment");
+            if ( _ast.Finally != null ) {
+                return _ast.Finally;
+            }
+            return null;
+
+        }
+    }
+
+    public static class CatchStatementExtensions {
+        // TryStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
+        // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
+        public static CatchNode CreateNodeFromAst(this CatchClauseAst _ast, int _depth, int _position, Node _parent)
+        {
+            return new CatchNode(_ast,_depth,_position,_parent);
+        }
+
+        public static IEnumerable<Ast> GetChildAst (this CatchClauseAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         }

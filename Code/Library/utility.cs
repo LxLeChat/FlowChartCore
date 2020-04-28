@@ -8,6 +8,9 @@ namespace FlowChartCore
 {
     public abstract class Utility
     {
+        // Utility Method to return a list of types
+        // that will be searched in the scriptblock,
+        // and in every "code block"...
         static public List<Type> GetValidTypes(){
 
             var ValidTypes = new List<Type>() {
@@ -20,11 +23,14 @@ namespace FlowChartCore
                 typeof(WhileStatementAst),
                 typeof(DoWhileStatementAst),
                 typeof(DoUntilStatementAst),
+                typeof(TryStatementAst),
             };
             
             return ValidTypes;
         }
 
+        // Utility Method to parse a PowerShell Scriptblock
+        // It will return a List of Nodes
         public static List<Node> ParseScriptBlock(ScriptBlock scriptBlock){
 
             List<Node> Nodes = new List<Node>();
