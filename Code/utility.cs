@@ -17,6 +17,7 @@ namespace FlowChartCore
                 typeof(DoWhileStatementAst),
                 typeof(WhileStatementAst),
                 typeof(SwitchStatementAst),
+                typeof(WhileStatementAst),
             };
             
             return ValidTypes;

@@ -5,6 +5,10 @@
  The main goal is to generate a dot graph, then it will be consumed by GraphViz, or any tool accepting dot language.
  The result of the dot being consumed, will be a PowerShell Script FlowChart.
 
+# Steps
+ - Create Node structure referencing all types for, foreach, if etc..
+ - Implement Graph Method to generate a dot file
+
 ## Importing the dll
 ``` powershell
 Import-module .\Flowchartcore.dll
@@ -59,12 +63,12 @@ Depth    : 1
 # Done & ToDo:
 - [x] Discovering & Implementing Foreach
 - [x] Discovering & Implementing For
-- [ ] Discovering & Implementing If / ElseIf / Else
+- [x] Discovering & Implementing If / ElseIf / Else
 - [ ] Discovering & Implementing While
 - [ ] Discovering & Implementing DoWhile
 - [ ] Discovering & Implementing While
 - [ ] Discovering & Implementing DoUntil
-- [ ] Discovering & Implementing Switch / Switch Case / Switch Default
+- [x] Discovering & Implementing Switch / Switch Case / Switch Default
 - [ ] Discovering & Implementing Foreach Try / Catch / Finally
 - [ ] Discovering & Implementing Loops Labels
 - [ ] Discovering & Implementing Keyword: Exit, Return, Break, Continue

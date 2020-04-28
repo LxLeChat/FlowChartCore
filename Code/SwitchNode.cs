@@ -7,9 +7,6 @@ namespace FlowChartCore
     public class SwitchNode : Node
     {
         protected SwitchStatementAst RawAst {get;set;}
-        public IEnumerable<StatementBlockAst> Cases {get;set;}
-        public StatementBlockAst Default {get;set;}
-        public SwitchStatementAst MyProperty { get => RawAst; }
 
         // Constructor
         public SwitchNode(SwitchStatementAst _ast, int _depth, int _position, Node _parent)
