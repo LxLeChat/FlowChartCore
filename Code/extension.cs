@@ -25,6 +25,8 @@ namespace ExtensionMethods
                     return ((SwitchStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
                 case Ast a when _ast is WhileStatementAst : 
                     return ((WhileStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                case Ast a when _ast is DoWhileStatementAst : 
+                    return ((DoWhileStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
             }
             return null;
         }
@@ -184,7 +186,7 @@ namespace ExtensionMethods
     }
 
     public static class WhileStatementExtensions {
-        // ForStatementAst Extension Methods
+        // WhileStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
@@ -194,6 +196,23 @@ namespace ExtensionMethods
         }
 
         public static IEnumerable<Ast> GetChildAst (this WhileStatementAst _ast)
+        {
+            return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
+        }
+
+    }
+
+    public static class DoWhileStatementExtensions {
+        // DoWhileStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
+        // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
+        public static DoWhileNode CreateNodeFromAst(this DoWhileStatementAst _ast, int _depth, int _position, Node _parent)
+        {
+            return new DoWhileNode(_ast,_depth,_position,_parent);
+        }
+
+        public static IEnumerable<Ast> GetChildAst (this DoWhileStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         }

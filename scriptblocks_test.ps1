@@ -10,10 +10,10 @@ $a = {
 }
 
     $b = {
-        while ($a) {
+        do {
             foreach ($item in $collection) {
                 
             }
-        }
+        } while ($a)
     
     }
