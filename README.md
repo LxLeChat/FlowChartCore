@@ -69,6 +69,6 @@ Depth    : 1
 - [x] Discovering & Implementing DoWhile
 - [x] Discovering & Implementing DoUntil
 - [x] Discovering & Implementing Switch / Switch Case / Switch Default
-- [ ] Discovering & Implementing Try / Catch / Finally
+- [x] Discovering & Implementing Try / Catch / Finally
 - [ ] Discovering & Implementing Loops Labels
 - [ ] Discovering & Implementing Keyword: Exit, Return, Break, Continue

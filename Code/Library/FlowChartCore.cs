@@ -21,7 +21,7 @@ namespace FlowChartCore
         protected internal int depth;
         public int Depth { get=> depth; }
 
-        internal abstract void PopulateChildren();
+        internal abstract void SetChildren();
 
     }
 }

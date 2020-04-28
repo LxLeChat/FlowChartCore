@@ -19,10 +19,10 @@ namespace FlowChartCore
 
             
 
-            PopulateChildren();
+            SetChildren();
         }
 
-        internal override void PopulateChildren() {
+        internal override void SetChildren() {
 
             // On appelle GetChildAST qui est une extension pour le type
             // Ca nous retourne une liste d'AST
