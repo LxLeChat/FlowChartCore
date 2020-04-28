@@ -4,6 +4,10 @@ using System;
 
 namespace FlowChartCore
 {
+    public enum StatementType{
+        Else,ElseIf,SwitchCase
+    }
+    
     public abstract class Node
     {
         protected internal string name;
