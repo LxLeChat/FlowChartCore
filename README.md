@@ -1,7 +1,10 @@
 # FlowChartCore
  FlowChart c# version
- This is an attemp to write my first c# library ...
+ 
+ This is an attempt to write my first c# library ... Jump from PS to C# ...
+ 
  This will be used mainly for PowerShell Core. (trying to make it compatible with 5.1 but no succes at the moment)
+ 
  The main goal is to generate a dot graph, then it will be consumed by GraphViz, or any tool accepting dot language.
  The result of the dot being consumed, will be a PowerShell Script FlowChart.
 
