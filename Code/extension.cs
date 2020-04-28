@@ -8,6 +8,8 @@ namespace ExtensionMethods
 {
     public static class ASTExtensions
     {
+
+        
         // Extensions Methods To Help Create Nodes From an unknown Ast
         // Special case for StatementBlockAST... Go to Extension Methods for this type
         public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent)
@@ -24,6 +26,8 @@ namespace ExtensionMethods
             return null;
         }
         
+
+
         // StatementBlockAst Extension Methods
         // - CreateNode() => Return ElseIf, Else, SwitchCaseNode... because there is no specific AST for this kind
         // - GetChildAst() => retourne only ASTs we are looking for ...
@@ -47,6 +51,8 @@ namespace ExtensionMethods
             return _ast.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast, false);
         }
 
+
+
         // ForStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
@@ -62,6 +68,8 @@ namespace ExtensionMethods
             return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         }
         
+
+
         // ForStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
@@ -75,6 +83,8 @@ namespace ExtensionMethods
         {
             return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         }
+
+
 
         // IfStatementAst Extension Methods
         // New Methods Available:
