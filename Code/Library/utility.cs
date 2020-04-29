@@ -13,7 +13,7 @@ namespace FlowChartCore
         // and in every "code block"...
         static public List<Type> GetValidTypes(){
 
-            var ValidTypes = new List<Type>() {
+            return new List<Type>() {
                 typeof(IfStatementAst),
                 typeof(ForEachStatementAst),
                 typeof(ForStatementAst),
@@ -25,8 +25,7 @@ namespace FlowChartCore
                 typeof(DoUntilStatementAst),
                 typeof(TryStatementAst),
             };
-            
-            return ValidTypes;
+
         }
 
         // Utility Method to parse a PowerShell Scriptblock

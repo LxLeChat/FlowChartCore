@@ -1,5 +1,6 @@
-﻿using System.Management.Automation.Language;
+﻿// using System.Management.Automation.Language;
 using System.Collections.Generic;
+using System.Linq;
 using System;
 
 namespace FlowChartCore
@@ -22,6 +23,25 @@ namespace FlowChartCore
         public int Depth { get=> depth; }
 
         internal abstract void SetChildren();
+
+
+        // Method to find recursively Nodes by Type
+        public IEnumerable<Node> FindNodesByType (Type type) {
+            List<Node> Result = new List<Node>();
+            if (children.Count > 0 ) {
+                foreach ( var child in children ) {
+                    if (child.GetType() == type )
+                    {
+                        Result.Add(child);
+                        Result.AddRange(child.FindNodesByType(type));
+                    } else {
+                        Result.AddRange(child.FindNodesByType(type));
+                    }
+                }
+            }
+            return Result;
+        }
+        
 
     }
 }

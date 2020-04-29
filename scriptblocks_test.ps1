@@ -10,18 +10,12 @@ $a = {
 }
 
     $b = {
-        try {
-            foreach ($item in $collection) {
-                
-            }
-        }
-        catch {
-            for ($i = 0; $i -lt $array.Count; $i++) {
-                
-            }
-        }
-        finally {
+        foreach ($item in $collection) {
             if ($a) {
+                
+            }
+
+            for ($i = 0; $i -lt $array.Count; $i++) {
                 
             }
         }
