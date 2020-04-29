@@ -1,7 +1,7 @@
 # FlowChartCore
  FlowChart c# version
  
- This is an attempt to write my first c# library ... Jump from PS to C# ...
+ First time writing c# ... Jump from PS to C# ...
  
  This will be used mainly for PowerShell Core. (trying to make it compatible with 5.1 but no succes at the moment)
  
