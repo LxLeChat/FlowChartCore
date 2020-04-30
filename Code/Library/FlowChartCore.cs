@@ -104,6 +104,9 @@ namespace FlowChartCore
             return null;
         }
         
+        // Need an overload for FIndNodesByTypeUp with a label argument ...
+        // or else we wiil not be able to find labeled nodes...
+        
         // method to find index of node in parent
         // parent can be parent property, or ParentRoot if
         // the current node depth is 0
@@ -170,6 +173,7 @@ namespace FlowChartCore
             }
         }
 
+        
     }
 }
 

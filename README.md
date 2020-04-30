@@ -78,3 +78,6 @@ ParseScriptBlock actually build a Tree object. And we only return the Nodes prop
 - [x] Discovering & Implementing Try / Catch / Finally
 - [ ] Discovering & Implementing Loops Labels
 - [ ] Discovering & Implementing Keyword: Exit, Return, Break, Continue
+- [x] Implement Method FindNodeByType
+- [x] Implement Method FindNodeByTypeUp
+- [ ] Implement Method FindNodeByType with label ( override of FindNodeByTypeUp)
