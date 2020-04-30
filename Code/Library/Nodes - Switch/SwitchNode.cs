@@ -9,18 +9,19 @@ namespace FlowChartCore
         protected SwitchStatementAst RawAst {get;set;}
 
         // Constructor
-        public SwitchNode(SwitchStatementAst _ast, int _depth, int _position, Node _parent)
+        public SwitchNode(SwitchStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             name = "SwitchNode";
             position = _position;
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            parentroot = _tree;
 
             
 
             SetChildren();
-            plop();
+            
         }
 
         internal override void SetChildren() {

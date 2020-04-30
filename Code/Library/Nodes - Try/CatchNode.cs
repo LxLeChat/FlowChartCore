@@ -19,7 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
-            plop();
+            
         }
 
         internal override void SetChildren() {
@@ -30,7 +30,7 @@ namespace FlowChartCore
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this));
+                children.Add(item.CreateNode(Depth+1,p,this,null));
                 p++;
             }
         }

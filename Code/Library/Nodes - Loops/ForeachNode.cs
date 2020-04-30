@@ -8,16 +8,17 @@ namespace FlowChartCore
     {
         protected ForEachStatementAst RawAst {get;set;}
 
-        public ForeachNode(ForEachStatementAst _ast, int _depth, int _position, Node _parent)
+        public ForeachNode(ForEachStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             name = "ForeachNode";
             position = _position;
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            parentroot = _tree;
 
             SetChildren();
-            plop();
+            
         }
 
         internal override void SetChildren() {
@@ -29,7 +30,7 @@ namespace FlowChartCore
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this));
+                children.Add(item.CreateNode(Depth+1,p,this,null));
                 p++;
             }
         }

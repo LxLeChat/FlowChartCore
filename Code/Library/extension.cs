@@ -11,28 +11,28 @@ namespace ExtensionMethods
     {
         // Extensions Methods To Help Create Nodes From an unknown Ast
         // Special case for StatementBlockAST... Go to Extension Methods for this type
-        public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent)
+        public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             switch (_ast)
             {
                 case Ast a when _ast is ForEachStatementAst : 
-                    return ((ForEachStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
+                    return ((ForEachStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is ForStatementAst : 
-                    return ((ForStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((ForStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is IfStatementAst : 
-                    return ((IfStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((IfStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is SwitchStatementAst : 
-                    return ((SwitchStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((SwitchStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is WhileStatementAst : 
-                    return ((WhileStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((WhileStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is DoWhileStatementAst : 
-                    return ((DoWhileStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((DoWhileStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is DoUntilStatementAst : 
-                    return ((DoUntilStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((DoUntilStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is TryStatementAst : 
-                    return ((TryStatementAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((TryStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is CatchClauseAst : 
-                    return ((CatchClauseAst)_ast).CreateNodeFromAst(_depth,_position,_parent);
+                    return ((CatchClauseAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
             }
             return null;
         }
@@ -78,9 +78,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
         // - GetChildAst() => retourne only ASTs we are looking for ...
-        public static ForeachNode CreateNodeFromAst(this ForEachStatementAst _ast,int _depth, int _position,Node _parent)
+        public static ForeachNode CreateNodeFromAst(this ForEachStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new ForeachNode(_ast,_depth,_position,_parent);
+            return new ForeachNode(_ast,_depth, _position, _parent, _tree);
         }
 
 
@@ -97,9 +97,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
-        public static ForNode CreateNodeFromAst(this ForStatementAst _ast, int _depth, int _position, Node _parent)
+        public static ForNode CreateNodeFromAst(this ForStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new ForNode(_ast,_depth,_position,_parent);
+            return new ForNode(_ast,_depth, _position, _parent, _tree);
         }
 
         public static IEnumerable<Ast> GetChildAst (this ForStatementAst _ast)
@@ -114,9 +114,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
         // - GetChildAst() => retourne only ASTs we are looking for ...
-        public static IfNode CreateNodeFromAst(this IfStatementAst _ast,int _depth, int _position, Node _parent)
+        public static IfNode CreateNodeFromAst(this IfStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new IfNode(_ast,_depth,_position,_parent);
+            return new IfNode(_ast,_depth, _position, _parent, _tree);
         }
 
         public static IEnumerable<Ast> GetChildAst (this IfStatementAst _ast)
@@ -160,9 +160,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
         // - GetChildAst() => retourne only ASTs we are looking for ...
-        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent)
+        public static SwitchNode CreateNodeFromAst(this SwitchStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new SwitchNode(_ast,_depth,_position,_parent);
+            return new SwitchNode(_ast,_depth, _position, _parent, _tree);
         }
 
         // Return Else Clause as a StatementBlockAst
@@ -199,9 +199,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
-        public static WhileNode CreateNodeFromAst(this WhileStatementAst _ast, int _depth, int _position, Node _parent)
+        public static WhileNode CreateNodeFromAst(this WhileStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new WhileNode(_ast,_depth,_position,_parent);
+            return new WhileNode(_ast,_depth, _position, _parent, _tree);
         }
 
         public static IEnumerable<Ast> GetChildAst (this WhileStatementAst _ast)
@@ -216,9 +216,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
-        public static DoWhileNode CreateNodeFromAst(this DoWhileStatementAst _ast, int _depth, int _position, Node _parent)
+        public static DoWhileNode CreateNodeFromAst(this DoWhileStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new DoWhileNode(_ast,_depth,_position,_parent);
+            return new DoWhileNode(_ast,_depth, _position, _parent, _tree);
         }
 
         public static IEnumerable<Ast> GetChildAst (this DoWhileStatementAst _ast)
@@ -233,9 +233,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
-        public static DoUntilNode CreateNodeFromAst(this DoUntilStatementAst _ast, int _depth, int _position, Node _parent)
+        public static DoUntilNode CreateNodeFromAst(this DoUntilStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new DoUntilNode(_ast,_depth,_position,_parent);
+            return new DoUntilNode(_ast,_depth, _position, _parent, _tree);
         }
 
         public static IEnumerable<Ast> GetChildAst (this DoUntilStatementAst _ast)
@@ -250,9 +250,9 @@ namespace ExtensionMethods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition) => Creates a Node
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
-        public static TryNode CreateNodeFromAst(this TryStatementAst _ast, int _depth, int _position, Node _parent)
+        public static TryNode CreateNodeFromAst(this TryStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
-            return new TryNode(_ast,_depth,_position,_parent);
+            return new TryNode(_ast,_depth, _position, _parent, _tree);
         }
 
         public static IEnumerable<Ast> GetChildAst (this TryStatementAst _ast)
@@ -283,7 +283,7 @@ namespace ExtensionMethods
         // - CreateChildNodes ($item in $collection) {} => Creates Child Nodes
         public static CatchNode CreateNodeFromAst(this CatchClauseAst _ast, int _depth, int _position, Node _parent)
         {
-            return new CatchNode(_ast,_depth,_position,_parent);
+            return new CatchNode(_ast,_depth, _position, _parent);
         }
 
         public static IEnumerable<Ast> GetChildAst (this CatchClauseAst _ast)

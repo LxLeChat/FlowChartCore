@@ -9,7 +9,15 @@ namespace FlowChartCore
         Else,ElseIf,SwitchCase,SwitchDefault,Finally
     }
 
-    public abstract class Node
+    public class Tree {
+        public List<Node> Nodes { get; private set; }
+
+        public Tree (List<Node> nodes) {
+            Nodes = nodes;
+        }
+    }
+
+    public class Node
     {
         protected internal string name;
         public string Name { get => name; }
@@ -20,15 +28,17 @@ namespace FlowChartCore
         protected internal int position;
         public int Position { get=> position; }
         protected internal int depth;
-        public int Depth { get=> depth; }
+        public int Depth { get=> depth; }        
+        protected internal Tree parentroot;
+        public Tree ParentRoot { get=> parentroot; }
 
-        public LinkedList<Node> LList { get; set; }
+        // public LinkedList<Node> LList { get; set; }
 
-        internal abstract void SetChildren();
+        internal virtual void SetChildren() {}
 
 
         // Method to find recursively Nodes by Type
-        public IEnumerable<Node> FindNodesByType (Type type) {
+        public virtual IEnumerable<Node> FindNodesByType (Type type) {
             List<Node> Result = new List<Node>();
             if (children.Count > 0 ) {
                 foreach ( var child in children ) {
@@ -44,16 +54,17 @@ namespace FlowChartCore
             return Result;
         }
         
-        internal void plop () {
-            if ( children != null ) {
-                LinkedList<Node> llist = new LinkedList<Node>();
-                foreach (var item in children)
-                {
-                    item.LList = llist;
-                    LinkedListNode<Node> Curr = new LinkedListNode<Node>(item);
-                    llist.AddLast(Curr);
-
-                }
+        // method to find index of node in parent
+        // parent can be parent property, or ParentRoot if
+        // the current node depth is 0
+        internal virtual int FindIndex(){
+            
+            if (Depth == 0)
+            {
+                return ParentRoot.Nodes.FindIndex(x => x == this);
+            } else
+            {
+                return parent.Children.FindIndex(x => x == this);    
             }
         }
 

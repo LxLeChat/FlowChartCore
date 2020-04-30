@@ -10,16 +10,17 @@ namespace FlowChartCore
         protected TryStatementAst RawAst {get;set;}
         // public TryStatementAst plop { get => RawAst;}
 
-        public TryNode(TryStatementAst _ast, int _depth, int _position, Node _parent)
+        public TryNode(TryStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             name = "TryNode";
             position = _position;
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            parentroot = _tree;
 
             SetChildren();
-            plop();
+            
         }
 
         internal override void SetChildren() {
@@ -30,7 +31,7 @@ namespace FlowChartCore
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this));
+                children.Add(item.CreateNode(Depth+1,p,this,null));
                 p++;
             }
 
@@ -39,7 +40,7 @@ namespace FlowChartCore
             foreach (var item in CatchClauses)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this));
+                children.Add(item.CreateNode(Depth+1,p,this,null));
                 p++;
             }
 
