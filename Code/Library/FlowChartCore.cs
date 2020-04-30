@@ -15,6 +15,24 @@ namespace FlowChartCore
         public Tree (List<Node> nodes) {
             Nodes = nodes;
         }
+
+// Method to find recursively Nodes by Type
+        public virtual IEnumerable<Node> FindNodesByType (Type type) {
+            List<Node> Result = new List<Node>();
+            if (Nodes.Count > 0 ) {
+                foreach ( var child in Nodes ) {
+                    if (child.GetType() == type )
+                    {
+                        Result.Add(child);
+                        Result.AddRange(child.FindNodesByType(type));
+                    } else {
+                        Result.AddRange(child.FindNodesByType(type));
+                    }
+                }
+            }
+            return Result;
+        }
+        
     }
 
     public class Node
@@ -68,7 +86,7 @@ namespace FlowChartCore
             }
         }
 
-        // method to return the next node object from the parent
+        // Method to return the next node object from the parent
         public virtual Node GetNextNode(){
             
             int CurrIndex = FindIndex();
@@ -94,7 +112,7 @@ namespace FlowChartCore
             }
         }
 
-        // method to return the next node object from the parent
+        // Method to return the next node object from the parent
         public virtual Node GetPreviousNode(){
             
             int CurrIndex = FindIndex();
