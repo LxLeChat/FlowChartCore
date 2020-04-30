@@ -22,6 +22,8 @@ namespace FlowChartCore
         protected internal int depth;
         public int Depth { get=> depth; }
 
+        public LinkedList<Node> LList { get; set; }
+
         internal abstract void SetChildren();
 
 
@@ -42,6 +44,19 @@ namespace FlowChartCore
             return Result;
         }
         
+        internal void plop () {
+            if ( children != null ) {
+                LinkedList<Node> llist = new LinkedList<Node>();
+                foreach (var item in children)
+                {
+                    item.LList = llist;
+                    LinkedListNode<Node> Curr = new LinkedListNode<Node>(item);
+                    llist.AddLast(Curr);
+
+                }
+            }
+        }
 
     }
 }
+

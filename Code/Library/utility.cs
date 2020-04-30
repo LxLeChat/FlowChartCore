@@ -33,13 +33,19 @@ namespace FlowChartCore
         public static List<Node> ParseScriptBlock(ScriptBlock scriptBlock){
 
             List<Node> Nodes = new List<Node>();
+            // i'm not sure having a linkedlist with the full object is a good idea ...
+            // maybe something lighter ? removing some properties maybe ...
+            LinkedList<Node> LList = new LinkedList<Node>();
             Ast NamedBlock = scriptBlock.Ast.Find(Args => Args is NamedBlockAst, false);
             IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == NamedBlock, false);
 
             int Position = 1;
 
             foreach ( var block in enumerable ) {
-                Nodes.Add( block.CreateNode(0,Position,null) );
+                var tmpNode = block.CreateNode(0,Position,null);
+                tmpNode.LList = LList;
+                LList.AddLast(tmpNode);
+                Nodes.Add(tmpNode);
                 Position++;
             }
 

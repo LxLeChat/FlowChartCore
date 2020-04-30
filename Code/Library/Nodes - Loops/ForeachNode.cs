@@ -17,6 +17,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
+            plop();
         }
 
         internal override void SetChildren() {

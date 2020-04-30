@@ -18,6 +18,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
+            plop();
         }
 
         internal override void SetChildren() {
@@ -51,6 +52,8 @@ namespace FlowChartCore
                 children.Add(Else.CreateNode(Depth+1,p,this,FlowChartCore.StatementType.Else));
             }
         }
+
+        
 
     }
 }

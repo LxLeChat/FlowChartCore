@@ -19,6 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
+            plop();
         }
 
         
