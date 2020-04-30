@@ -16,22 +16,31 @@ namespace FlowChartCore
             Nodes = nodes;
         }
 
-// Method to find recursively Nodes by Type
-        public virtual IEnumerable<Node> FindNodesByType (Type type) {
+        // Method to find recursively Nodes by Type
+        public virtual IEnumerable<Node> FindNodesByType (Type type, bool recurse) {
             List<Node> Result = new List<Node>();
             if (Nodes.Count > 0 ) {
                 foreach ( var child in Nodes ) {
                     if (child.GetType() == type )
                     {
                         Result.Add(child);
-                        Result.AddRange(child.FindNodesByType(type));
+
+                        if (recurse)
+                        {
+                            Result.AddRange(child.FindNodesByType(type,recurse));
+                        }
+
                     } else {
-                        Result.AddRange(child.FindNodesByType(type));
+                        if (recurse)
+                        {
+                            Result.AddRange(child.FindNodesByType(type,recurse));
+                        }
                     }
                 }
             }
             return Result;
         }
+        
         
     }
 
@@ -56,20 +65,43 @@ namespace FlowChartCore
 
 
         // Method to find recursively Nodes by Type
-        public virtual IEnumerable<Node> FindNodesByType (Type type) {
+        public virtual IEnumerable<Node> FindNodesByType (Type type, bool recurse) {
             List<Node> Result = new List<Node>();
             if (children.Count > 0 ) {
                 foreach ( var child in children ) {
                     if (child.GetType() == type )
                     {
                         Result.Add(child);
-                        Result.AddRange(child.FindNodesByType(type));
+
+                        if (recurse)
+                        {
+                            Result.AddRange(child.FindNodesByType(type,recurse));
+                        }
+
                     } else {
-                        Result.AddRange(child.FindNodesByType(type));
+                        if (recurse)
+                        {
+                            Result.AddRange(child.FindNodesByType(type,recurse));
+                        }
                     }
                 }
             }
             return Result;
+        }
+        
+        // Method to find a node by type UpWard.
+        // Stops When a corresponding node is found
+        public virtual Node FindNodesByTypeUp (Type type) {
+            
+            if ( this.parent != null ) {
+                if (this.Parent.GetType() == type)
+                {
+                    return this.Parent;
+                } else {
+                    return this.Parent.FindNodesByTypeUp(type);
+                }
+            }
+            return null;
         }
         
         // method to find index of node in parent
