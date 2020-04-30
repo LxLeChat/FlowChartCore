@@ -64,6 +64,9 @@ Depth    : 1
 
 ```
 
+ParseScriptBlock actually build a Tree object. And we only return the Nodes property of this object wich is a List of Node object.
+
+
 # Done & ToDo:
 - [x] Discovering & Implementing Foreach
 - [x] Discovering & Implementing For
