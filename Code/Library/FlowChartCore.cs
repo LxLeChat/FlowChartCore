@@ -57,7 +57,7 @@ namespace FlowChartCore
         // method to find index of node in parent
         // parent can be parent property, or ParentRoot if
         // the current node depth is 0
-        internal virtual int FindIndex(){
+        public virtual int FindIndex(){
             
             if (Depth == 0)
             {
@@ -65,6 +65,58 @@ namespace FlowChartCore
             } else
             {
                 return parent.Children.FindIndex(x => x == this);    
+            }
+        }
+
+        // method to return the next node object from the parent
+        public virtual Node GetNextNode(){
+            
+            int CurrIndex = FindIndex();
+            if (Depth == 0)
+            {
+                try {
+                    Node NextNode = ParentRoot.Nodes[CurrIndex+1];
+                    return NextNode;
+                }
+                catch {
+                    return null;
+                }
+                
+            } else
+            {
+                try {
+                    Node NextNode = parent.Children[CurrIndex+1];
+                    return NextNode;
+                }
+                catch {
+                    return null;
+                }
+            }
+        }
+
+        // method to return the next node object from the parent
+        public virtual Node GetPreviousNode(){
+            
+            int CurrIndex = FindIndex();
+            if (Depth == 0)
+            {
+                try {
+                    Node NextNode = ParentRoot.Nodes[CurrIndex-1];
+                    return NextNode;
+                }
+                catch {
+                    return null;
+                }
+                
+            } else
+            {
+                try {
+                    Node NextNode = parent.Children[CurrIndex-1];
+                    return NextNode;
+                }
+                catch {
+                    return null;
+                }
             }
         }
 
