@@ -11,12 +11,17 @@ $a = {
 }
 
     $b = {
-        for ($i = 0; $i -lt $array.Count; $i++) {
+        :testlabel for ($i = 0; $i -lt $array.Count; $i++) {
             if ($a) {
-                for ($i = 0; $i -lt $array.Count; $i++) {
-                    for ($i = 0; $i -lt $array.Count; $i++) {}
-                }
+                if ($b) {
+                    for ($i = 0; $i -lt $array.Count; $i++) {
+                        if ($x) {
+                            
+                        }
+                    }
+                }    
             }
+            
             for ($i = 0; $i -lt $array.Count; $i++) {}
             for ($i = 0; $i -lt $array.Count; $i++) {}
         }

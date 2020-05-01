@@ -58,8 +58,7 @@ namespace FlowChartCore
         public int Depth { get=> depth; }        
         protected internal Tree parentroot;
         public Tree ParentRoot { get=> parentroot; }
-
-        // public LinkedList<Node> LList { get; set; }
+        protected string label {get;set;}
 
         internal virtual void SetChildren() {}
 
@@ -104,8 +103,21 @@ namespace FlowChartCore
             return null;
         }
         
-        // Need an overload for FIndNodesByTypeUp with a label argument ...
-        // or else we wiil not be able to find labeled nodes...
+        // Method to find a node by type & label UpWard.
+        // Stops When a corresponding node is found
+        public virtual Node FindNodesByLabelUp (String Label) {
+            
+            if ( this.parent != null ) {
+                if (this.parent.label == Label)
+                {
+                    return this.Parent;
+                } else {
+                    return this.Parent.FindNodesByLabelUp(Label);
+                }
+            }
+            return null;
+        }
+        
         
         // method to find index of node in parent
         // parent can be parent property, or ParentRoot if

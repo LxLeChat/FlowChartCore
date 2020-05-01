@@ -6,8 +6,6 @@ namespace FlowChartCore
 {
     public class ForNode : Node
     {
-        protected ForStatementAst RawAst {get;set;}
-
         public ForNode(ForStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             name = "ForNode";
@@ -17,8 +15,14 @@ namespace FlowChartCore
             parent = _parent;
             parentroot = _tree;
 
+            SetLabel();
             SetChildren();
             
+        }
+
+        // Set Label
+        internal void SetLabel () {
+            label = RawAst.Label;
         }
 
         internal override void SetChildren() {
@@ -34,5 +38,8 @@ namespace FlowChartCore
                 p++;
             }
         }
+
+        protected ForStatementAst RawAst {get;set;}
+        public string Label { get => label;}
     }
 }

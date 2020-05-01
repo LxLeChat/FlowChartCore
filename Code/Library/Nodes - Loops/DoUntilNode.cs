@@ -7,6 +7,7 @@ namespace FlowChartCore
     public class DoUntilNode : Node
     {
         protected DoUntilStatementAst RawAst {get;set;}
+        public string Label { get => label;}
 
         public DoUntilNode(DoUntilStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
@@ -17,8 +18,14 @@ namespace FlowChartCore
             parent = _parent;
             parentroot = _tree;
 
+            SetLabel();
             SetChildren();
             
+        }
+
+        // Set Label
+        internal void SetLabel () {
+            label = RawAst.Label;
         }
 
         internal override void SetChildren() {

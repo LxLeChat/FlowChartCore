@@ -33,10 +33,38 @@ namespace ExtensionMethods
                     return ((TryStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is CatchClauseAst : 
                     return ((CatchClauseAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
+                case Ast a when _ast is BreakStatementAst : 
+                    return ((BreakStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
+                case Ast a when _ast is ContinueStatementAst : 
+                    return ((ContinueStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
             }
             return null;
         }
 
+    }
+
+    public static class ContinueStatementExtension {
+        // ContinueStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static ContinueNode CreateNodeFromAst(this ContinueStatementAst _ast,int _depth, int _position, Node _parent)
+        {
+            return new ContinueNode(_ast,_depth, _position, _parent);
+        }
+        
+    }
+
+    public static class BreakStatementExtension {
+        // BreakStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static BreakNode CreateNodeFromAst(this BreakStatementAst _ast,int _depth, int _position, Node _parent)
+        {
+            return new BreakNode(_ast,_depth, _position, _parent);
+        }
+        
     }
     
     public static class StatementBlockExtensions {
