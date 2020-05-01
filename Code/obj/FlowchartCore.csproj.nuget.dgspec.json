@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\FlowChartCore\\Code\\FlowchartCore.csproj": {}
+    "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\FlowChartCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\FlowChartCore\\Code\\FlowchartCore.csproj": {
+    "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\FlowChartCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\FlowChartCore\\Code\\FlowchartCore.csproj",
-        "projectName": "FlowchartCore",
-        "projectPath": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\FlowChartCore\\Code\\FlowchartCore.csproj",
+        "projectUniqueName": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\FlowChartCore.csproj",
+        "projectName": "FlowChartCore",
+        "projectPath": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\FlowChartCore.csproj",
         "packagesPath": "C:\\Users\\Lx\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\FlowChartCore\\Code\\obj\\",
+        "outputPath": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -21,14 +21,14 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "netcoreapp3.1"
+          "netstandard2.0"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netcoreapp3.1": {
+          "netstandard2.0": {
             "projectReferences": {}
           }
         },
@@ -39,11 +39,17 @@
         }
       },
       "frameworks": {
-        "netcoreapp3.1": {
+        "netstandard2.0": {
           "dependencies": {
-            "System.Management.Automation": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "PowerShellStandard.Library": {
+              "target": "Package",
+              "version": "[5.1.0, )"
             }
           },
           "imports": [
@@ -56,11 +62,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "frameworkReferences": {
-            "Microsoft.NETCore.App": {
-              "privateAssets": "all"
-            }
-          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
