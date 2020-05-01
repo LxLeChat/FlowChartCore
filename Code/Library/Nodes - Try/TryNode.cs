@@ -31,7 +31,7 @@ namespace FlowChartCore
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this,null));
+                children.Add(item.CreateNode(depth+1,p,this,null));
                 p++;
             }
 
@@ -40,14 +40,14 @@ namespace FlowChartCore
             foreach (var item in CatchClauses)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this,null));
+                children.Add(item.CreateNode(depth+1,p,this,null));
                 p++;
             }
 
             // On Appelle GetFinally pour recup le finally
             StatementBlockAst Finally = RawAst.GetFinally();
             if (Finally != null) {
-                children.Add(Finally.CreateNode(Depth+1,p,this,StatementType.Finally));
+                children.Add(Finally.CreateNode(depth+1,p,this,StatementType.Finally));
             }
             {
                 

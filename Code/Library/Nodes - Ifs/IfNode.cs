@@ -32,7 +32,7 @@ namespace FlowChartCore
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth + 1, p, this,null));
+                children.Add(item.CreateNode(depth + 1, p, this,null));
                 p++;
             }
 
@@ -43,7 +43,7 @@ namespace FlowChartCore
                 foreach (var item in ElseIfs)
                 {
                     // On appelle CreateNode qui est une extension de StatementBlockAST, avec un param enum qui identifie le elseif
-                    children.Add(item.CreateNode(Depth + 1, p, this, FlowChartCore.StatementType.ElseIf));
+                    children.Add(item.CreateNode(depth + 1, p, this, FlowChartCore.StatementType.ElseIf));
                     p++;
                 }
             }
@@ -53,7 +53,7 @@ namespace FlowChartCore
             // On appelle CreateNode qui est une extension de StatementBlockAST, avec un param enum qui identifie le else
             if (Else != null)
             {
-                children.Add(Else.CreateNode(Depth + 1, p, this, FlowChartCore.StatementType.Else));
+                children.Add(Else.CreateNode(depth + 1, p, this, FlowChartCore.StatementType.Else));
             }
         }
 

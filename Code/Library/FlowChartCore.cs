@@ -55,13 +55,17 @@ namespace FlowChartCore
         protected internal int position;
         public int Position { get=> position; }
         protected internal int depth;
-        public int Depth { get=> depth; }        
+        public int Depth { get=> depth; }      
         protected internal Tree parentroot;
-        public Tree ParentRoot { get=> parentroot; }
-        protected string label {get;set;}
-
+        // public Tree ParentRoot { get=> parentroot; }
+        protected internal string label;
+        public String Id { get=> GetId(); }
+        public bool IsLast { get=> GetIsLast(); }
+        public bool IsFirst { get=> GetIsFirst(); }
+        
+        // Method to find children..
+        // Must be overriden
         internal virtual void SetChildren() {}
-
 
         // Method to find recursively Nodes by Type
         public virtual IEnumerable<Node> FindNodesByType (Type type, bool recurse) {
@@ -118,15 +122,14 @@ namespace FlowChartCore
             return null;
         }
         
-        
         // method to find index of node in parent
         // parent can be parent property, or ParentRoot if
         // the current node depth is 0
         public virtual int FindIndex(){
             
-            if (Depth == 0)
+            if (depth == 0)
             {
-                return ParentRoot.Nodes.FindIndex(x => x == this);
+                return parentroot.Nodes.FindIndex(x => x == this);
             } else
             {
                 return parent.Children.FindIndex(x => x == this);    
@@ -137,10 +140,10 @@ namespace FlowChartCore
         public virtual Node GetNextNode(){
             
             int CurrIndex = FindIndex();
-            if (Depth == 0)
+            if (depth == 0)
             {
                 try {
-                    Node NextNode = ParentRoot.Nodes[CurrIndex+1];
+                    Node NextNode = parentroot.Nodes[CurrIndex+1];
                     return NextNode;
                 }
                 catch {
@@ -163,10 +166,10 @@ namespace FlowChartCore
         public virtual Node GetPreviousNode(){
             
             int CurrIndex = FindIndex();
-            if (Depth == 0)
+            if (depth == 0)
             {
                 try {
-                    Node NextNode = ParentRoot.Nodes[CurrIndex-1];
+                    Node NextNode = parentroot.Nodes[CurrIndex-1];
                     return NextNode;
                 }
                 catch {
@@ -185,7 +188,29 @@ namespace FlowChartCore
             }
         }
 
-        
+        // Method to create the node Id
+        internal string GetId() {
+            string id = depth.ToString("D2") + position.ToString("D2");
+            return id;
+        }
+
+        // Method for IsLast property
+        internal bool GetIsLast() {
+            if (GetNextNode() == null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        // Method for IsFirst property
+        internal bool GetIsFirst() {
+            if (GetPreviousNode() == null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 }
 

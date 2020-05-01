@@ -38,7 +38,7 @@ namespace FlowChartCore
                 foreach (var item in Cases)
                 {
                     // On appelle CreateNode qui est une extension pour AST
-                    children.Add(item.CreateNode(Depth+1,p,this,StatementType.SwitchCase));
+                    children.Add(item.CreateNode(depth+1,p,this,StatementType.SwitchCase));
                     p++;
                 }   
             }
@@ -47,7 +47,7 @@ namespace FlowChartCore
             StatementBlockAst DefaultCase = RawAst.GetDefault();
             if (DefaultCase != null)
             {
-                children.Add(DefaultCase.CreateNode(Depth+1,p,this,StatementType.SwitchDefault));
+                children.Add(DefaultCase.CreateNode(depth+1,p,this,StatementType.SwitchDefault));
             }
         }
 

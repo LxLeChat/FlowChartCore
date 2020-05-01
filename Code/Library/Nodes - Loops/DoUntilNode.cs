@@ -37,7 +37,7 @@ namespace FlowChartCore
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
-                children.Add(item.CreateNode(Depth+1,p,this,null));
+                children.Add(item.CreateNode(depth+1,p,this,null));
                 p++;
             }
         }
