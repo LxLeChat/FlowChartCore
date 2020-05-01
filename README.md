@@ -37,31 +37,30 @@ PS \> $x = [FlowChartCore.Utility]::ParseScriptBlock($a)
 Will return the following:
 ``` powershell
 PS \>  $x
-Name     : ForeachNode
-Children : {ForNode, ForNode, ForNode}
+Label    : testlabel
+Name     : ForNode
+Children : {IfNode, ForNode, ForNode}
 Parent   :
 Position : 1
 Depth    : 0
+Id       : 0001
+IsLast   : False
+IsFirst  : True
 
-PS \> $x.Children
+Label    :
+Name     : ForNode
+Children : {ForNode, ForNode, ForNode}
+...
+
+Label    :
 Name     : ForNode
 Children : {}
-Parent   : FlowChartCore.ForeachNode
-Position : 1
-Depth    : 1
-
-Name     : ForNode
-Children : {}
-Parent   : FlowChartCore.ForeachNode
-Position : 2
-Depth    : 1
-
-Name     : ForNode
-Children : {}
-Parent   : FlowChartCore.ForeachNode
-Position : 3
-Depth    : 1
-
+Parent   :
+Position : 10
+Depth    : 0
+Id       : 0010
+IsLast   : True
+IsFirst  : False
 ```
 
 ParseScriptBlock actually build a Tree object. And we only return the Nodes property of this object wich is a List of Node object.
