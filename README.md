@@ -9,8 +9,8 @@
  The result of the dot being consumed, will be a PowerShell Script FlowChart.
 
 # Steps
- - Create Node structure referencing all types for, foreach, if etc..
- - Add properties & methods for each types of nodes (like linkednodelist, ability to find a specific node by id/type up/down...)
+ - ~~Create Node structure referencing all types for, foreach, if etc..~~
+ - ~~Add properties & methods for each types of nodes (like linkednodelist, ability to find a specific node by id/type up/down...)~~
  - Implement Graph Method to generate a dot file
 
 ## Importing the dll
