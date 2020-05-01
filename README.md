@@ -3,7 +3,8 @@
  
  First time writing c# ... Jump from PS to C# ...
  
- This will be used mainly for PowerShell Core. (trying to make it compatible with 5.1 but no succes at the moment)
+~~This will be used mainly for PowerShell Core. (trying to make it compatible with 5.1 but no succes at the moment)~~
+Now compatible with PS 5.1 and PSCore (tested on 7 WSL Ubuntu) !
  
  The main goal is to generate a dot graph, then it will be consumed by GraphViz, or any tool accepting dot language.
  The result of the dot being consumed, will be a PowerShell Script FlowChart.
@@ -15,6 +16,7 @@
  - [ ] Create PS Cmdlet with C#
 
 ## Importing the dll
+The Dll can be found in ``Code\bin\debug\netstandard2.0\FlowChartCore.dll``
 ``` powershell
 Import-module .\Flowchartcore.dll
 ```
@@ -67,7 +69,7 @@ IsFirst  : False
 ParseScriptBlock actually build a Tree object. And we only return the Nodes property of this object wich is a List of Node object.
 
 
-# Done & ToDo:
+# Basics: Done & ToDo:
 - [x] Discovering & Implementing Foreach
 - [x] Discovering & Implementing For
 - [x] Discovering & Implementing If / ElseIf / Else
@@ -82,3 +84,4 @@ ParseScriptBlock actually build a Tree object. And we only return the Nodes prop
 - [x] Implement Method FindNodeByType
 - [x] Implement Method FindNodeByTypeUp
 - [x] Implement Method FindNodeByLabelUp
+- [ ] Start Creating Graphs ... maybe using
