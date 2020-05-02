@@ -9,6 +9,10 @@ namespace FlowChartCore
         Else,ElseIf,SwitchCase,SwitchDefault,Finally
     }
 
+    public enum GraphType{
+        Dot,Mmd
+    }
+
     public class Tree {
         public List<Node> Nodes { get; private set; }
 
@@ -209,6 +213,16 @@ namespace FlowChartCore
                 return true;
             } else {
                 return false;
+            }
+        }
+
+        public String GetEndId() {
+            return $"end_{Id}";
+        }
+
+        internal void CreateCodeNode(){
+            if ( children.Count == 0 ) {
+                children.Add(new CodeNode(depth+1,0,this,null));
             }
         }
     }

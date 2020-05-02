@@ -2,7 +2,9 @@ $f = { foreach ($item in $collection) { for ($i = 0; $i -lt $array.Count; $i++) 
 
 $a = {
     if ($a) {
-        
+       foreach ($item in $collection) {
+           
+       } 
     }
 
     if ($b) {

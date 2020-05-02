@@ -20,6 +20,7 @@ namespace FlowChartCore
             parentroot = _tree;
 
             SetChildren();
+            CreateCodeNode();
             
         }
 

@@ -19,7 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
-            
+            CreateCodeNode();
         }
 
         // internal override void SetChildren(){}

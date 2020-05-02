@@ -19,6 +19,7 @@ namespace FlowChartCore
             parentroot = _tree;
 
             SetChildren();
+            CreateCodeNode();
             
         }
 
@@ -29,6 +30,7 @@ namespace FlowChartCore
             // Ca nous retourne une liste d'AST
             IEnumerable<Ast> Childs = RawAst.GetChildAst();
             int p = 0;
+
             foreach (var item in Childs)
             {
                 // On appelle CreateNode qui est une extension pour AST
@@ -56,7 +58,6 @@ namespace FlowChartCore
                 children.Add(Else.CreateNode(depth + 1, p, this, FlowChartCore.StatementType.Else));
             }
         }
-
 
 
     }
