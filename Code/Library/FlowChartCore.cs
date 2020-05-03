@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using DotNetGraph.Core;
 
 namespace FlowChartCore
 {
@@ -66,6 +67,9 @@ namespace FlowChartCore
         public String Id { get=> GetId(); }
         public bool IsLast { get=> GetIsLast(); }
         public bool IsFirst { get=> GetIsFirst(); }
+
+        // public List<string> Graph { get; set; }
+        public List<IDotElement> Graph = new List<IDotElement>();
         
         // Method to find children..
         // Must be overriden
@@ -216,7 +220,7 @@ namespace FlowChartCore
             }
         }
 
-        public String GetEndId() {
+        public virtual String GetEndId() {
             return $"end_{Id}";
         }
 
@@ -225,6 +229,10 @@ namespace FlowChartCore
                 children.Add(new CodeNode(depth+1,0,this,null));
             }
         }
+
+        public virtual void GenerateGraph(bool recursive){}
+
     }
+
 }
 

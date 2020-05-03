@@ -1,6 +1,7 @@
 using System.Management.Automation.Language;
 using System.Collections.Generic;
 using ExtensionMethods;
+using System;
 
 namespace FlowChartCore
 {
@@ -19,7 +20,7 @@ namespace FlowChartCore
             parentroot = _tree;
 
             SetChildren();
-            CreateCodeNode();
+            
             
         }
 
@@ -36,6 +37,11 @@ namespace FlowChartCore
                 // On appelle CreateNode qui est une extension pour AST
                 children.Add(item.CreateNode(depth + 1, p, this,null));
                 p++;
+            }
+
+            // if children is empty create pseudo codeblock
+            if(children.Count == 0 ) {
+                CreateCodeNode();
             }
 
             // Recuperaction des Elsefis
@@ -59,6 +65,18 @@ namespace FlowChartCore
             }
         }
 
+        public override void GenerateGraph(bool recursive){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.IfBuilder(this);
+            Graph.AddRange(x.DotDefinition);
 
+            if(recursive) {
+                Console.WriteLine("recurse..");
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
+        }
+
+         
     }
 }
