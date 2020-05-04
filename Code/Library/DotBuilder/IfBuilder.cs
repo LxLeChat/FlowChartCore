@@ -62,15 +62,13 @@ namespace FlowChartCore.Graph
             // throw new NotImplementedException();
             Console.WriteLine("if endnode");
             // string plop = $"node end_{node.Id}";
-            DotNode newnode = new DotNode($"end_{node.Id}");
+            DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Point;
             DotDefinition.Add(newnode);
         }
 
         public void CreateFalseEdge()
         {
-            Console.WriteLine("if falsch");
-            // throw new NotImplementedException();
             if (node.children.Count > 0)
             {
                 Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) );

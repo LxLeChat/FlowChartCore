@@ -33,8 +33,17 @@ namespace FlowChartCore.Graph
             if(!node.IsLast)
             {
                 // draw edge from end node to next sibling
-                DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextNode().Id);
-                DotDefinition.Add(edge);
+                Node nextnode = node.GetNextNode();
+
+                // si le nextnode est un else, on draw vers la fin du endif
+                if(nextnode.GetType() == typeof(ElseNode) ) {
+                    DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.GetEndId());
+                    DotDefinition.Add(Edge);
+                } else {
+                    DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.Id);
+                    DotDefinition.Add(Edge);
+                }
+
             } else {
                 if (node.depth == 0 )
                 {

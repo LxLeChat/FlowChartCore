@@ -75,6 +75,27 @@ namespace FlowChartCore
         // Must be overriden
         internal virtual void SetChildren() {}
 
+        // Method to find recursively Nodes by Id
+        public virtual Node FindNodesById (String id, bool recurse) {
+            Node result = new Node();
+            if (children.Count > 0 ) {
+                foreach ( var child in children ) {
+                    if (child.Id == id )
+                    {
+                        return child;
+
+                    } else {
+                        if (recurse)
+                        {
+                            return child.FindNodesById(id,recurse);
+                        }
+                    }
+                }
+            }
+            return result ;
+        }
+    
+
         // Method to find recursively Nodes by Type
         public virtual IEnumerable<Node> FindNodesByType (Type type, bool recurse) {
             List<Node> Result = new List<Node>();
@@ -198,8 +219,12 @@ namespace FlowChartCore
 
         // Method to create the node Id
         internal string GetId() {
-            string id = depth.ToString("D2") + position.ToString("D2");
-            return id;
+            
+            if(parent !=null ) {
+                return parent.Id + depth.ToString("D2") + position.ToString("D2");
+            } else {
+                return depth.ToString("D2") + position.ToString("D2");
+            }
         }
 
         // Method for IsLast property

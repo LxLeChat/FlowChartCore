@@ -60,7 +60,7 @@ namespace FlowChartCore
         }
 
         public override String GetEndId() {
-            return $"end_{parent.Id}";
+            return parent.GetEndId();
         }
 
     }

@@ -50,5 +50,19 @@ namespace FlowChartCore
 
             return Arbre.Nodes;
         }
+    
+        public static String CompileDot(Node plop ){
+            foreach (var item in plop.children)
+            {
+                Utility.CompileDot(item);
+                plop.Graph.AddRange(item.Graph);
+            }
+            
+            DotNetGraph.DotGraph g = new DotNetGraph.DotGraph("a",true);
+            g.Elements.AddRange(plop.Graph);
+            DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
+            
+            return compiler.Compile(true);
+        }
     }
 }
