@@ -72,6 +72,7 @@ namespace FlowChartCore.Graph
             if (node.children.Count > 0)
             {
                 Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) );
+                Console.WriteLine($"Count nodefalse: {nodeFalse.Name}");
                 if ( nodeFalse != null ) {
 
                     // If the first child if a else node
@@ -101,12 +102,16 @@ namespace FlowChartCore.Graph
             Console.WriteLine("if create node");
             // string plop = $"node {node.Id} -attributes @{{Label='ifnode'}}";
             DotNode newnode = new DotNode(node.Id);
-            // DotDefinition.Add(plop);
+            newnode.Label = "If";
              DotDefinition.Add(newnode);
         }
 
         public void CreateTrueEdge()
         {
+            // need to get the first children that is not a else
+            // or a elseif node
+            // Node firstchild = node.children.Find(x => x.GetType() != typeof(FlowChartCore.ElseNode) || x.GetType() != typeof(FlowChartCore.ElseIfNode))
+            Console.WriteLine($"if first child true: {node.children[0].Name}");
             DotEdge edge = new DotEdge(node.Id,node.children[0].Id);
             edge.Label = "True";
             DotDefinition.Add(edge);

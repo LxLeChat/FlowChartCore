@@ -19,7 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
-            CreateCodeNode();
+            CreateCodeNode(0);
             
         }
 

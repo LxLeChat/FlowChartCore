@@ -18,7 +18,6 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive){
-            Console.WriteLine("fuck");
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.CodeNodeBuilder(this);
             Graph.AddRange(x.DotDefinition);
         }

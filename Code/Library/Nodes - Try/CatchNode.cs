@@ -19,7 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
-            CreateCodeNode();
+            CreateCodeNode(0);
             
         }
 
@@ -34,6 +34,10 @@ namespace FlowChartCore
                 children.Add(item.CreateNode(depth+1,p,this,null));
                 p++;
             }
+        }
+
+        public override String GetEndId() {
+            return parent.GetEndId();
         }
 
     }

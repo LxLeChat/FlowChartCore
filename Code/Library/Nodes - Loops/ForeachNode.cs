@@ -21,7 +21,7 @@ namespace FlowChartCore
 
             SetLabel();
             SetChildren();
-            CreateCodeNode();
+            CreateCodeNode(0);
             
         }
 

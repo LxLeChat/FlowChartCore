@@ -39,4 +39,5 @@ namespace FlowChartCore.Graph
             throw new NotImplementedException();
         }
     }
+
 }

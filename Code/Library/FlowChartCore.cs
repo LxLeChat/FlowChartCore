@@ -221,9 +221,9 @@ namespace FlowChartCore
         internal string GetId() {
             
             if(parent !=null ) {
-                return parent.Id + depth.ToString("D2") + position.ToString("D2");
+                return parent.Id + depth.ToString("D0") + position.ToString("D0");
             } else {
-                return depth.ToString("D2") + position.ToString("D2");
+                return depth.ToString("D0") + position.ToString("D0");
             }
         }
 
@@ -249,9 +249,9 @@ namespace FlowChartCore
             return $"end_{Id}";
         }
 
-        internal void CreateCodeNode(){
+        internal void CreateCodeNode(int position){
             if ( children.Count == 0 ) {
-                children.Add(new CodeNode(depth+1,0,this,null));
+                children.Add(new CodeNode(depth+1,position,this,null));
             }
         }
 

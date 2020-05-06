@@ -28,11 +28,13 @@ namespace FlowChartCore.Graph
 
     public interface IBuilderTry
     {
-        void CreateSubGraph();
+        void CreateCatchEdge();
+        void CreateFinallyEdge();
     }
 
     public interface IBuilderBreak
     {
         void CreateBreakEdge();
     }
+
 }

@@ -41,7 +41,8 @@ namespace FlowChartCore
 
             // if children is empty create pseudo codeblock
             if(children.Count == 0 ) {
-                CreateCodeNode();
+                CreateCodeNode(p);
+                p++;
             }
 
             // Recuperaction des Elsefis

@@ -19,7 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
 
             SetChildren();
-            CreateCodeNode();
+            CreateCodeNode(0);
             
         }
 
@@ -37,6 +37,21 @@ namespace FlowChartCore
                 children.Add(item.CreateNode(depth+1,p,this,null));
                 p++;
             }
+        }
+
+        public override void GenerateGraph(bool recursive){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.ElseIfBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
+        }
+
+        public override String GetEndId() {
+            return parent.GetEndId();
         }
 
     }

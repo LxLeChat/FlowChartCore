@@ -15,7 +15,6 @@ namespace FlowChartCore.Graph
 
         public CodeNodeBuilder(CodeNode codeNode)
         {
-            Console.WriteLine("code graph");
             node = codeNode;
             DotDefinition = new List<IDotElement>();
             CreateNode();
@@ -36,7 +35,7 @@ namespace FlowChartCore.Graph
                 Node nextnode = node.GetNextNode();
 
                 // si le nextnode est un else, on draw vers la fin du endif
-                if(nextnode.GetType() == typeof(ElseNode) ) {
+                if( nextnode.GetType() == typeof(ElseNode) || nextnode.GetType() == typeof(ElseIfNode) ) {
                     DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.GetEndId());
                     DotDefinition.Add(Edge);
                 } else {
@@ -65,6 +64,7 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
+            newnode.Label = $"CodeBlock\\N{node.Id}";
             DotDefinition.Add(newnode);
         }
     }
