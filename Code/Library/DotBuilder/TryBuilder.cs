@@ -16,6 +16,12 @@ namespace FlowChartCore.Graph
         {
             node = trynode;
             DotDefinition = new List<IDotElement>();
+
+            CreateNode();
+            CreateEndNode();
+            CreateCatchEdge();
+            CreateEdgeToFirstChildren();
+            CreateEdgeToNextSibling();
         }
 
         public void CreateCatchEdge()
@@ -41,38 +47,33 @@ namespace FlowChartCore.Graph
 
         public void CreateEdgeToNextSibling()
         {
-            if(!node.IsLast)
-            {
-                // draw edge from end node to next sibling
-                Node nextnode = node.GetNextNode();
-
-                // si le nextnode est un else, on draw vers la fin du endif
-                if( nextnode.GetType() == typeof(ElseNode) || nextnode.GetType() == typeof(ElseIfNode) ) {
-                    DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.GetEndId());
-                    DotDefinition.Add(Edge);
-                } else {
+            Node FinallyNode = node.children.Find(x => x.GetType() == typeof(FinallyNode));
+            if ( FinallyNode != null) {
+                CreateFinallyEdge(FinallyNode);
+            } else {
+                if(!node.IsLast)
+                {
+                    // draw edge from end node to next sibling
+                    Node nextnode = node.GetNextNode();
                     DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.Id);
                     DotDefinition.Add(Edge);
-                }
 
-            } else {
-                
-                if (node.depth == 0 )
-                {
-                    // draw edge to end of script
-                    string plop = $"edge -from {node.GetEndId()} -to 'end_of_script'";
                 } else {
-                    // draw edge end of parent node
-                    DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());
-                    DotDefinition.Add(edge);
+
+                    if (node.depth == 0 )
+                    {
+                        string plop = $"edge -from {node.GetEndId()} -to 'end_of_script'";
+                        
+                    } else {
+                        // draw edge end of parent node
+                        DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());
+                        DotDefinition.Add(edge);
+                    }
                 }
+
             }
 
-            // throw new System.NotImplementedException();
-            Node FinallyNode = node.children.Find(x => x.GetType() == typeof(FinallyNode));
-            if ( FinallyNode == null) {
-                DotEdge edge = new DotEdge(node.GetEndId(),)
-            }
+            // throw new System.NotImplementedException();            
         }
 
         public void CreateEndNode()
@@ -84,9 +85,11 @@ namespace FlowChartCore.Graph
             DotDefinition.Add(newnode);
         }
 
-        public void CreateFinallyEdge()
+        public void CreateFinallyEdge(Node FinallyNode)
         {
-            throw new System.NotImplementedException();
+            // throw new System.NotImplementedException();
+            DotEdge edge = new DotEdge(node.GetEndId(),FinallyNode.Id);
+            DotDefinition.Add(edge);
         }
 
         public void CreateNode()

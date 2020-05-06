@@ -29,7 +29,7 @@ namespace FlowChartCore.Graph
     public interface IBuilderTry
     {
         void CreateCatchEdge();
-        void CreateFinallyEdge();
+        void CreateFinallyEdge(Node FinallyNode);
     }
 
     public interface IBuilderBreak

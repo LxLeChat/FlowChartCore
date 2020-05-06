@@ -64,7 +64,7 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = $"CodeBlock\\N{node.Id}";
+            newnode.Label = $"CodeBlock\\n{node.Id}";
             DotDefinition.Add(newnode);
         }
     }
