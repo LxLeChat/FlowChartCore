@@ -36,9 +36,9 @@ namespace FlowChartCore.Graph
         void CreateEndTryEdge ();
     }
     
-    public interface IBuilderBreak
+    public interface IBuilderKeyWords
     {
-        void CreateBreakEdge();
+        void CreateSpecialEdge();
     }
 
 }
