@@ -1,17 +1,15 @@
 $f = { foreach ($item in $collection) { for ($i = 0; $i -lt $array.Count; $i++) {} };for ($i = 0; $i -lt $array.Count; $i++) {} }
 
 $a = {
-    # foreach ($item in $collection) {
-     
-    
-        if ($a) {
-        
-        } elseif($b) {
-    
-        } else {
-
+    try{
+        foreach ($item in $collection) {
+            
         }
-    # }
+    } catch [System.Net.WebException],[System.IO.IOException] {
+
+    } catch {
+
+    }
 }
 
     $b = {
@@ -72,3 +70,5 @@ $g=[DotNetGraph.DotGraph]::new("a",$true)
 $g.Elements.AddRange($v[0].Graph)
 $compiler=[DotNetGraph.Compiler.DotCompiler]::new($g)
 $compiler.Compile($true)
+
+$x=[FlowChartCore.Utility]::CompileDot($v[0])

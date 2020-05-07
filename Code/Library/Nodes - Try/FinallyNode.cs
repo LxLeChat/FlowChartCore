@@ -36,5 +36,19 @@ namespace FlowChartCore
             }
         }
 
+        public override void GenerateGraph(bool recursive){
+            Console.WriteLine("prout ahaha");
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.FinallyBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+            Console.WriteLine("prout");
+
+            if(recursive) {
+                Console.WriteLine("recurse..");
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
+        }
+
     }
 }

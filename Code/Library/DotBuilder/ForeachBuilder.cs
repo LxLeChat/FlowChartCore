@@ -39,7 +39,7 @@ namespace FlowChartCore.Graph
                 Node nextnode = node.GetNextNode();
 
                 // si le nextnode est un else, on draw vers la fin du endif
-                if(nextnode.GetType() == typeof(ElseNode) ) {
+                if(nextnode.GetType() == typeof(ElseNode) || nextnode.GetType() == typeof(ElseIfNode) || nextnode.GetType() == typeof(CatchNode) ) {
                     DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.GetEndId());
                     DotDefinition.Add(Edge);
                 } else {

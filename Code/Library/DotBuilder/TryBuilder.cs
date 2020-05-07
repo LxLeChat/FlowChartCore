@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DotNetGraph.Core;
 using DotNetGraph.Edge;
-using DotNetGraph.Core;
+// using DotNetGraph.Core;
 using DotNetGraph.Node;
 
 namespace FlowChartCore.Graph
@@ -62,8 +62,8 @@ namespace FlowChartCore.Graph
 
                     if (node.depth == 0 )
                     {
-                        string plop = $"edge -from {node.GetEndId()} -to 'end_of_script'";
-                        
+                        DotEdge edge = new DotEdge(node.GetEndId(),"end_of_script");
+                        DotDefinition.Add(edge);
                     } else {
                         // draw edge end of parent node
                         DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());

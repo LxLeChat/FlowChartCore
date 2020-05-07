@@ -35,7 +35,8 @@ namespace FlowChartCore.Graph
                 Node nextnode = node.GetNextNode();
 
                 // si le nextnode est un else, on draw vers la fin du endif
-                if( nextnode.GetType() == typeof(ElseNode) || nextnode.GetType() == typeof(ElseIfNode) ) {
+                // cela veut dire qu on est dans un If !
+                if( nextnode.GetType() == typeof(ElseNode) || nextnode.GetType() == typeof(ElseIfNode) || nextnode.GetType() == typeof(CatchNode) ) {
                     DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.GetEndId());
                     DotDefinition.Add(Edge);
                 } else {
@@ -47,7 +48,8 @@ namespace FlowChartCore.Graph
                 if (node.depth == 0 )
                 {
                     // draw edge to end of script
-                    string plop = $"edge -from {node.GetEndId()} -to 'end_of_script'";
+                    DotEdge edge = new DotEdge(node.GetEndId(),"end_of_script");
+                    DotDefinition.Add(edge);
                 } else {
                     // draw edge end of parent node
                     DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());
@@ -64,7 +66,7 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = $"CodeBlock\\n{node.Id}";
+            newnode.Label = $"CodeBlock\n{node.Id}";
             DotDefinition.Add(newnode);
         }
     }

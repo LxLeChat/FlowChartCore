@@ -20,7 +20,6 @@ namespace FlowChartCore
             parentroot = _tree;
 
             SetChildren();
-            CreateCodeNode(0);
             
         }
 
@@ -35,6 +34,10 @@ namespace FlowChartCore
                 children.Add(item.CreateNode(depth+1,p,this,null));
                 p++;
             }
+
+            // si pas de chil de type identifier on met un codeblock
+            CreateCodeNode(0);
+            p++;
 
             // On Appelle GetCatch pour recup les clauses catch
             IEnumerable<Ast> CatchClauses = RawAst.GetCatch();
@@ -57,5 +60,16 @@ namespace FlowChartCore
 
         // pour les catches il y a un CatchClauseAst
 
+        public override void GenerateGraph(bool recursive){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.TryBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                Console.WriteLine("recurse..");
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
+        }
     }
 }

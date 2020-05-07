@@ -32,6 +32,10 @@ namespace FlowChartCore.Graph
         void CreateFinallyEdge(Node FinallyNode);
     }
 
+    public interface IBuilderFinally {
+        void CreateEndTryEdge ();
+    }
+    
     public interface IBuilderBreak
     {
         void CreateBreakEdge();

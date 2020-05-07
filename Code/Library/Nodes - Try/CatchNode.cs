@@ -37,7 +37,25 @@ namespace FlowChartCore
         }
 
         public override String GetEndId() {
-            return parent.GetEndId();
+            // si le try a un finally node, alors le end id devient le finally id
+            // Node finallyNode = parent.children.Find(x => x.GetType() == typeof(FinallyNode)) ?? null;
+            // if(finallyNode != null ) {
+            //     return finallyNode.Id;
+            // } else {
+                return parent.GetEndId();
+            // }
+        }
+
+        public override void GenerateGraph(bool recursive){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.CatchBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                Console.WriteLine("recurse..");
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
         }
 
     }

@@ -30,28 +30,20 @@ namespace FlowChartCore.Graph
 
         public void CreateEdgeToNextSibling()
         {
-            Console.WriteLine("if next");
-            // Node NextSibling = node.;
             if(!node.IsLast)
             {
                 // draw edge from end node to next sibling
-                // string plop = $"edge -from {node.GetEndId()} -to {node.GetNextNode().Id}";
                 DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextNode().Id);
-                // DotDefinition.Add(plop);
                 DotDefinition.Add(edge);
             } else {
                 if (node.depth == 0 )
                 {
                     // draw edge to end of script
-                    // string plop = $"edge -from {node.GetEndId()} -to 'end_of_script'";
                     DotEdge edge = new DotEdge(node.GetEndId(),"end_of_script");
-                    // DotDefinition.Add(plop);
                     DotDefinition.Add(edge);
                 } else {
                     // draw edge end of parent node
-                    // string plop = $"edge -from {node.GetEndId()} -to {node.parent.GetEndId()}";
                     DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());
-                    // DotDefinition.Add(plop);
                     DotDefinition.Add(edge);
                 }
             }
@@ -70,9 +62,10 @@ namespace FlowChartCore.Graph
         public void CreateFalseEdge()
         {
             if (node.children.Count > 0)
-            {
-                Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) );
-                Console.WriteLine($"Count nodefalse: {nodeFalse.Name}");
+            {   
+                // Console.WriteLine("ici que ça merde !");
+                Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) ) ?? null;
+                // Console.WriteLine($"Count nodefalse: {nodeFalse.Name}");
                 if ( nodeFalse != null ) {
 
                     // If the first child if a else node
