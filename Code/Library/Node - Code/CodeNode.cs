@@ -3,6 +3,20 @@ using System.Collections.Generic;
 using ExtensionMethods;
 using System;
 
+// Faudrait essayer de recup le code justement... !
+// par exemple:
+// $a = {
+//    foreach ($item in $collection) {
+//        $item.whatevermethod()
+//        $plop = "aaa"
+//        if($x){
+           
+//        }
+//    }
+// }
+//  la propriété code serait uniquement ça:
+//        $item.whatevermethod()
+//        $plop = "aaa"
 namespace FlowChartCore
 {
     public class CodeNode : Node
