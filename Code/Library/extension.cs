@@ -99,9 +99,9 @@ namespace ExtensionMethods
         // {
         //     return _ast.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast, false);
         // }
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this StatementBlockAst _ast)
         {
-            return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
+            return _ast.FindAll(Args => Args is Ast && Args.Parent == _ast, false);
         }
     }
    
@@ -143,7 +143,7 @@ namespace ExtensionMethods
         //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         // }
 
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this ForStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }
@@ -165,9 +165,9 @@ namespace ExtensionMethods
         //     // throw new NotImplementedException("Not implemented at the moment");
         //     return _ast.Clauses[0].Item2.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Clauses[0].Item2, false);
         // }
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this IfStatementAst _ast)
         {
-            return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
+            return _ast.Clauses[0].Item2.FindAll(Args => Args is Ast && Args.Parent == _ast.Clauses[0].Item2, false);
         }
 
         // Return Else Clause as a StatementBlockAst
@@ -254,7 +254,7 @@ namespace ExtensionMethods
         //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         // }
 
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this WhileStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }
@@ -275,7 +275,7 @@ namespace ExtensionMethods
         // {
         //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         // }
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this DoWhileStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }
@@ -296,7 +296,7 @@ namespace ExtensionMethods
         // {
         //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         // }
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this DoUntilStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }
@@ -317,7 +317,7 @@ namespace ExtensionMethods
         // {
         //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         // }
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this TryStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }
@@ -353,7 +353,7 @@ namespace ExtensionMethods
         //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
         // }
 
-        public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
+        public static IEnumerable<Ast> GetChildAst (this CatchClauseAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }

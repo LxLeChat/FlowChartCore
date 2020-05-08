@@ -35,8 +35,10 @@ namespace FlowChartCore
             // On appelle GetChildAST qui est une extension pour le type
             // Ca nous retourne une liste d'AST
             IEnumerable<Ast> Childs = RawAst.GetChildAst();
+            
             int p = 0;
             bool tmp = true;
+
             foreach (var item in Childs)
             {
                 if (tmp && !FlowChartCore.Utility.GetValidTypes().Contains(item.GetType()) ) {
