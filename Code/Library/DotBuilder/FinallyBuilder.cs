@@ -72,9 +72,7 @@ namespace FlowChartCore.Graph
                     DotDefinition.Add(Edge);
                 }
                 
-
             } else {
-                // Console.WriteLine("plop2");
 
                 if (nodeparent.depth == 0 )
                 {

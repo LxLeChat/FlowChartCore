@@ -191,6 +191,45 @@ namespace FlowChartCore
             }
         }
 
+        public virtual string GetNextId(){
+            
+            int CurrIndex = FindIndex();
+
+            if (depth == 0)
+            {
+                try {
+                    Node NextNode = parentroot.Nodes[CurrIndex+1];
+                    return NextNode.Id;
+                }
+                catch {
+                    return "end_of_script";
+                }
+                
+            } else
+            {
+                if ( IsLast ) {
+                    return parent.GetEndId();
+                } else {
+                    switch (GetNextNode())
+                    {
+                        case ElseNode elsenode:
+                            return parent.GetEndId();
+                        case ElseIfNode elseIfnode:
+                            return parent.GetEndId();
+                        case SwitchCaseNode switchCaseNode:
+                            return parent.GetEndId();
+                        case SwitchDefaultNode switchDefaultNode:
+                            return parent.GetEndId();
+                        case CatchNode catchNode:
+                            return parent.GetEndId();
+                        default:
+                            return GetNextNode().Id;
+                    }
+                }
+
+            }
+        }
+
         // Method to return the next node object from the parent
         public virtual Node GetPreviousNode(){
             

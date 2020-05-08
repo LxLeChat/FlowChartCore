@@ -30,30 +30,13 @@ namespace FlowChartCore.Graph
 
         public void CreateEdgeToNextSibling()
         {
-            if(!node.IsLast)
-            {
-                // draw edge from end node to next sibling
-                DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextNode().Id);
-                DotDefinition.Add(edge);
-            } else {
-                if (node.depth == 0 )
-                {
-                    // draw edge to end of script
-                    DotEdge edge = new DotEdge(node.GetEndId(),"end_of_script");
-                    DotDefinition.Add(edge);
-                } else {
-                    // draw edge end of parent node
-                    DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());
-                    DotDefinition.Add(edge);
-                }
-            }
+            DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextId());
+            DotDefinition.Add(edge);
         }
 
         public void CreateEndNode()
         {
             // throw new NotImplementedException();
-            Console.WriteLine("if endnode");
-            // string plop = $"node end_{node.Id}";
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Point;
             DotDefinition.Add(newnode);
@@ -63,9 +46,8 @@ namespace FlowChartCore.Graph
         {
             if (node.children.Count > 0)
             {   
-                // Console.WriteLine("ici que ça merde !");
                 Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) ) ?? null;
-                // Console.WriteLine($"Count nodefalse: {nodeFalse.Name}");
+                
                 if ( nodeFalse != null ) {
 
                     // If the first child if a else node

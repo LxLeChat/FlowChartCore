@@ -1,11 +1,16 @@
 # $f = { foreach ($item in $collection) { for ($i = 0; $i -lt $array.Count; $i++) {} };for ($i = 0; $i -lt $array.Count; $i++) {} }
 
 $a = {
-    for ($i = 0; $i -lt $array.Count; $i++) {}
-
-    if ( $a ) else {}
+    for ($i = 0; $i -lt $array.Count; $i++) {
+        if ( $a ) {
+            for ($i = 0; $i -lt $array.Count; $i++) {}
+        } elseif ($b) {}
+        elseif($c){} else{}
+    }
 }
 
+
+$a
 
 #  dir *.dll | Import-Module
 # $v=[FlowChartCore.Utility]::ParseScriptBlock($a)

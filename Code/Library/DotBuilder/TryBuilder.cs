@@ -51,25 +51,9 @@ namespace FlowChartCore.Graph
             if ( FinallyNode != null) {
                 CreateFinallyEdge(FinallyNode);
             } else {
-                if(!node.IsLast)
-                {
-                    // draw edge from end node to next sibling
-                    Node nextnode = node.GetNextNode();
-                    DotEdge Edge = new DotEdge(node.GetEndId(),nextnode.Id);
-                    DotDefinition.Add(Edge);
-
-                } else {
-
-                    if (node.depth == 0 )
-                    {
-                        DotEdge edge = new DotEdge(node.GetEndId(),"end_of_script");
-                        DotDefinition.Add(edge);
-                    } else {
-                        // draw edge end of parent node
-                        DotEdge edge = new DotEdge(node.GetEndId(),node.parent.GetEndId());
-                        DotDefinition.Add(edge);
-                    }
-                }
+                
+                DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextId());
+                DotDefinition.Add(edge);
 
             }
 
