@@ -18,10 +18,7 @@ namespace FlowChartCore.Graph
             DotDefinition = new List<IDotElement>();
 
             CreateNode();
-            // CreateEndNode();
-            // CreateCatchEdge();
             CreateEdgeToFirstChildren();
-            // CreateEdgeToNextSibling();
         }
 
         public void CreateEdgeToFirstChildren()
