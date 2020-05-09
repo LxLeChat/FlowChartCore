@@ -8,7 +8,7 @@ namespace FlowChartCore
     public class SwitchCaseNode : Node
     {
         protected StatementBlockAst RawAst {get;set;}
-        // public StatementBlockAst plop { get => RawAst;}
+        public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
 
         public SwitchCaseNode(StatementBlockAst _ast, int _depth, int _position, Node _parent)
         {
@@ -18,6 +18,7 @@ namespace FlowChartCore
             parent = _parent;
             RawAst = _ast;
 
+            SetOffToRemove();
             SetChildren();
             CreateCodeNode(0);
             

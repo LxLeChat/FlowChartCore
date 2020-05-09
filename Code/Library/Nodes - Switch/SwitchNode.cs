@@ -7,6 +7,7 @@ namespace FlowChartCore
     public class SwitchNode : Node
     {
         protected SwitchStatementAst RawAst {get;set;}
+        public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
 
         // Constructor
         public SwitchNode(SwitchStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
@@ -18,8 +19,7 @@ namespace FlowChartCore
             RawAst = _ast;
             parentroot = _tree;
 
-            
-
+            SetOffToRemove();
             SetChildren();
             
         }

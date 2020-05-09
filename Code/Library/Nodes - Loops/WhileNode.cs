@@ -8,6 +8,8 @@ namespace FlowChartCore
     {
         protected WhileStatementAst RawAst {get;set;}
         public string Label { get => label;}
+        public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
 
         public WhileNode(WhileStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
@@ -18,6 +20,7 @@ namespace FlowChartCore
             parent = _parent;
             parentroot = _tree;
 
+            SetOffToRemove();
             SetLabel();
             SetChildren();
             CreateCodeNode(0);

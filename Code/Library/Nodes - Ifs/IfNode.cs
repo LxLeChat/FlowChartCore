@@ -8,7 +8,10 @@ namespace FlowChartCore
     public class IfNode : Node
     {
         protected IfStatementAst RawAst { get; set; }
-
+        // public IfStatementAst ShowAst { get => RawAst;}
+        public IfStatementAst ShowAst {get => RawAst;}
+        public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        public override int OffSetScriptBlockStart {get => RawAst.Clauses[0].Item2.Extent.StartOffset-OffSetToRemove+1;}
         // Constructor
         public IfNode(IfStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
@@ -17,8 +20,10 @@ namespace FlowChartCore
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            ast = _ast;
             parentroot = _tree;
 
+            SetOffToRemove();
             SetChildren();
             
             

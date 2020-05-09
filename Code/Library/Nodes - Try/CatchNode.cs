@@ -8,7 +8,7 @@ namespace FlowChartCore
     public class CatchNode : Node
     {
         protected CatchClauseAst RawAst {get;set;}
-        // public CatchClauseAst plop { get => RawAst;}
+        public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
 
         public CatchNode(CatchClauseAst _ast, int _depth, int _position, Node _parent)
         {
@@ -18,6 +18,7 @@ namespace FlowChartCore
             parent = _parent;
             RawAst = _ast;
 
+            SetOffToRemove();
             SetChildren();
             CreateCodeNode(0);
             

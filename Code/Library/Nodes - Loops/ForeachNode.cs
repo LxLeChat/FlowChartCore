@@ -8,7 +8,10 @@ namespace FlowChartCore
     public class ForeachNode : Node
     {
         protected ForEachStatementAst RawAst {get;set;}
+        // public ForEachStatementAst ShowAst { get => RawAst;}
         public string Label { get => label;}
+        public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
 
         public ForeachNode(ForEachStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
@@ -17,8 +20,10 @@ namespace FlowChartCore
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            ast = _ast;
             parentroot = _tree;
 
+            SetOffToRemove();
             SetLabel();
             SetChildren();
             CreateCodeNode(0);

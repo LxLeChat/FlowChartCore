@@ -1,4 +1,4 @@
-﻿// using System.Management.Automation.Language;
+﻿using System.Management.Automation.Language;
 using System.Collections.Generic;
 using System.Linq;
 using System;
@@ -16,9 +16,12 @@ namespace FlowChartCore
 
     public class Tree {
         public List<Node> Nodes { get; private set; }
+        private Ast _ast {get;set;}
+        public Ast Ast {get=> _ast;}
 
-        public Tree (List<Node> nodes) {
+        public Tree (List<Node> nodes,Ast ast) {
             Nodes = nodes;
+            _ast = ast;
         }
 
         // Method to find recursively Nodes by Type
@@ -51,6 +54,7 @@ namespace FlowChartCore
 
     public class Node
     {
+        public Ast ast;
         protected internal string name;
         public string Name { get => name; }
         protected internal List<Node> children = new List<Node>();
@@ -62,15 +66,30 @@ namespace FlowChartCore
         protected internal int depth;
         public int Depth { get=> depth; }      
         protected internal Tree parentroot;
-        // public Tree ParentRoot { get=> parentroot; }
+        public Tree ParentRoot { get=> parentroot; }
         protected internal string label;
         public String Id { get=> GetId(); }
         public bool IsLast { get=> GetIsLast(); }
         public bool IsFirst { get=> GetIsFirst(); }
+        public virtual int OffSetStatementStart {get;set;}
+        public virtual int OffSetScriptBlockStart {get;set;}
 
-        // public List<string> Graph { get; set; }
+        public int OffSetToRemove { get; set;}
+
         public List<IDotElement> Graph = new List<IDotElement>();
         
+        // Method to populate various offsets values
+        protected virtual void SetOffToRemove () {
+            // Set OffSetToRemove
+            if (depth == 0 )
+            {
+                OffSetToRemove = parentroot.Ast.Extent.StartOffset;
+            } else {
+                OffSetToRemove = parent.OffSetToRemove;
+            }
+        }
+
+
         // Method to find children..
         // Must be overriden
         internal virtual void SetChildren() {}
@@ -121,9 +140,19 @@ namespace FlowChartCore
             return Result;
         }
         
+        // Find Depth 0 Node
+        public Node GetRootNode() {
+            if (this.Parent.Depth == 0)
+            {
+                return this.Parent;
+            } else {
+                return this.Parent.GetRootNode();
+            }
+        }
+
         // Method to find a node by type UpWard.
         // Stops When a corresponding node is found
-        public virtual Node FindNodesByTypeUp (Type type) {
+        internal Node FindNodesByTypeUp (Type type) {
             
             if ( this.parent != null ) {
                 if (this.Parent.GetType() == type)

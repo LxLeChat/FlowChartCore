@@ -3,6 +3,8 @@ using System.Management.Automation.Language;
 using System.Management.Automation;
 using System.Collections.Generic;
 using FlowChartCore;
+using System.Text;
+using System.Text.RegularExpressions;
 
 // refaire les commentaires: au dessus de chaque classe
 namespace ExtensionMethods
@@ -115,12 +117,6 @@ namespace ExtensionMethods
             return new ForeachNode(_ast,_depth, _position, _parent, _tree);
         }
 
-
-        // public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
-        // {
-        //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
-        // }
-        
         public static IEnumerable<Ast> GetChildAst (this ForEachStatementAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
@@ -148,6 +144,8 @@ namespace ExtensionMethods
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);
         }
 
+        
+
     }
 
     public static class IfStatementExtensions {
@@ -160,11 +158,6 @@ namespace ExtensionMethods
             return new IfNode(_ast,_depth, _position, _parent, _tree);
         }
 
-        // public static IEnumerable<Ast> GetChildAst (this IfStatementAst _ast)
-        // {
-        //     // throw new NotImplementedException("Not implemented at the moment");
-        //     return _ast.Clauses[0].Item2.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Clauses[0].Item2, false);
-        // }
         public static IEnumerable<Ast> GetChildAst (this IfStatementAst _ast)
         {
             return _ast.Clauses[0].Item2.FindAll(Args => Args is Ast && Args.Parent == _ast.Clauses[0].Item2, false);

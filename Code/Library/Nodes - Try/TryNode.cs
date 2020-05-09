@@ -8,7 +8,8 @@ namespace FlowChartCore
     public class TryNode : Node
     {
         protected TryStatementAst RawAst {get;set;}
-        // public TryStatementAst plop { get => RawAst;}
+        public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
 
         public TryNode(TryStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
@@ -19,6 +20,7 @@ namespace FlowChartCore
             RawAst = _ast;
             parentroot = _tree;
 
+            SetOffToRemove();
             SetChildren();
             
         }

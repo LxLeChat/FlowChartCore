@@ -41,7 +41,7 @@ namespace FlowChartCore
 
             int Position = 1;
             List<Node> Nodes = new List<Node>();
-            Tree Arbre = new Tree(Nodes);
+            Tree Arbre = new Tree(Nodes,scriptBlock.Ast);
 
             foreach ( var block in enumerable ) {
                 var tmpNode = block.CreateNode(0,Position,null,Arbre);
