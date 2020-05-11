@@ -40,12 +40,10 @@ namespace FlowChartCore
                     p++;
                 }
                 else if(FlowChartCore.Utility.GetValidTypes().Contains(item.GetType())){
-                    // On appelle CreateNode qui est une extension pour AST
                     children.Add(item.CreateNode(depth+1,p,this,null));
                     tmp = true;
                     p++;
                 }
-                // p++;
             }
         }
 

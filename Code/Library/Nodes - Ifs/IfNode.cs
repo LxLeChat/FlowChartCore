@@ -8,8 +8,7 @@ namespace FlowChartCore
     public class IfNode : Node
     {
         protected IfStatementAst RawAst { get; set; }
-        // public IfStatementAst ShowAst { get => RawAst;}
-        public IfStatementAst ShowAst {get => RawAst;}
+        // public IfStatementAst ShowAst {get => RawAst;}
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         public override int OffSetScriptBlockStart {get => RawAst.Clauses[0].Item2.Extent.StartOffset-OffSetToRemove+1;}
         public override int OffSetScriptBlockEnd {get => RawAst.Clauses[0].Item2.Extent.EndOffset-OffSetToRemove-1;}

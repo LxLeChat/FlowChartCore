@@ -8,7 +8,7 @@ namespace FlowChartCore
     public class ElseNode : Node
     {
         protected StatementBlockAst RawAst {get;set;}
-        public StatementBlockAst ShowAst { get => RawAst;}
+        // public StatementBlockAst ShowAst { get => RawAst;}
         public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
         public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 

@@ -8,7 +8,7 @@ namespace FlowChartCore
     public class ForeachNode : Node
     {
         protected ForEachStatementAst RawAst {get;set;}
-        public ForEachStatementAst ShowAst { get => RawAst;}
+        // public ForEachStatementAst ShowAst { get => RawAst;}
         public string Label { get => label;}
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
