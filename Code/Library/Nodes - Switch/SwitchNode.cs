@@ -8,6 +8,8 @@ namespace FlowChartCore
     {
         protected SwitchStatementAst RawAst {get;set;}
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
+        public override int OffSetGlobalEnd {get => RawAst.Extent.EndOffset-OffSetToRemove+1;}
 
         // Constructor
         public SwitchNode(SwitchStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)

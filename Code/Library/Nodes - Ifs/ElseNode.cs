@@ -10,6 +10,7 @@ namespace FlowChartCore
         protected StatementBlockAst RawAst {get;set;}
         public StatementBlockAst ShowAst { get => RawAst;}
         public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
+        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 
         public ElseNode(StatementBlockAst _ast, int _depth, int _position, Node _parent)
         {
@@ -38,13 +39,15 @@ namespace FlowChartCore
                 if (tmp && !FlowChartCore.Utility.GetValidTypes().Contains(item.GetType()) ) {
                     children.Add(new CodeNode(depth+1,p,this,null));
                     tmp = false;
+                    p++;
                 }
                 else if(FlowChartCore.Utility.GetValidTypes().Contains(item.GetType())){
                     // On appelle CreateNode qui est une extension pour AST
                     children.Add(item.CreateNode(depth+1,p,this,null));
                     tmp = true;
+                    p++;
                 }
-                p++;
+                // p++;
             }
         }
 

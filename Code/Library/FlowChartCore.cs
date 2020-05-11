@@ -73,7 +73,8 @@ namespace FlowChartCore
         public bool IsFirst { get=> GetIsFirst(); }
         public virtual int OffSetStatementStart {get;set;}
         public virtual int OffSetScriptBlockStart {get;set;}
-
+        public virtual int OffSetScriptBlockEnd {get;set;}
+        public virtual int OffSetGlobalEnd {get;set;}
         public int OffSetToRemove { get; set;}
 
         public List<IDotElement> Graph = new List<IDotElement>();

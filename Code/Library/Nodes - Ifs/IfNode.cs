@@ -12,6 +12,8 @@ namespace FlowChartCore
         public IfStatementAst ShowAst {get => RawAst;}
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         public override int OffSetScriptBlockStart {get => RawAst.Clauses[0].Item2.Extent.StartOffset-OffSetToRemove+1;}
+        public override int OffSetScriptBlockEnd {get => RawAst.Clauses[0].Item2.Extent.EndOffset-OffSetToRemove-1;}
+        public override int OffSetGlobalEnd {get => RawAst.Extent.EndOffset-OffSetToRemove+1;}
         // Constructor
         public IfNode(IfStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
@@ -38,25 +40,19 @@ namespace FlowChartCore
             int p = 0;
             bool tmp = true;
 
-            // foreach (var item in Childs)
-            // {
-            //     // On appelle CreateNode qui est une extension pour AST
-            //     children.Add(item.CreateNode(depth + 1, p, this,null));
-            //     p++;
-            // }
-
             foreach (var item in Childs)
             {
                 if (tmp && !FlowChartCore.Utility.GetValidTypes().Contains(item.GetType()) ) {
                     children.Add(new CodeNode(depth+1,p,this,null));
                     tmp = false;
+                    p++;
                 }
                 else if(FlowChartCore.Utility.GetValidTypes().Contains(item.GetType())){
                     // On appelle CreateNode qui est une extension pour AST
                     children.Add(item.CreateNode(depth+1,p,this,null));
                     tmp = true;
+                    p++;
                 }
-                p++;
             }
 
             // if children is empty create pseudo codeblock

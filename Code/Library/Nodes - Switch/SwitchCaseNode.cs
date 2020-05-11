@@ -9,6 +9,7 @@ namespace FlowChartCore
     {
         protected StatementBlockAst RawAst {get;set;}
         public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
+        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 
         public SwitchCaseNode(StatementBlockAst _ast, int _depth, int _position, Node _parent)
         {

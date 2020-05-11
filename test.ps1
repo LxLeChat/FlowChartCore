@@ -26,10 +26,15 @@ $a={
 
        try {
            "try"
+           "prout"
        }
        catch {
            "catch"
+           foreach ($item in $collection) {
+               
+           }
        } finally {
            "finally"
        }
+"x"}
 }

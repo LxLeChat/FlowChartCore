@@ -3,20 +3,6 @@ using System.Collections.Generic;
 using ExtensionMethods;
 using System;
 
-// Faudrait essayer de recup le code justement... !
-// par exemple:
-// $a = {
-//    foreach ($item in $collection) {
-//        $item.whatevermethod()
-//        $plop = "aaa"
-//        if($x){
-           
-//        }
-//    }
-// }
-//  la propriété code serait uniquement ça:
-//        $item.whatevermethod()
-//        $plop = "aaa"
 namespace FlowChartCore
 {
     public class CodeNode : Node
@@ -41,39 +27,63 @@ namespace FlowChartCore
         }
 
         public string discovercode(){
-            // il faut pouvoir partir du root ... ! HOW ???
-            // .ShowAst.Extent.Text.Substring(50,46).Replace('} else {','') : 50 offset du parent, 46 offset du nextnode par exemple,
-            // et on enleve le "label" du nextnode.. !
-            // si c'est pas le 1° noeud, il faut le getprevious, pour recup l offset de end du noeud précendent
-            // si ce 
+            String racine = GetRootNode().parentroot.Ast.Extent.Text;
+            int a = 0;
+            int b = 0;
 
-            // tet créer des extensions pour avoir le offset qui nous interesse parce que
-            // dans extent pour un foreach le startoffset ç'est la ligne foreach(...) {}
-            // mais on trouve le bon truc dans le body
-            // if ( IsFirst && Depth > 0 && !IsLast) {
-            //     // int offsetstart = parent.ast.Extent.StartScriptPosition.
-            // }
+            if (IsFirst && !IsLast)
+            {
+                // parent offsetscriptblockstart +1 && check getnextnode type
+                a = parent.OffSetScriptBlockStart;
+                if(GetNextNode() is ElseIfNode || GetNextNode() is ElseNode || GetNextNode() is CatchNode ) {
+                    b = parent.OffSetScriptBlockEnd;
+                } else {
+                    b = GetNextNode().OffSetStatementStart;
+                }
+                return racine.Substring(a, b - a).Trim();
+            }
 
-            // if ( IsLast && Depth > 0 && !IsFirst ) {
+            if (IsLast && !IsFirst)
+            {
+                // getpreviousnode offsetscriptblockend +1 && get offsetscriptblockend du parent
+                //si le previous est un try, un if ou un switch, il faut taper sur le offsetglobalend
+                Node previousnode = GetPreviousNode();
+                if (previousnode is TryNode || previousnode is IfNode || previousnode is SwitchNode )
+                {
+                    a = previousnode.OffSetGlobalEnd;    
+                } else {
+                    a = GetPreviousNode().OffSetScriptBlockEnd;
+                }
                 
-            // }
-            // GetStartOffset,GetBodyStartOffset
-            // int fora = ForEachStatementExtensions.GetStartOffset((ForEachStatementAst)parent.ast,GetRootNode().parentroot.Ast.Extent.StartOffset);
-            // int forb = ForEachStatementExtensions.GetBodyStartOffset((ForEachStatementAst)parent.ast,GetRootNode().parentroot.Ast.Extent.StartOffset);
-            // int ifa = IfStatementExtensions.GetStartOffset((IfStatementAst)GetNextNode().ast,GetRootNode().parentroot.Ast.Extent.StartOffset);
-            // int ifb = IfStatementExtensions.GetBodyStartOffset((IfStatementAst)GetNextNode().ast,GetRootNode().parentroot.Ast.Extent.StartOffset);
-            // Console.WriteLine($"foreach:{fora},{forb}\nif:{ifa},{ifb}");
-            return GetRootNode().parentroot.Ast.Extent.Text.Substring(parent.OffSetScriptBlockStart,GetNextNode().OffSetStatementStart-parent.OffSetScriptBlockStart);
+                b = parent.OffSetScriptBlockEnd;
+                return racine.Substring(a, b - a).Trim();
+            }
 
-            // $y = $v[0].parentroot.ast.extent.text
-            // $y.Substring(forb+1,ifa-forb+1) et ça nous donne le code... \o/
+            if (IsFirst && IsLast)
+            {
+                //
+                a = parent.OffSetScriptBlockStart;
+                b = parent.OffSetScriptBlockEnd;
 
-            // return 1;
-            // return IfStatementExtensions.GetBodyOffsetStartBef((IfStatementAst)GetNextNode().ast);
+                return racine.Substring(a, b - a).Trim();
+            }
 
-            //ensuite il faut faire :
-            // GetRootNode().parentroot.Ast.Extent.Text.Substring(0,53) et la ça nous retourne le code jusqu a avant le if !
-            // maintenant y a plus qu a trouver le offset du parentnode avant le code ! 
+            if(!IsFirst && !IsLast)
+            {
+                // getprevious offsetscriptblockend+1 && getnextnode offsetstatementstart -1
+                Node previousnode = GetPreviousNode();
+                if (previousnode is TryNode || previousnode is IfNode || previousnode is SwitchNode )
+                {
+                    a = previousnode.OffSetGlobalEnd;    
+                } else {
+                    a = GetPreviousNode().OffSetScriptBlockEnd;
+                }
+                b = GetNextNode().OffSetStatementStart;
+                return racine.Substring(a, b - a).Trim();
+            }
+
+            return null;
+            
         }
 
     }

@@ -11,6 +11,7 @@ namespace FlowChartCore
         public string Label { get => label;}
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
+        public override int OffSetScriptBlockEnd {get => RawAst.Body.Extent.EndOffset-OffSetToRemove-1;}
         public ForNode(ForStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             name = "ForNode";
@@ -46,13 +47,15 @@ namespace FlowChartCore
                 if (tmp && !FlowChartCore.Utility.GetValidTypes().Contains(item.GetType()) ) {
                     children.Add(new CodeNode(depth+1,p,this,null));
                     tmp = false;
+                    p++;
                 }
                 else if(FlowChartCore.Utility.GetValidTypes().Contains(item.GetType())){
                     // On appelle CreateNode qui est une extension pour AST
                     children.Add(item.CreateNode(depth+1,p,this,null));
                     tmp = true;
+                    p++;
                 }
-                p++;
+                // p++;
             }
         }
 
