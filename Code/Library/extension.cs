@@ -312,11 +312,6 @@ namespace ExtensionMethods
             return new CatchNode(_ast,_depth, _position, _parent);
         }
 
-        // public static IEnumerable<Ast> GetChildAst (this CatchClauseAst _ast)
-        // {
-        //     return _ast.Body.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == _ast.Body, false);
-        // }
-
         public static IEnumerable<Ast> GetChildAst (this CatchClauseAst _ast)
         {
             return _ast.Body.FindAll(Args => Args is Ast && Args.Parent == _ast.Body, false);

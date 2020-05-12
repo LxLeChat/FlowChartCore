@@ -25,7 +25,6 @@ namespace FlowChartCore.Graph
         {
             DotNode newnode = new DotNode(node.Id);
             DotDefinition.Add(newnode);
-            // throw new System.NotImplementedException();
         }
 
         public void CreateEdgeToNextSibling()
@@ -34,7 +33,6 @@ namespace FlowChartCore.Graph
             DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextId());
             edge.Style = DotEdgeStyle.Dotted;
             DotDefinition.Add(edge);
-            // throw new System.NotImplementedException();
         }
 
         public void CreateEdgeToFirstChildren()

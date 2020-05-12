@@ -150,6 +150,26 @@ namespace FlowChartCore
                 return this.Parent.GetRootNode();
             }
         }
+        
+        // faut refaire toutes les autres ... et du coup on aura juste 2 méthodes
+        // FindNodes(Predicate<Node> predicate, bool recurse) & FindNodesUp(Predicate<Node> predicate, bool recurse)
+        // et on pourra effacer toutes les autres méthodes .. ! EXCELLENT !
+
+        // Method to find a node by predicate UpWard.
+        // Stops When a corresponding node is found
+        // predicate example: x => x.Label == "lol
+        public Node FindNodesUp (Predicate<Node> predicate) {
+            
+            if ( this.parent != null ) {
+                if (predicate(this.Parent))
+                {
+                    return this.Parent;
+                } else {
+                    return this.Parent.FindNodes(predicate);
+                }
+            }
+            return null;
+        }
 
         // Method to find a node by type UpWard.
         // Stops When a corresponding node is found
@@ -325,6 +345,7 @@ namespace FlowChartCore
         }
 
         public virtual void GenerateGraph(bool recursive){}
+        
 
     }
 

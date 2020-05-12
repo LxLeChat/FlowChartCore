@@ -4,12 +4,11 @@ $a={
            "if"
        } elseif ($b) {
            "elseif"
+           for ($i = 0; $i -lt $array.Count; $i++) {
+            "for"
+        }
        } else {
            "else"
-       }
-
-       for ($i = 0; $i -lt $array.Count; $i++) {
-           "for"
        }
 
        while ($a) {
@@ -38,3 +37,6 @@ $a={
        }
 "x"}
 }
+
+
+$a = 
