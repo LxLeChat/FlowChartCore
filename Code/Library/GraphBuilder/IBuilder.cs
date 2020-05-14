@@ -1,6 +1,4 @@
-﻿// using System.Management.Automation.Language;
-using System.Collections.Generic;
-using FlowChartCore;
+﻿using System.Collections.Generic;
 using DotNetGraph.Core;
 
 namespace FlowChartCore.Graph
@@ -23,7 +21,6 @@ namespace FlowChartCore.Graph
     public interface IBuilderLoops
     {
         void CreateLoopEdge();
-        // void CreateLoopNode();
     }
 
     public interface IBuilderTry

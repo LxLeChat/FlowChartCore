@@ -284,10 +284,11 @@ namespace FlowChartCore
                             return parent.GetEndId();
                         case ElseIfNode elseIfnode:
                             return parent.GetEndId();
-                        case SwitchCaseNode switchCaseNode:
-                            return parent.GetEndId();
-                        case SwitchDefaultNode switchDefaultNode:
-                            return parent.GetEndId();
+                        // case SwitchCaseNode switchCaseNode:
+                        //     // return parent.GetEndId();
+                        //     return GetNextNode().Id;
+                        // case SwitchDefaultNode switchDefaultNode:
+                        //     return parent.GetEndId();
                         case CatchNode catchNode:
                             return parent.GetEndId();
                         default:

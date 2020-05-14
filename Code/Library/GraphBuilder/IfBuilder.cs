@@ -46,14 +46,16 @@ namespace FlowChartCore.Graph
         {
             if (node.children.Count > 0)
             {   
-                Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) ) ?? null;
+                // Node nodeFalse = node.children.Find(x => x.GetType() == typeof(FlowChartCore.ElseNode) || x.GetType() == typeof(FlowChartCore.ElseIfNode) ) ?? null;
+                Node nodeFalse = node.children.Find(x => x is ElseNode || x is ElseIfNode ) ?? null;
                 
                 if ( nodeFalse != null ) {
 
                     // If the first child if a else node
                     // edge is drawn directly to the node id
                     // of the first child of the else
-                    if(nodeFalse.GetType() == typeof(ElseNode) )
+                    // if(nodeFalse.GetType() == typeof(ElseNode) )
+                    if(nodeFalse is ElseNode )
                     {
                         DotEdge edge = new DotEdge(node.Id,nodeFalse.children[0].Id);
                         edge.Label="False";
@@ -61,7 +63,8 @@ namespace FlowChartCore.Graph
                     }
 
                     // If the first child if a elseif node
-                    if(nodeFalse.GetType() == typeof(ElseIfNode) )
+                    // if(nodeFalse.GetType() == typeof(ElseIfNode) )
+                    if(nodeFalse is ElseIfNode )
                     {
                         DotEdge edge = new DotEdge(node.Id,nodeFalse.Id);
                         edge.Label="False";

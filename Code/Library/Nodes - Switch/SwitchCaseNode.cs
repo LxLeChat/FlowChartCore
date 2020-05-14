@@ -50,5 +50,20 @@ namespace FlowChartCore
             }
         }
 
+        public override void GenerateGraph(bool recursive){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.SwitchCaseBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
+        }
+
+        public override String GetEndId() {
+            return parent.GetEndId();
+        }
+
     }
 }

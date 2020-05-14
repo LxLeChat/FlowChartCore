@@ -1,6 +1,7 @@
 using System.Management.Automation.Language;
 using System.Collections.Generic;
 using ExtensionMethods;
+using System;
 
 namespace FlowChartCore
 {
@@ -51,6 +52,21 @@ namespace FlowChartCore
             {
                 children.Add(DefaultCase.CreateNode(depth+1,p,this,StatementType.SwitchDefault));
             }
+        }
+
+        public override void GenerateGraph(bool recursive){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.SwitchBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive);
+                }
+            }
+        }
+
+        public override String GetEndId() {
+            return $"end_{Id}";
         }
 
     }
