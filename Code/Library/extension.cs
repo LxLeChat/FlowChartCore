@@ -35,10 +35,24 @@ namespace ExtensionMethods
                     return ((BreakStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
                 case Ast a when _ast is ContinueStatementAst : 
                     return ((ContinueStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
+                case Ast a when _ast is ExitStatementAst : 
+                    return ((ExitStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
             }
             return null;
         }
 
+    }
+
+    public static class ExitStatementExtension {
+        // ContinueStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static ExitNode CreateNodeFromAst(this ExitStatementAst _ast,int _depth, int _position, Node _parent)
+        {
+            return new ExitNode(_ast,_depth, _position, _parent);
+        }
+        
     }
 
     public static class ContinueStatementExtension {
