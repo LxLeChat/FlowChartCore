@@ -165,7 +165,25 @@ namespace FlowChartCore
                 {
                     return this.Parent;
                 } else {
-                    return this.Parent.FindNodes(predicate);
+                    return this.Parent.FindNodesUp(predicate);
+                }
+            }
+            return null;
+        }
+
+        // Method to find a node by predicate DownWard.
+        public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
+            
+            List<Node> Result = new List<Node>();
+
+            if ( this.children.Count > 0 ) {
+                Result.AddRange(this.children.FindAll(predicate));
+                if(recurse)
+                {
+                    foreach (Node item in this.children)
+                    {
+                        Result.AddRange(item.FindNodes(predicate,recurse));
+                    }
                 }
             }
             return null;

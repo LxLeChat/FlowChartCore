@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using DotNetGraph.Core;
 using DotNetGraph.Edge;
+// using DotNetGraph.Core;
 using DotNetGraph.Node;
-using System;
 
 namespace FlowChartCore.Graph
 {
-    public class BreakBuilder : IBuilder, IBuilderKeyWords
+    public class ContinueBuilder : IBuilder, IBuilderKeyWords
     {
         public List<IDotElement> DotDefinition { get ; set; }
-        private BreakNode node;
+        private ContinueNode node;
 
-        public BreakBuilder(BreakNode breaknode)
+        public ContinueBuilder(ContinueNode continueNode)
         {
-            node = breaknode;
+            node = continueNode;
             DotDefinition = new List<IDotElement>();
 
             CreateNode();
@@ -26,7 +26,7 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "Break";
+            newnode.Label = "Continue";
             DotDefinition.Add(newnode);
         }
 
@@ -50,18 +50,16 @@ namespace FlowChartCore.Graph
 
         public void CreateSpecialEdge()
         {
-            
-            Node breakablenode = null;
+            Node ContinueNode = null;
             if (node.label == null)
             {
-                breakablenode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode);
+                ContinueNode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode);
             } else {
-                breakablenode = node.FindNodesUp(x => x.label == node.label);
+                ContinueNode = node.FindNodesUp(x => x.label == node.label);
             }
-
-            DotEdge specialedge = new DotEdge(node.Id,breakablenode.GetNextId());
-            // DotEdge dottededge = new DotEdge(node.Id,node.GetNextId());
-            // DotDefinition.Add(dottededge);
+            DotEdge specialedge = new DotEdge(node.Id,ContinueNode.Id);
+            
+            specialedge.Label = "Continue To Next Iteration";
             DotDefinition.Add(specialedge);
         }
     }

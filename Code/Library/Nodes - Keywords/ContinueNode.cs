@@ -24,7 +24,20 @@ namespace FlowChartCore
 
         // Set Label
         internal void SetLabel () {
-            label = RawAst.Label.ToString();
+            if (RawAst.Label != null)
+            {
+                label = RawAst.Label.ToString();   
+            }
+        }
+
+        public override String GetEndId() {
+            return Id;
+        }
+
+        public override void GenerateGraph(bool recursive){
+
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.ContinueBuilder(this);
+            Graph.AddRange(x.DotDefinition);
         }
 
     }

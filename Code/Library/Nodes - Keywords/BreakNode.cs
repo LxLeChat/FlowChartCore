@@ -17,12 +17,28 @@ namespace FlowChartCore
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            Console.WriteLine("okay...");
+            SetLabel();
+            Console.WriteLine("not okay...");
             
         }
 
         // Set Label
         internal void SetLabel () {
-            label = RawAst.Label.ToString();
+            if (RawAst.Label != null)
+            {
+                label = RawAst.Label.ToString();   
+            }
+        }
+
+        public override String GetEndId() {
+            return Id;
+        }
+
+        public override void GenerateGraph(bool recursive){
+
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.BreakBuilder(this);
+            Graph.AddRange(x.DotDefinition);
         }
 
 

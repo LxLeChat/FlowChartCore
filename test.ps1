@@ -38,5 +38,21 @@ $a={
 "x"}
 }
 
-
-$a = 
+    $a={
+        :prout foreach ($item in $collection) {
+            if ($a) {
+                "if"
+            } elseif ($b) {
+                "elseif"
+                for ($i = 0; $i -lt $array.Count; $i++) {
+                "for"
+                if ( $i -eq 1 ) {
+                    continue
+                }
+            }
+            } else {
+                "else"
+                break
+            }
+        }
+    }
