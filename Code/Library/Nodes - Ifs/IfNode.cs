@@ -8,7 +8,8 @@ namespace FlowChartCore
     public class IfNode : Node
     {
         protected IfStatementAst RawAst { get; set; }
-        // public IfStatementAst ShowAst {get => RawAst;}
+        protected internal string condition;
+        public string Condition { get => condition; }
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         public override int OffSetScriptBlockStart {get => RawAst.Clauses[0].Item2.Extent.StartOffset-OffSetToRemove+1;}
         public override int OffSetScriptBlockEnd {get => RawAst.Clauses[0].Item2.Extent.EndOffset-OffSetToRemove-1;}
@@ -21,10 +22,10 @@ namespace FlowChartCore
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
-            ast = _ast;
             parentroot = _tree;
 
             SetOffToRemove();
+            SetCondition();
             SetChildren();
             
             
@@ -86,7 +87,6 @@ namespace FlowChartCore
             Graph.AddRange(x.DotDefinition);
 
             if(recursive) {
-                Console.WriteLine("recurse..");
                 foreach (var child in Children) {
                     child.GenerateGraph(recursive);
                 }
@@ -97,6 +97,13 @@ namespace FlowChartCore
             return $"end_{Id}";
         }
 
-         
+        public IfStatementAst GetAst() {
+            return RawAst;
+        }
+
+        internal override void SetCondition(){
+            condition = RawAst.Clauses[0].Item1.Extent.Text;
+        }
+
     }
 }

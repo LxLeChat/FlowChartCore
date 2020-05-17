@@ -2,13 +2,15 @@ using System.Management.Automation.Language;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
+using System.Linq;
 
 namespace FlowChartCore
 {
     public class ElseIfNode : Node
     {
         protected StatementBlockAst RawAst {get;set;}
-        // public StatementBlockAst ShowAst {get => RawAst;}
+        protected internal string condition;
+        public string Condition { get => condition; }
         public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
         public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 
@@ -20,6 +22,7 @@ namespace FlowChartCore
             parent = _parent;
             RawAst = _ast;
 
+            SetCondition();
             SetOffToRemove();
             SetChildren();
             CreateCodeNode(0);
@@ -65,6 +68,15 @@ namespace FlowChartCore
 
         public override String GetEndId() {
             return parent.GetEndId();
+        }
+
+        public StatementBlockAst GetAst() {
+            return RawAst;
+        }
+
+        internal override void SetCondition(){
+            IfStatementAst Truc = (IfStatementAst)RawAst.Parent;
+            condition = Truc.Clauses.Where(x=> x.Item2 == RawAst).Select(x=>x.Item1.Extent.Text).First();
         }
 
     }

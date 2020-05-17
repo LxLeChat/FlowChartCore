@@ -3,6 +3,7 @@ using System.Management.Automation;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
+using DotNetGraph.Core;
 
 namespace FlowChartCore
 {
@@ -54,18 +55,26 @@ namespace FlowChartCore
             return Arbre.Nodes;
         }
     
-        public static String CompileDot(Node plop ){
-            foreach (var item in plop.children)
-            {
-                Utility.CompileDot(item);
-                plop.Graph.AddRange(item.Graph);
-            }
+        public static String CompileDot(List<IDotElement> dotElements ){
+            
             
             DotNetGraph.DotGraph g = new DotNetGraph.DotGraph("a",true);
-            g.Elements.AddRange(plop.Graph);
+            g.Elements.AddRange(dotElements);
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
-            
             return compiler.Compile(true);
+        }
+
+        public static List<IDotElement> Plop (List<Node> nodes) {
+            List<IDotElement> tmp = new List<IDotElement>();
+            foreach (var node in nodes)
+            {
+                tmp.AddRange(node.Graph);
+                if (node.children != null)
+                {
+                    tmp.AddRange(Plop(node.children));
+                }
+            }
+            return tmp;
         }
     }
 }

@@ -26,7 +26,6 @@ namespace FlowChartCore.Graph
 
         public void CreateEdgeToFirstChildren()
         {
-            // throw new NotImplementedException();
             DotEdge edge = new DotEdge(node.Id,node.Children.First().Id);
             DotDefinition.Add(edge);
         }
@@ -39,28 +38,24 @@ namespace FlowChartCore.Graph
 
         public void CreateEndNode()
         {
-            // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
-            newnode.Label = $"Loop to {node.Id}";
+            // newnode.Label = $"Loop to {node.Id}";
+            newnode.Label = $"Next item In {node.GetAst().Condition}";
             DotDefinition.Add(newnode);
         }
 
         public void CreateLoopEdge()
         {
-            // Node lastchild = node.Children.Last();
-            // DotEdge edge = new DotEdge(lastchild.GetEndId(),node.GetEndId());
-            // DotDefinition.Add(edge);
-            DotEdge edge2 = new DotEdge(node.GetEndId(),node.Id);
-            DotDefinition.Add(edge2);
+            DotEdge edge = new DotEdge(node.GetEndId(),node.Id);
+            DotDefinition.Add(edge);
         }
 
         public void CreateNode()
         {
-            // throw new NotImplementedException();
-            string plop = $"node {node.Id} -attributes @{{Label='ForeachNode'}}";
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "Foreach";
+            // newnode.Label = "Foreach";
+            newnode.Label = $"Foreach {node.GetAst().Variable} In {node.GetAst().Condition}";
             DotDefinition.Add(newnode);
         }
 

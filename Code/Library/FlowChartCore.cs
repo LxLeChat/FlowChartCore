@@ -54,7 +54,7 @@ namespace FlowChartCore
 
     public class Node
     {
-        public Ast ast;
+        // public Ast ast;
         protected internal string name;
         public string Name { get => name; }
         protected internal List<Node> children = new List<Node>();
@@ -284,11 +284,6 @@ namespace FlowChartCore
                             return parent.GetEndId();
                         case ElseIfNode elseIfnode:
                             return parent.GetEndId();
-                        // case SwitchCaseNode switchCaseNode:
-                        //     // return parent.GetEndId();
-                        //     return GetNextNode().Id;
-                        // case SwitchDefaultNode switchDefaultNode:
-                        //     return parent.GetEndId();
                         case CatchNode catchNode:
                             return parent.GetEndId();
                         default:
@@ -364,6 +359,8 @@ namespace FlowChartCore
         }
 
         public virtual void GenerateGraph(bool recursive){}
+
+        internal virtual void SetCondition(){}
         
 
     }

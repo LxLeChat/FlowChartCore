@@ -16,13 +16,9 @@ namespace FlowChartCore.Graph
             node = exitnode;
             DotDefinition = new List<IDotElement>();
 
-            Console.WriteLine("1");
             CreateNode();
-            Console.WriteLine("2");
             CreateEdgeToNextSibling();
-            Console.WriteLine("3");
             CreateSpecialEdge();
-            Console.WriteLine("4");
 
         }
 
@@ -53,7 +49,6 @@ namespace FlowChartCore.Graph
 
         public void CreateSpecialEdge()
         {
-            Console.WriteLine("caca");
             DotEdge specialedge = new DotEdge(node.Id,"end_of_script");
             
             specialedge.Label = "Exit";

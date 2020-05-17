@@ -76,20 +76,14 @@ namespace FlowChartCore.Graph
 
         public void CreateNode()
         {
-            // throw new NotImplementedException();
-            Console.WriteLine("if create node");
-            // string plop = $"node {node.Id} -attributes @{{Label='ifnode'}}";
             DotNode newnode = new DotNode(node.Id);
             newnode.Label = "If";
-             DotDefinition.Add(newnode);
+            // newnode.Label = $"If {node.GetAst().Clauses[0].Item1.Extent.Text}";
+            DotDefinition.Add(newnode);
         }
 
         public void CreateTrueEdge()
         {
-            // need to get the first children that is not a else
-            // or a elseif node
-            // Node firstchild = node.children.Find(x => x.GetType() != typeof(FlowChartCore.ElseNode) || x.GetType() != typeof(FlowChartCore.ElseIfNode))
-            Console.WriteLine($"if first child true: {node.children[0].Name}");
             DotEdge edge = new DotEdge(node.Id,node.children[0].Id);
             edge.Label = "True";
             DotDefinition.Add(edge);
