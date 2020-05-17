@@ -25,6 +25,7 @@ namespace FlowChartCore
 
             SetOffToRemove();
             SetLabel();
+            SetCondition();
             SetChildren();
             CreateCodeNode(0);
             

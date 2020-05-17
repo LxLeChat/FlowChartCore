@@ -8,6 +8,8 @@ namespace FlowChartCore
     {
         protected WhileStatementAst RawAst {get;set;}
         public string Label { get => label;}
+        protected internal string condition;
+        public string Condition { get => condition; }
         public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         public override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
         public override int OffSetScriptBlockEnd {get => RawAst.Body.Extent.EndOffset-OffSetToRemove-1;}
@@ -23,6 +25,7 @@ namespace FlowChartCore
 
             SetOffToRemove();
             SetLabel();
+            SetCondition();
             SetChildren();
             CreateCodeNode(0);
             
@@ -68,6 +71,10 @@ namespace FlowChartCore
                     child.GenerateGraph(recursive);
                 }
             }
+        }
+
+        internal override void SetCondition(){
+            condition = RawAst.Condition.Extent.Text;
         }
     }
 }
