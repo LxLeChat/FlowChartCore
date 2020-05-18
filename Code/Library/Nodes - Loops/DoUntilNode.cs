@@ -54,9 +54,24 @@ namespace FlowChartCore
                 }
                 else if(FlowChartCore.Utility.GetValidTypes().Contains(item.GetType())){
                     // On appelle CreateNode qui est une extension pour AST
-                    children.Add(item.CreateNode(depth+1,p,this,null));
-                    tmp = true;
-                    p++;
+                    // children.Add(item.CreateNode(depth+1,p,this,null));
+                    // tmp = true;
+                    // p++;
+
+                    // Because i introduced PipelineAST as a valid AST
+                    // stuff like Write-Host will be present in Childs array ...
+                    // Maybe it's not such a good idea to create node for Foreach-Object...
+                    Node childnode = item.CreateNode(depth+1,p,this,null); 
+                    if ( null != childnode)
+                    {
+                        children.Add(childnode);
+                        tmp = true;
+                        p++;
+                    } else if(tmp) {
+                        children.Add(new CodeNode(depth+1,p,this,null));
+                        tmp = false;
+                        p++;
+                    }
                 }
             }
         }

@@ -57,9 +57,14 @@ namespace FlowChartCore
                 else if(FlowChartCore.Utility.GetValidTypes().Contains(item.GetType())){
                     // On appelle CreateNode qui est une extension pour AST
                     Node node = item.CreateNode(depth+1,p,this,null);
+                    // if (null == node && tmp) {
                     if (null == node) {
-                        children.Add(new CodeNode(depth+1,p,this,null));
-                        tmp = false;                    
+                        if ( tmp )
+                        {
+                            children.Add(new CodeNode(depth+1,p,this,null));
+                            tmp = false;
+                        }
+                        
                     } else {
                         children.Add(item.CreateNode(depth+1,p,this,null));
                         tmp = true;

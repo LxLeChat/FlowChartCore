@@ -49,8 +49,12 @@ namespace FlowChartCore
 
             foreach ( var block in enumerable ) {
                 var tmpNode = block.CreateNode(0,Position,null,Arbre);
-                Nodes.Add(tmpNode);
-                Position++;
+
+                // added if .. because of pipelineAST handinling...
+                if (null != tmpNode) {
+                    Nodes.Add(tmpNode);
+                    Position++;
+                }
             }
 
             return Arbre.Nodes;
