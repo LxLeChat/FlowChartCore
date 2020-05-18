@@ -2,14 +2,17 @@ using System.Management.Automation.Language;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
+using System.Linq;
 
 namespace FlowChartCore
 {
     public class SwitchCaseNode : Node
     {
         protected StatementBlockAst RawAst {get;set;}
-        public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
-        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
+        protected internal string condition;
+        public string Condition { get => condition; }
+        internal override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
+        internal override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 
         public SwitchCaseNode(StatementBlockAst _ast, int _depth, int _position, Node _parent)
         {
@@ -19,6 +22,7 @@ namespace FlowChartCore
             parent = _parent;
             RawAst = _ast;
 
+            SetCondition();
             SetOffToRemove();
             SetChildren();
             CreateCodeNode(0);
@@ -63,6 +67,11 @@ namespace FlowChartCore
 
         public override String GetEndId() {
             return parent.GetEndId();
+        }
+
+        internal override void SetCondition(){
+            SwitchStatementAst Truc = (SwitchStatementAst)RawAst.Parent;
+            condition = Truc.Clauses.Where(x=> x.Item2 == RawAst).Select(x=>x.Item1.Extent.Text).First();
         }
 
     }

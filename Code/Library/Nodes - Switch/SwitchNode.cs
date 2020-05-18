@@ -8,9 +8,11 @@ namespace FlowChartCore
     public class SwitchNode : Node
     {
         protected SwitchStatementAst RawAst {get;set;}
-        public override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
-        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
-        public override int OffSetGlobalEnd {get => RawAst.Extent.EndOffset-OffSetToRemove+1;}
+        protected internal string condition;
+        public string Condition { get => condition; }
+        internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        internal override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
+        internal override int OffSetGlobalEnd {get => RawAst.Extent.EndOffset-OffSetToRemove+1;}
 
         // Constructor
         public SwitchNode(SwitchStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
@@ -22,6 +24,7 @@ namespace FlowChartCore
             RawAst = _ast;
             parentroot = _tree;
 
+            SetCondition();
             SetOffToRemove();
             SetChildren();
             
@@ -67,6 +70,14 @@ namespace FlowChartCore
 
         public override String GetEndId() {
             return $"end_{Id}";
+        }
+        
+        internal override void SetCondition(){
+            condition = RawAst.Condition.Extent.Text;
+        }
+
+        public Ast GetAst() {
+            return RawAst;
         }
 
     }

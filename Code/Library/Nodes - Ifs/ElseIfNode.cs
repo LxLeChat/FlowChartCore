@@ -11,8 +11,8 @@ namespace FlowChartCore
         protected StatementBlockAst RawAst {get;set;}
         protected internal string condition;
         public string Condition { get => condition; }
-        public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
-        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
+        internal override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
+        internal override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 
         public ElseIfNode(StatementBlockAst _ast, int _depth, int _position, Node _parent)
         {

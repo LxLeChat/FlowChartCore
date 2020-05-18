@@ -8,8 +8,8 @@ namespace FlowChartCore
     public class SwitchDefaultNode : Node
     {
         protected StatementBlockAst RawAst {get;set;}
-        public override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
-        public override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
+        internal override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
+        internal override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 
         public SwitchDefaultNode(StatementBlockAst _ast, int _depth, int _position, Node _parent)
         {
