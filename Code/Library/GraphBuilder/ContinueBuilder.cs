@@ -51,15 +51,17 @@ namespace FlowChartCore.Graph
         public void CreateSpecialEdge()
         {
             Node ContinueNode = null;
+            DotEdge specialedge = null;
             if (node.label == null)
             {
                 ContinueNode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode);
+                specialedge = new DotEdge(node.Id,ContinueNode.Id);
+                specialedge.Label = $"Continue To {node.Label}";
+                
             } else {
                 ContinueNode = node.FindNodesUp(x => x.label == node.label);
+                specialedge = new DotEdge(node.Id,ContinueNode.Id);
             }
-            DotEdge specialedge = new DotEdge(node.Id,ContinueNode.Id);
-            
-            specialedge.Label = "Continue To Next Iteration";
             DotDefinition.Add(specialedge);
         }
     }

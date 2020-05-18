@@ -52,16 +52,19 @@ namespace FlowChartCore.Graph
         {
             
             Node breakablenode = null;
+            DotEdge specialedge = null;
             if (node.label == null)
             {
                 breakablenode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode);
+                specialedge = new DotEdge(node.Id,breakablenode.GetNextId());
+                specialedge.Label = $"Break From {node.Label}";
+
             } else {
                 breakablenode = node.FindNodesUp(x => x.label == node.label);
+                specialedge = new DotEdge(node.Id,breakablenode.GetNextId());
             }
 
-            DotEdge specialedge = new DotEdge(node.Id,breakablenode.GetNextId());
-            // DotEdge dottededge = new DotEdge(node.Id,node.GetNextId());
-            // DotDefinition.Add(dottededge);
+            
             DotDefinition.Add(specialedge);
         }
     }

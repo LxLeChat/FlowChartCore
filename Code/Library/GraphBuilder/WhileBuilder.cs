@@ -26,7 +26,6 @@ namespace FlowChartCore.Graph
 
         public void CreateEdgeToFirstChildren()
         {
-            // throw new NotImplementedException();
             DotEdge edge = new DotEdge(node.Id,node.Children.First().Id);
             DotDefinition.Add(edge);
         }
@@ -39,7 +38,6 @@ namespace FlowChartCore.Graph
 
         public void CreateEndNode()
         {
-            // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
             newnode.Label = "Next Element";
@@ -48,9 +46,6 @@ namespace FlowChartCore.Graph
 
         public void CreateLoopEdge()
         {
-            // Node lastchild = node.Children.Last();
-            // DotEdge edge = new DotEdge(lastchild.GetEndId(),node.GetEndId());
-            // DotDefinition.Add(edge);
             DotEdge edge2 = new DotEdge(node.GetEndId(),node.Id);
             DotDefinition.Add(edge2);
         }
@@ -59,7 +54,7 @@ namespace FlowChartCore.Graph
         {
             // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "While: Set condition Here";
+            newnode.Label = $"While {node.Condition}";
             DotDefinition.Add(newnode);
         }
 

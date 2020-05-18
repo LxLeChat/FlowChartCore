@@ -35,7 +35,7 @@ namespace FlowChartCore
         internal void SetLabel () {
             label = RawAst.Label;
         }
-
+        
         internal override void SetChildren() {
 
             // On appelle GetChildAST qui est une extension pour le type
@@ -71,6 +71,10 @@ namespace FlowChartCore
                     child.GenerateGraph(recursive);
                 }
             }
+        }
+
+        public WhileStatementAst GetAst() {
+            return RawAst;
         }
 
         internal override void SetCondition(){

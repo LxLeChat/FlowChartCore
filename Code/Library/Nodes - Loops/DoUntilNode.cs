@@ -72,6 +72,10 @@ namespace FlowChartCore
             }
         }
 
+        public DoUntilStatementAst GetAst() {
+            return RawAst;
+        }
+
         internal override void SetCondition(){
             condition = RawAst.Condition.Extent.Text;
         }

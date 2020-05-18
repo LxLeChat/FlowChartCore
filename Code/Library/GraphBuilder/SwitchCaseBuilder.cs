@@ -24,7 +24,7 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "Switch Case";
+            newnode.Label = $"Case {node.Condition}";
             DotDefinition.Add(newnode);
         }
 

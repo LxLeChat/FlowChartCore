@@ -44,7 +44,6 @@ namespace FlowChartCore.Graph
 
         public void CreateNode()
         {
-            // throw new System.NotImplementedException();
             DotNode newnode = new DotNode(node.Id);
             newnode.Label = "Catch";
             DotDefinition.Add(newnode);

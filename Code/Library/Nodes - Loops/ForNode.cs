@@ -11,6 +11,8 @@ namespace FlowChartCore
         public string Label { get => label;}
         protected internal string condition;
         public string Condition { get => condition; }
+        protected internal string iterator;
+        public string Iterator { get => iterator; }
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         internal override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
         internal override int OffSetScriptBlockEnd {get => RawAst.Body.Extent.EndOffset-OffSetToRemove-1;}
@@ -76,8 +78,13 @@ namespace FlowChartCore
             return $"loop_{Id}";
         }
 
+        public ForStatementAst GetAst() {
+            return RawAst;
+        }
+
         internal override void SetCondition(){
             condition = RawAst.Condition.Extent.Text;
+            iterator = RawAst.Iterator.Extent.Text;
         }
 
     }

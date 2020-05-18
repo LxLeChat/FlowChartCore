@@ -42,24 +42,21 @@ namespace FlowChartCore.Graph
             // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
-            newnode.Label = $"Next Iteration {node.Id}";
+            newnode.Label = "Loop";
             DotDefinition.Add(newnode);
         }
 
         public void CreateLoopEdge()
         {
-            // Node lastchild = node.Children.Last();
-            // DotEdge edge = new DotEdge(lastchild.GetEndId(),node.GetEndId());
-            // DotDefinition.Add(edge);
             DotEdge edge2 = new DotEdge(node.GetEndId(),node.Id);
+            edge2.Label = node.Iterator;
             DotDefinition.Add(edge2);
         }
 
         public void CreateNode()
         {
-            // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "For";
+            newnode.Label = $"For {node.Condition}";
             DotDefinition.Add(newnode);
         }
 

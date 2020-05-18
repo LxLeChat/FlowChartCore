@@ -60,8 +60,8 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "ElseIf";
-            // newnode.Label = $"If {node.GetAst().Extent.}";
+            newnode.Label = $"If {node.Condition}";
+            newnode.Shape = DotNodeShape.Diamond;
             DotDefinition.Add(newnode);
         }
 

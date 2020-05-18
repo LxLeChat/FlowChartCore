@@ -36,9 +36,9 @@ namespace FlowChartCore.Graph
 
         public void CreateEndNode()
         {
-            // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.GetEndId());
-            newnode.Shape = DotNodeShape.Point;
+            newnode.Shape = DotNodeShape.MDiamond;
+            newnode.Label = "End If";
             DotDefinition.Add(newnode);
         }
 
@@ -77,8 +77,8 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "If";
-            // newnode.Label = $"If {node.GetAst().Clauses[0].Item1.Extent.Text}";
+            newnode.Label = $"If {node.Condition}";
+            newnode.Shape = DotNodeShape.Diamond;
             DotDefinition.Add(newnode);
         }
 
