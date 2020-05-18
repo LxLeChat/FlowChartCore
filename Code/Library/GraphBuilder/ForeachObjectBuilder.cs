@@ -8,14 +8,14 @@ using DotNetGraph.Core;
 
 namespace FlowChartCore.Graph
 {
-    public class WhileBuilder : IBuilder, IBuilderLoops
+    public class ForeachObjectBuilder : IBuilder, IBuilderLoops
     {
         public List<IDotElement> DotDefinition {get;set;}
-        private WhileNode node;
+        private ForeachObjectNode node;
         
-        public WhileBuilder(WhileNode whilenode)
+        public ForeachObjectBuilder(ForeachObjectNode foreachobjectnode)
         {
-            node = whilenode;
+            node = foreachobjectnode;
             DotDefinition = new List<IDotElement>();
             
             CreateNode();
@@ -42,21 +42,21 @@ namespace FlowChartCore.Graph
         {
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
-            newnode.Label = "Next Element";
+            newnode.Label = "Loop";
             DotDefinition.Add(newnode);
         }
 
         public void CreateLoopEdge()
         {
             DotEdge edge2 = new DotEdge(node.GetEndId(),node.Id);
+            edge2.Label = $"Next Item From {node.Condition}";
             DotDefinition.Add(edge2);
         }
 
         public void CreateNode()
         {
-            // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = $"While {node.Condition}";
+            newnode.Label = $"Foreach Object in {node.Condition}";
             DotDefinition.Add(newnode);
         }
 

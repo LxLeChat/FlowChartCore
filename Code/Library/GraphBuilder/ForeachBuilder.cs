@@ -33,6 +33,7 @@ namespace FlowChartCore.Graph
         public void CreateEdgeToNextSibling()
         {
             DotEdge Edge = new DotEdge(node.GetEndId(),node.GetNextId());
+            Edge.Label = "Loop End";
             DotDefinition.Add(Edge);
         }
 
@@ -40,7 +41,6 @@ namespace FlowChartCore.Graph
         {
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
-            // newnode.Label = $"Loop to {node.Id}";
             newnode.Label = $"Next item In {node.GetAst().Condition}";
             DotDefinition.Add(newnode);
         }

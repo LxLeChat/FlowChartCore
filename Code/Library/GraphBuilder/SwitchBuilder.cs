@@ -44,6 +44,7 @@ namespace FlowChartCore.Graph
         public void CreateEndNode()
         {
             DotNode endnode = new DotNode(node.GetEndId());
+            endnode.Shape = DotNodeShape.Diamond;
             DotDefinition.Add(endnode);
         }
 

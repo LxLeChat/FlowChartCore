@@ -39,17 +39,6 @@ $a={
 }
 
     $a={
-        while ($a) {
-            
-        }
-
-        do {
-            
-        } until ($a)
-
-        do {
-            
-        } while ($a)
 
         for ($i = 0; $i -lt $array.Count; $i++) {
             
@@ -62,13 +51,16 @@ $a={
 
 
     $a={
-        :prout foreach ($item in $collection) {
-            switch ($x) {
-                1 {  }
-                2 {  }
-                Default {}
-            }
+        foreach ($item in $collection) {
+            
         }
+        1..100 | ?{"a"} | %{"plop";if ($a) {};"plop"};
+        Get-Service | % {"plop";if($a){}; foreach ($item in $collection) {
+            
+        }}
+        Get-Service | ForEach-Object { "plop" }
+        $a = Get-Service | ForEach-Object { $a }
+
     }
 
 $a = {

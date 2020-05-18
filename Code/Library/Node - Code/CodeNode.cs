@@ -40,6 +40,9 @@ namespace FlowChartCore
                 } else {
                     b = GetNextNode().OffSetStatementStart;
                 }
+
+                // Console.WriteLine($"F: {a}, N: {b}");
+                // Console.WriteLine($"IsFirst & not IstLast, F: {a}, N: {b}");
                 return racine.Substring(a, b - a).Trim();
             }
 
@@ -56,6 +59,7 @@ namespace FlowChartCore
                 }
                 
                 b = parent.OffSetScriptBlockEnd;
+                // Console.WriteLine($" not IsFirst & IstLast, F: {a}, N: {b}");
                 return racine.Substring(a, b - a).Trim();
             }
 
@@ -64,7 +68,7 @@ namespace FlowChartCore
                 //
                 a = parent.OffSetScriptBlockStart;
                 b = parent.OffSetScriptBlockEnd;
-
+                // Console.WriteLine($"IsFirst & IstLat, F: {a}, N: {b}");
                 return racine.Substring(a, b - a).Trim();
             }
 
@@ -79,6 +83,7 @@ namespace FlowChartCore
                     a = GetPreviousNode().OffSetScriptBlockEnd;
                 }
                 b = GetNextNode().OffSetStatementStart;
+                // Console.WriteLine($"not IsFirst & not IstLast, F: {a}, N: {b}");
                 return racine.Substring(a, b - a).Trim();
             }
 

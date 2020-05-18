@@ -1,6 +1,9 @@
 using System.Management.Automation.Language;
 using System.Collections.Generic;
 using FlowChartCore;
+using System.Text.RegularExpressions;
+using System.Linq;
+using System;
 
 // refaire les commentaires: au dessus de chaque classe
 namespace ExtensionMethods
@@ -37,10 +40,40 @@ namespace ExtensionMethods
                     return ((ContinueStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
                 case Ast a when _ast is ExitStatementAst : 
                     return ((ExitStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent);
+                case Ast a when _ast is PipelineAst : 
+                    return ((PipelineAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
             }
             return null;
         }
 
+    }
+
+    public static class PipelineExtention{
+        // ContinueStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        public static ForeachObjectNode CreateNodeFromAst(this PipelineAst _ast,int _depth, int _position, Node _parent, Tree _tree)
+        {
+            string pattern = @"(?i)%|foreach|foreach-object";
+            Regex rgx = new Regex(pattern);
+
+            ForeachObjectNode node = null;
+
+            foreach (var item in _ast.PipelineElements)
+            {
+                if ( item is CommandAst) {
+                    CommandAst CastedItem = (CommandAst)item;
+                     if (rgx.IsMatch(CastedItem.GetCommandName()))
+                    {   
+                        var prout = CastedItem.CommandElements.Where(x => x is ScriptBlockExpressionAst);
+                        node = new ForeachObjectNode(_ast,_depth, _position, _parent, _tree,prout.ToList()[0]);
+                        break;
+                    }
+
+                }
+            }
+            return node;
+        }
     }
 
     public static class ExitStatementExtension {

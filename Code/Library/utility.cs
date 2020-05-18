@@ -27,7 +27,8 @@ namespace FlowChartCore
                 typeof(TryStatementAst),
                 typeof(BreakStatementAst),
                 typeof(ContinueStatementAst),
-                typeof(ExitStatementAst)
+                typeof(ExitStatementAst),
+                typeof(PipelineAst)
             };
 
         }

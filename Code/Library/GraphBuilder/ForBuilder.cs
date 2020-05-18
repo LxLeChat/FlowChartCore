@@ -17,6 +17,7 @@ namespace FlowChartCore.Graph
         {
             node = fornode;
             DotDefinition = new List<IDotElement>();
+            
             CreateNode();
             CreateEdgeToFirstChildren();
             CreateEndNode();
@@ -26,7 +27,6 @@ namespace FlowChartCore.Graph
 
         public void CreateEdgeToFirstChildren()
         {
-            // throw new NotImplementedException();
             DotEdge edge = new DotEdge(node.Id,node.Children.First().Id);
             DotDefinition.Add(edge);
         }
@@ -34,12 +34,12 @@ namespace FlowChartCore.Graph
         public void CreateEdgeToNextSibling()
         {
             DotEdge Edge = new DotEdge(node.GetEndId(),node.GetNextId());
+            Edge.Label = "Loop End";
             DotDefinition.Add(Edge);
         }
 
         public void CreateEndNode()
         {
-            // throw new NotImplementedException();
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
             newnode.Label = "Loop";
