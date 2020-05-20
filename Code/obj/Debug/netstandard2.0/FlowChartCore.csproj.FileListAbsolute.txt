@@ -16,3 +16,12 @@ C:\Users\Lx\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowChartCore.A
 C:\Users\Lx\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowChartCore.AssemblyInfo.cs
 C:\Users\Lx\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowChartCore.dll
 C:\Users\Lx\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowChartCore.pdb
+C:\Users\yanas\GitPerso\FlowChartCore\Code\bin\Debug\netstandard2.0\FlowchartCore.deps.json
+C:\Users\yanas\GitPerso\FlowChartCore\Code\bin\Debug\netstandard2.0\FlowchartCore.dll
+C:\Users\yanas\GitPerso\FlowChartCore\Code\bin\Debug\netstandard2.0\FlowchartCore.pdb
+C:\Users\yanas\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowchartCore.csprojAssemblyReference.cache
+C:\Users\yanas\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowchartCore.AssemblyInfoInputs.cache
+C:\Users\yanas\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowchartCore.AssemblyInfo.cs
+C:\Users\yanas\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowchartCore.csproj.CoreCompileInputs.cache
+C:\Users\yanas\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowchartCore.dll
+C:\Users\yanas\GitPerso\FlowChartCore\Code\obj\Debug\netstandard2.0\FlowchartCore.pdb

@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "dvUfRI9DaFfF/gEa70sMJi5Ah5Kare8a+1ztDcZEvtCRDfeA+uQl9wel+xStxIn1gkFWEIbriUmaVkNxLvqMFA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yanas\\.nuget\\packages\\dotnetgraph\\2.3.0\\dotnetgraph.2.3.0.nupkg.sha512",
+    "C:\\Users\\yanas\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\yanas\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\yanas\\.nuget\\packages\\powershellstandard.library\\5.1.0\\powershellstandard.library.5.1.0.nupkg.sha512"
+  ],
+  "logs": []
+}

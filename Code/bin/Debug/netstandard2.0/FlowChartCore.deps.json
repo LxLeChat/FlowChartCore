@@ -7,14 +7,14 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "FlowChartCore/1.0.0": {
+      "FlowchartCore/1.0.0": {
         "dependencies": {
           "DotNetGraph": "2.3.0",
           "NETStandard.Library": "2.0.3",
           "PowerShellStandard.Library": "5.1.0"
         },
         "runtime": {
-          "FlowChartCore.dll": {}
+          "FlowchartCore.dll": {}
         }
       },
       "DotNetGraph/2.3.0": {
@@ -42,7 +42,7 @@
     }
   },
   "libraries": {
-    "FlowChartCore/1.0.0": {
+    "FlowchartCore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

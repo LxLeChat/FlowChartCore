@@ -224,30 +224,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lx\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\yanas\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\FlowChartCore.csproj",
-      "projectName": "FlowChartCore",
-      "projectPath": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\FlowChartCore.csproj",
-      "packagesPath": "C:\\Users\\Lx\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lx\\GitPerso\\FlowChartCore\\Code\\obj\\",
+      "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+      "projectName": "FlowchartCore",
+      "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+      "packagesPath": "C:\\Users\\yanas\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Lx\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\yanas\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netstandard2.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -289,7 +283,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
