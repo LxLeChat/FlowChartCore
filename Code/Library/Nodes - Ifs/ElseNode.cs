@@ -80,7 +80,6 @@ namespace FlowChartCore
             // Graph.AddRange(x.DotDefinition);
 
             if(recursive) {
-                Console.WriteLine("recurse..");
                 foreach (var child in Children) {
                     child.GenerateGraph(recursive);
                 }
