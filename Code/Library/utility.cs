@@ -59,11 +59,7 @@ namespace FlowChartCore
 
         public static List<Node> ParseFile(string file){
             
-            Console.WriteLine(Path.GetFullPath(file));
-            Console.WriteLine(Path.IsPathRooted(file));
-            Console.WriteLine(Path.GetPathRoot(file));
-
-            string script = File.ReadAllText(Path.GetFullPath(file));
+            string script = File.ReadAllText(file);
 
             ScriptBlock scriptblock = ScriptBlock.Create(script);
             Ast NamedBlock = scriptblock.Ast.Find(Args => Args is NamedBlockAst, false);

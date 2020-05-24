@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
-      "DotNetGraph/2.3.0": {
+      "DotNetGraph/2.4.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/DotNetGraph.dll": {}
@@ -47,15 +47,15 @@
     }
   },
   "libraries": {
-    "DotNetGraph/2.3.0": {
-      "sha512": "gFOWThMN6urkVBtm5/GUNwyyvhz+7ouiwGAbSvrfiY4jV8Qvq4gUlpdAeZ8vzZbg2EwfL+/dDM2/sfLCDAk3AA==",
+    "DotNetGraph/2.4.0": {
+      "sha512": "VUafMGB/RfYhSYbrQtl3Fi40yvClo51IDWD1jfqGHAn4xGgnHskDYfOLzpuecKh4AdRicCLq58YXhKXStRultA==",
       "type": "package",
-      "path": "dotnetgraph/2.3.0",
+      "path": "dotnetgraph/2.4.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.txt",
-        "dotnetgraph.2.3.0.nupkg.sha512",
+        "dotnetgraph.2.4.0.nupkg.sha512",
         "dotnetgraph.nuspec",
         "lib/netstandard2.0/DotNetGraph.dll"
       ]
@@ -218,7 +218,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "DotNetGraph >= 2.3.0",
+      "DotNetGraph >= 2.4.0",
       "NETStandard.Library >= 2.0.3",
       "PowerShellStandard.Library >= 5.1.0"
     ]
@@ -260,7 +260,7 @@
         "dependencies": {
           "DotNetGraph": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.4.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
