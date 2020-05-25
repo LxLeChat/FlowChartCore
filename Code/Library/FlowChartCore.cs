@@ -364,7 +364,7 @@ namespace FlowChartCore
         }
 
         public virtual void GenerateGraph(bool recursive){}
-
+        public virtual void GenerateGraph(bool recursive,bool codeBlockAsCode){}
         internal virtual void SetCondition(){}
         
 
