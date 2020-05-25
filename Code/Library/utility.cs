@@ -29,7 +29,7 @@ namespace FlowChartCore
                 typeof(BreakStatementAst),
                 typeof(ContinueStatementAst),
                 typeof(ExitStatementAst),
-                typeof(PipelineAst)
+                // typeof(PipelineAst)
             };
 
         }
@@ -38,20 +38,29 @@ namespace FlowChartCore
         public static List<Node> ParseScriptBlock(ScriptBlock scriptBlock){
 
             Ast NamedBlock = scriptBlock.Ast.Find(Args => Args is NamedBlockAst, false);
-            IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == NamedBlock, false);
+            // IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == NamedBlock, false);
+            IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && Args.Parent == NamedBlock, false);
 
             int Position = 1;
             List<Node> Nodes = new List<Node>();
             Tree Arbre = new Tree(Nodes,scriptBlock.Ast);
+            bool tmp = true;
 
             foreach ( var block in enumerable ) {
-                var tmpNode = block.CreateNode(0,Position,null,Arbre);
-
-                // added if .. because of pipelineAST handinling...
-                if (null != tmpNode) {
+                if( FlowChartCore.Utility.GetValidTypes().Contains(block.GetType()) )
+                {
+                    // valid type found
+                    Node tmpNode = block.CreateNode(0,Position,null,Arbre);
                     Nodes.Add(tmpNode);
                     Position++;
-                }
+                } else if ( tmp )
+                {
+                    // not a valid type, and tmp is false, create code node
+                    tmp = false;
+                    Node tmpNode = new CodeNode(0,Position,null,Arbre);
+                    Nodes.Add(tmpNode);
+                    Position++;
+                } 
             }
 
             return Arbre.Nodes;
@@ -63,17 +72,27 @@ namespace FlowChartCore
 
             ScriptBlock scriptblock = ScriptBlock.Create(script);
             Ast NamedBlock = scriptblock.Ast.Find(Args => Args is NamedBlockAst, false);
-            IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == NamedBlock, false);
+            // IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == NamedBlock, false);
+            IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && Args.Parent == NamedBlock, false);
 
             int Position = 1;
             List<Node> Nodes = new List<Node>();
             Tree Arbre = new Tree(Nodes,scriptblock.Ast);
+            bool tmp = true;
 
             foreach ( var block in enumerable ) {
-                var tmpNode = block.CreateNode(0,Position,null,Arbre);
-
-                // added if .. because of pipelineAST handinling...
-                if (null != tmpNode) {
+                if( FlowChartCore.Utility.GetValidTypes().Contains(block.GetType()) )
+                {
+                    // valid type found
+                    Node tmpNode = block.CreateNode(0,Position,null,Arbre);
+                    Nodes.Add(tmpNode);
+                    Position++;
+                } else if ( tmp )
+                {
+                    Console.WriteLine("OK on passe ici..!");
+                    // not a valid type, and tmp is false, create code node
+                    tmp = false;
+                    Node tmpNode = new CodeNode(0,Position,null,Arbre);
                     Nodes.Add(tmpNode);
                     Position++;
                 }

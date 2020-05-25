@@ -1,4 +1,7 @@
+$x="azeazeazeazeaze"
 foreach ($item in $collection) {
+    
+    ForEach-Object -InputObject $x {"ahahah"}
     if ($a) {
         "if"
     } elseif ($b) {
