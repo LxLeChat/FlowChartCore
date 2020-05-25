@@ -142,11 +142,17 @@ namespace FlowChartCore
         
         // Find Depth 0 Node
         public Node GetRootNode() {
-            if (this.Parent.Depth == 0)
+            // Fix: Bug when first node at position 1 & depth 0
+            if (depth == 0)
             {
-                return this.Parent;
+                return null;
+            }
+
+            if (parent.Depth == 0)
+            {
+                return parent;
             } else {
-                return this.Parent.GetRootNode();
+                return parent.GetRootNode();
             }
         }
         

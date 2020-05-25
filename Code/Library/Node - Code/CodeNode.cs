@@ -26,30 +26,37 @@ namespace FlowChartCore
             return Id;
         }
 
+
         public string discovercode(){
-            String racine = GetRootNode().parentroot.Ast.Extent.Text;
+            // Fix: Bug when first node at position 1 & depth 0
+            Node rootNode = GetRootNode() ?? this;
+            String scriptText = rootNode.parentroot.Ast.Extent.Text;
             int a = 0;
             int b = 0;
 
             if (IsFirst && !IsLast)
             {
                 // parent offsetscriptblockstart +1 && check getnextnode type
-                a = parent.OffSetScriptBlockStart;
+                if ( position == 1 )
+                {
+                    a = OffSetToRemove;
+                } else {
+                    a = parent.OffSetScriptBlockStart;
+                }
+                
                 if(GetNextNode() is ElseIfNode || GetNextNode() is ElseNode || GetNextNode() is CatchNode ) {
                     b = parent.OffSetScriptBlockEnd;
                 } else {
                     b = GetNextNode().OffSetStatementStart;
                 }
 
-                // Console.WriteLine($"F: {a}, N: {b}");
-                // Console.WriteLine($"IsFirst & not IstLast, F: {a}, N: {b}");
-                return racine.Substring(a, b - a).Trim();
+                return scriptText.Substring(a, b - a).Trim();
             }
 
             if (IsLast && !IsFirst)
             {
                 // getpreviousnode offsetscriptblockend +1 && get offsetscriptblockend du parent
-                //si le previous est un try, un if ou un switch, il faut taper sur le offsetglobalend
+                // si le previous est un try, un if ou un switch, il faut taper sur le offsetglobalend
                 Node previousnode = GetPreviousNode();
                 if (previousnode is TryNode || previousnode is IfNode || previousnode is SwitchNode )
                 {
@@ -59,8 +66,7 @@ namespace FlowChartCore
                 }
                 
                 b = parent.OffSetScriptBlockEnd;
-                // Console.WriteLine($" not IsFirst & IstLast, F: {a}, N: {b}");
-                return racine.Substring(a, b - a).Trim();
+                return scriptText.Substring(a, b - a).Trim();
             }
 
             if (IsFirst && IsLast)
@@ -68,8 +74,7 @@ namespace FlowChartCore
                 //
                 a = parent.OffSetScriptBlockStart;
                 b = parent.OffSetScriptBlockEnd;
-                // Console.WriteLine($"IsFirst & IstLat, F: {a}, N: {b}");
-                return racine.Substring(a, b - a).Trim();
+                return scriptText.Substring(a, b - a).Trim();
             }
 
             if(!IsFirst && !IsLast)
@@ -83,8 +88,8 @@ namespace FlowChartCore
                     a = GetPreviousNode().OffSetScriptBlockEnd;
                 }
                 b = GetNextNode().OffSetStatementStart;
-                // Console.WriteLine($"not IsFirst & not IstLast, F: {a}, N: {b}");
-                return racine.Substring(a, b - a).Trim();
+
+                return scriptText.Substring(a, b - a).Trim();
             }
 
             return null;
