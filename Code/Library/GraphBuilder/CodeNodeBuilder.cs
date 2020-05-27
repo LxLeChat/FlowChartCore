@@ -21,6 +21,14 @@ namespace FlowChartCore.Graph
             CreateEdgeToNextSibling();
         }
 
+        public CodeNodeBuilder(CodeNode codeNode, bool codeAsText)
+        {
+            node = codeNode;
+            DotDefinition = new List<IDotElement>();
+            CreateNode(codeAsText);
+            CreateEdgeToNextSibling();
+        }
+
 
         public void CreateEdgeToFirstChildren()
         {
@@ -42,6 +50,16 @@ namespace FlowChartCore.Graph
         {
             DotNode newnode = new DotNode(node.Id);
             newnode.Label = $"CodeBlock";
+            DotDefinition.Add(newnode);
+        }
+
+        public void CreateNode(bool codeAsText)
+        {
+            DotNode newnode = new DotNode(node.Id);
+            // need to replace \n in label with \l
+            // this will align text to the left
+            newnode.Label = $"{node.discovercode()}";
+            newnode.Shape = DotNodeShape.Box;
             DotDefinition.Add(newnode);
         }
     }

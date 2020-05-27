@@ -75,12 +75,27 @@ namespace FlowChartCore
             // ou alors le graph du else, ne buildera un edge que depuis le dernier enfant
             // vers la fin du if ...
 
-            // FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.ElseBuilder(this);
-            // Graph.AddRange(x.DotDefinition);
 
             if(recursive) {
                 foreach (var child in Children) {
                     child.GenerateGraph(recursive);
+                }
+            }
+        }
+
+        public override void GenerateGraph(bool recursive, bool codeAsText){
+            // FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.IfBuilder(this);
+            // Graph.AddRange(x.DotDefinition);
+            // on graph rien ... ou pas ... si on graph pas
+            // il faudra ajouter une condition a chaque builder,
+            // en disant si le parent est un else, et que c'est le dernier enfant,
+            // alors on draw le end edge vers la fin du if ...
+            // ou alors le graph du else, ne buildera un edge que depuis le dernier enfant
+            // vers la fin du if ...
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive,codeAsText);
                 }
             }
         }

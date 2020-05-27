@@ -96,5 +96,16 @@ namespace FlowChartCore
                 }
             }
         }
+
+        public override void GenerateGraph(bool recursive, bool codeBlockAsText){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.TryBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive,codeBlockAsText);
+                }
+            }
+        }
     }
 }

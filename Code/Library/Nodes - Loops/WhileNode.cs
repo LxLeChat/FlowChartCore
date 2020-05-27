@@ -87,6 +87,17 @@ namespace FlowChartCore
             }
         }
 
+        public override void GenerateGraph(bool recursive, bool codeAsText){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.WhileBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive,codeAsText);
+                }
+            }
+        }
+
         public WhileStatementAst GetAst() {
             return RawAst;
         }

@@ -10,12 +10,21 @@ namespace FlowChartCore.Cmdlets {
     [OutputType(typeof(string))]
     public class NewFlowChartGraph : PSCmdlet
     {
+        // List of nodes
         [Parameter(
             Mandatory = true,
             Position = 0,
             ValueFromPipeline = true
         )]
         public List<Node> Nodes { get; set; }
+
+
+        [Parameter(
+            Mandatory = false,
+            Position = 1,
+            ValueFromPipeline = false
+        )]
+        public SwitchParameter CodeAsText { get; set; }
         
 
         // This method gets called once for each cmdlet in the pipeline when the pipeline starts executing
@@ -29,7 +38,15 @@ namespace FlowChartCore.Cmdlets {
 
             foreach (Node item in Nodes)
             {
-                item.GenerateGraph(true);
+                if (CodeAsText.IsPresent)
+                {
+                    Console.WriteLine("passer dans le switch");
+                    item.GenerateGraph(true,true);
+                } else
+                {
+                    item.GenerateGraph(true);    
+                }
+                
             }
         }
 

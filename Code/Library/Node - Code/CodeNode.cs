@@ -22,6 +22,11 @@ namespace FlowChartCore
             Graph.AddRange(x.DotDefinition);
         }
 
+        public override void GenerateGraph(bool recursive, bool codeAsText){
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.CodeNodeBuilder(this,true);
+            Graph.AddRange(x.DotDefinition);
+        }
+
         public override String GetEndId() {
             return Id;
         }
