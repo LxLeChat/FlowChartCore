@@ -89,7 +89,6 @@ namespace FlowChartCore
                     Position++;
                 } else if ( tmp )
                 {
-                    Console.WriteLine("OK on passe ici..!");
                     // not a valid type, and tmp is false, create code node
                     tmp = false;
                     Node tmpNode = new CodeNode(0,Position,null,Arbre);

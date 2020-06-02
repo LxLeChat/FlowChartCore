@@ -9,6 +9,7 @@ namespace FlowChartCore
     {
         protected BreakStatementAst RawAst {get;set;}
         public string Label { get => label;}
+        internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
 
         public BreakNode(BreakStatementAst _ast, int _depth, int _position, Node _parent)
         {
@@ -36,6 +37,12 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive){
+
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.BreakBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+        }
+
+        public override void GenerateGraph(bool recursive, bool codeAsText){
 
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.BreakBuilder(this);
             Graph.AddRange(x.DotDefinition);

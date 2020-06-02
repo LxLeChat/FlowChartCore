@@ -40,7 +40,6 @@ namespace FlowChartCore.Cmdlets {
             {
                 if (CodeAsText.IsPresent)
                 {
-                    Console.WriteLine("passer dans le switch");
                     item.GenerateGraph(true,true);
                 } else
                 {

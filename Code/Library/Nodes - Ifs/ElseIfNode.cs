@@ -11,6 +11,7 @@ namespace FlowChartCore
         protected StatementBlockAst RawAst {get;set;}
         protected internal string condition;
         public string Condition { get => condition; }
+        internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
         internal override int OffSetScriptBlockStart {get => RawAst.Extent.StartOffset-OffSetToRemove+1;}
         internal override int OffSetScriptBlockEnd {get => RawAst.Extent.EndOffset-OffSetToRemove-1;}
 

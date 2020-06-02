@@ -96,7 +96,7 @@ namespace FlowChartCore
 
         // Method to find recursively Nodes by Id
         public virtual Node FindNodesById (String id, bool recurse) {
-            Node result = new Node();
+            Node result = null;
             if (children.Count > 0 ) {
                 foreach ( var child in children ) {
                     if (child.Id == id )

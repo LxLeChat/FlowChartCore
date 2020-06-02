@@ -36,6 +36,7 @@ namespace FlowChartCore
             // Fix: Bug when first node at position 1 & depth 0
             Node rootNode = GetRootNode() ?? this;
             String scriptText = rootNode.parentroot.Ast.Extent.Text;
+            
             int a = 0;
             int b = 0;
 
@@ -54,8 +55,9 @@ namespace FlowChartCore
                 } else {
                     b = GetNextNode().OffSetStatementStart;
                 }
-
+                
                 return scriptText.Substring(a, b - a).Trim();
+                
             }
 
             if (IsLast && !IsFirst)
