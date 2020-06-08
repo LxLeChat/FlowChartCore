@@ -65,4 +65,5 @@ namespace FlowChartCore.Graph
             DotDefinition.Add(newnode);
         }
     }
+
 }
