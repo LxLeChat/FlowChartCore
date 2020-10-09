@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "FlowchartCore/1.0.0": {
         "dependencies": {
-          "DotNetGraph": "2.4.0",
+          "DotNetGraph": "2.6.0",
           "NETStandard.Library": "2.0.3",
           "PowerShellStandard.Library": "5.1.0"
         },
@@ -17,7 +17,7 @@
           "FlowchartCore.dll": {}
         }
       },
-      "DotNetGraph/2.4.0": {
+      "DotNetGraph/2.6.0": {
         "runtime": {
           "lib/netstandard2.0/DotNetGraph.dll": {
             "assemblyVersion": "1.0.0.0",
@@ -47,12 +47,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "DotNetGraph/2.4.0": {
+    "DotNetGraph/2.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VUafMGB/RfYhSYbrQtl3Fi40yvClo51IDWD1jfqGHAn4xGgnHskDYfOLzpuecKh4AdRicCLq58YXhKXStRultA==",
-      "path": "dotnetgraph/2.4.0",
-      "hashPath": "dotnetgraph.2.4.0.nupkg.sha512"
+      "sha512": "sha512-jxw5hIS3hTtEHKTk/M7ZnY4qhrgkTB9rLqy25tbFMT5gzT2mQhw5l+oGM/mwJb33YoFrIHB7E8V9xPZsVbtzJQ==",
+      "path": "dotnetgraph/2.6.0",
+      "hashPath": "dotnetgraph.2.6.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",

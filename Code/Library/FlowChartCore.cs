@@ -76,6 +76,8 @@ namespace FlowChartCore
         internal virtual int OffSetGlobalEnd {get;set;}
         internal int OffSetToRemove { get; set;}
 
+
+        // igraphElement
         public List<IDotElement> Graph = new List<IDotElement>();
         
         // Method to populate various offsets values

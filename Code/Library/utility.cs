@@ -106,7 +106,7 @@ namespace FlowChartCore
             DotNetGraph.DotGraph g = new DotNetGraph.DotGraph("a",true);
             g.Elements.AddRange(dotElements);
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
-            return compiler.Compile(true);
+            return compiler.Compile();
         }
 
         public static List<IDotElement> Plop (List<Node> nodes) {
