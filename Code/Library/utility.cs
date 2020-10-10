@@ -3,6 +3,7 @@ using System.Management.Automation;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
+using System.Text.RegularExpressions;
 using System.IO;
 using DotNetGraph.Core;
 
@@ -106,7 +107,9 @@ namespace FlowChartCore
             DotNetGraph.DotGraph g = new DotNetGraph.DotGraph("a",true);
             g.Elements.AddRange(dotElements);
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
-            return compiler.Compile();
+            string compiled = compiler.Compile(true,true);
+            string compiledCleaned = compiled.Replace("\\n","\\l").Replace("\\r","\\l");
+            return compiledCleaned;
         }
 
         public static List<IDotElement> Plop (List<Node> nodes) {

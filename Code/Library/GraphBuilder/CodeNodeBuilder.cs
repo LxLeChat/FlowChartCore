@@ -60,7 +60,7 @@ namespace FlowChartCore.Graph
             // this will align text to the left
             // Change made in DotNetGraph DotCompiler, FormatString Method
             String label = node.discovercode();
-            newnode.Label = $"{label}";
+            newnode.Label = label;
             newnode.Shape = DotNodeShape.Box;
             DotDefinition.Add(newnode);
         }
