@@ -3,6 +3,7 @@ using System.Management.Automation;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
+// using System.Text.RegularExpressions;
 using System.IO;
 using DotNetGraph.Core;
 
@@ -35,6 +36,7 @@ namespace FlowChartCore
         }
 
 
+        // Static Method to parse a scriptblock
         public static List<Node> ParseScriptBlock(ScriptBlock scriptBlock){
 
             Ast NamedBlock = scriptBlock.Ast.Find(Args => Args is NamedBlockAst, false);
@@ -66,6 +68,7 @@ namespace FlowChartCore
             return Arbre.Nodes;
         }
 
+        // Static Method to parse a script file
         public static List<Node> ParseFile(string file){
             
             string script = File.ReadAllText(file);
@@ -100,23 +103,27 @@ namespace FlowChartCore
             return Arbre.Nodes;
         }
     
+        // Static method to create dot definition,
+        // based on DotnetGraph Library
         public static String CompileDot(List<IDotElement> dotElements ){
             
             
             DotNetGraph.DotGraph g = new DotNetGraph.DotGraph("a",true);
             g.Elements.AddRange(dotElements);
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
-            return compiler.Compile(true);
+            string compiled = compiler.Compile(true,true);
+            string compiledCleaned = compiled.Replace("\\n","\\l").Replace("\\r","\\l");
+            return compiledCleaned;
         }
 
-        public static List<IDotElement> Plop (List<Node> nodes) {
+        public static List<IDotElement> AddGraph (List<Node> nodes) {
             List<IDotElement> tmp = new List<IDotElement>();
             foreach (var node in nodes)
             {
                 tmp.AddRange(node.Graph);
                 if (node.children != null)
                 {
-                    tmp.AddRange(Plop(node.children));
+                    tmp.AddRange(AddGraph(node.children));
                 }
             }
             return tmp;

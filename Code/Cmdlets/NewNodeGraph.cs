@@ -52,7 +52,7 @@ namespace FlowChartCore.Cmdlets {
         // This method will be called once at the end of pipeline execution; if no input is received, this method is not called
         protected override void EndProcessing()
         {
-            List<IDotElement> dotElements = FlowChartCore.Utility.Plop(Nodes);
+            List<IDotElement> dotElements = FlowChartCore.Utility.AddGraph(Nodes);
             String dotGraph = FlowChartCore.Utility.CompileDot(dotElements);
             WriteObject(dotGraph);
         }
