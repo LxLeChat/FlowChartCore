@@ -36,7 +36,7 @@ namespace FlowChartCore.Cmdlets {
 
         [Parameter(
             ParameterSetName="Path",
-            Mandatory=true,
+            Mandatory=false,
             Position=0,
             ValueFromPipeline=true,
             ValueFromPipelineByPropertyName=true
