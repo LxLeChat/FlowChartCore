@@ -23,24 +23,27 @@ namespace FlowChartCore
             _ast = ast;
         }
 
-        // Method to find recursively Nodes by Type
-        public virtual IEnumerable<Node> FindNodesByType (Type type, bool recurse) {
+                // Method to find a node by predicate.
+        // Pwsh: FinNodes({$args[0] -is [FlowChartCore.IfNode]},$True)
+        // will search all nodes of types Ifnode, recursively
+        public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
+            
             List<Node> Result = new List<Node>();
             if (Nodes.Count > 0 ) {
                 foreach ( var child in Nodes ) {
-                    if (child.GetType() == type )
+                    if (predicate(child))
                     {
                         Result.Add(child);
 
                         if (recurse)
                         {
-                            Result.AddRange(child.FindNodesByType(type,recurse));
+                            Result.AddRange(child.FindNodes(predicate,recurse));
                         }
 
                     } else {
                         if (recurse)
                         {
-                            Result.AddRange(child.FindNodesByType(type,recurse));
+                            Result.AddRange(child.FindNodes(predicate,recurse));
                         }
                     }
                 }
@@ -113,86 +116,6 @@ namespace FlowChartCore
         }
         
 
-        public virtual IEnumerable<Node> FindById (string IdP, bool recurse) {
-            List<Node> Result = new List<Node>();
-            if ( Children.Count > 0 ) {
-                foreach ( var child in Children ) {
-                    if ( child.Id == IdP )
-                    {
-                        Result.Add(child);
-
-                        if (recurse)
-                        {
-                            Result.AddRange(child.FindById(IdP,recurse));
-                        }
-
-                    } else {
-                        if (recurse)
-                        {
-                            Result.AddRange(child.FindById(IdP,recurse));
-                        }
-                    }
-                }
-            }
-            return Result;
-        }
-        
-        // // // Method to find recursively Nodes by Id
-        // public virtual Node FindNodesById (String id, bool recurse) {
-        //     Node result = null;
-        //     Console.WriteLine("ok...");
-        //     if (children.Count > 0 ) {
-        //         // if (null == result) {
-        //             foreach ( var child in children ) {
-        //             Console.WriteLine(child.Id);
-        //             if (child.Id == id )
-        //             {
-        //                 return child;
-
-        //             } else {
-        //                 if (recurse)
-        //                 {
-        //                     Console.WriteLine("recurse");
-        //                     return child.FindNodesById(id,recurse);
-        //                 }
-        //             }
-        //         // }
-        //         }
-        //     }
-        //     return result ;
-        // }
-    
-
-        // Method to find recursively Nodes by Type
-        public virtual IEnumerable<Node> FindNodesByType (Type type, bool recurse) {
-            List<Node> Result = new List<Node>();
-            if (children.Count > 0 ) {
-                foreach ( var child in children ) {
-                    if (child.GetType() == type )
-                    {
-                        Result.Add(child);
-
-                        if (recurse)
-                        {
-                            Result.AddRange(child.FindNodesByType(type,recurse));
-                        }
-
-                    } else {
-                        if (recurse)
-                        {
-                            Result.AddRange(child.FindNodesByType(type,recurse));
-                        }
-                    }
-                }
-            }
-            return Result;
-        }
-        
-
-        // faut refaire toutes les autres ... et du coup on aura juste 2 méthodes
-        // FindNodes(Predicate<Node> predicate, bool recurse) & FindNodesUp(Predicate<Node> predicate, bool recurse)
-        // et on pourra effacer toutes les autres méthodes .. ! EXCELLENT !
-
         // Method to find a node by predicate UpWard.
         // Stops When a corresponding node is found
         // predicate example: x => x.Label == "lol
@@ -209,53 +132,26 @@ namespace FlowChartCore
             return null;
         }
 
-        // // Method to find a node by predicate DownWard.
-        // public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
+        // Method to find a node by predicate.
+        // Pwsh: FinNodes({$args[0] -is [FlowChartCore.IfNode]},$True)
+        // will search all nodes of types Ifnode, recursively
+        public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
             
-        //     List<Node> Result = new List<Node>();
+            List<Node> Result = new List<Node>();
 
-        //     if ( this.children.Count > 0 ) {
-        //         Result.AddRange(this.children.FindAll(predicate));
-        //         if(recurse)
-        //         {
-        //             foreach (Node item in this.children)
-        //             {
-        //                 Result.AddRange(item.FindNodes(predicate,recurse));
-        //             }
-        //         }
-        //     }
-        //     return null;
-        // }
-
-        // Method to find a node by type UpWard.
-        // Stops When a corresponding node is found
-        internal Node FindNodesByTypeUp (Type type) {
-            
-            if ( this.parent != null ) {
-                if (this.Parent.GetType() == type)
+            if ( this.children.Count > 0 ) {
+                Result.AddRange(this.children.FindAll(predicate));
+                if(recurse)
                 {
-                    return this.Parent;
-                } else {
-                    return this.Parent.FindNodesByTypeUp(type);
+                    foreach (Node item in this.children)
+                    {
+                        Result.AddRange(item.FindNodes(predicate,recurse));
+                    }
                 }
             }
-            return null;
+            return Result;
         }
-        
-        // Method to find a node by type & label UpWard.
-        // // Stops When a corresponding node is found
-        // public virtual Node FindNodesByLabelUp (String Label) {
-            
-        //     if ( this.parent != null ) {
-        //         if (this.parent.label == Label)
-        //         {
-        //             return this.Parent;
-        //         } else {
-        //             return this.Parent.FindNodesByLabelUp(Label);
-        //         }
-        //     }
-        //     return null;
-        // }
+    
         
         // method to find index of node in parent
         // parent can be parent property, or ParentRoot if
