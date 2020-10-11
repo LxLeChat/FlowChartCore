@@ -96,25 +96,71 @@ namespace FlowChartCore
         // Must be overriden
         internal virtual void SetChildren() {}
 
-        // Method to find recursively Nodes by Id
-        public virtual Node FindNodesById (String id, bool recurse) {
-            Node result = null;
-            if (children.Count > 0 ) {
-                foreach ( var child in children ) {
-                    if (child.Id == id )
+        // Find Depth 0 Node
+        public Node GetRootNode() {
+            // Fix: Bug when first node at position 1 & depth 0
+            if (depth == 0)
+            {
+                return null;
+            }
+
+            if (parent.Depth == 0)
+            {
+                return parent;
+            } else {
+                return parent.GetRootNode();
+            }
+        }
+        
+
+        public virtual IEnumerable<Node> FindById (string IdP, bool recurse) {
+            List<Node> Result = new List<Node>();
+            if ( Children.Count > 0 ) {
+                foreach ( var child in Children ) {
+                    if ( child.Id == IdP )
                     {
-                        return child;
+                        Result.Add(child);
+
+                        if (recurse)
+                        {
+                            Result.AddRange(child.FindById(IdP,recurse));
+                        }
 
                     } else {
                         if (recurse)
                         {
-                            return child.FindNodesById(id,recurse);
+                            Result.AddRange(child.FindById(IdP,recurse));
                         }
                     }
                 }
             }
-            return result ;
+            return Result;
         }
+        
+        // // // Method to find recursively Nodes by Id
+        // public virtual Node FindNodesById (String id, bool recurse) {
+        //     Node result = null;
+        //     Console.WriteLine("ok...");
+        //     if (children.Count > 0 ) {
+        //         // if (null == result) {
+        //             foreach ( var child in children ) {
+        //             Console.WriteLine(child.Id);
+        //             if (child.Id == id )
+        //             {
+        //                 return child;
+
+        //             } else {
+        //                 if (recurse)
+        //                 {
+        //                     Console.WriteLine("recurse");
+        //                     return child.FindNodesById(id,recurse);
+        //                 }
+        //             }
+        //         // }
+        //         }
+        //     }
+        //     return result ;
+        // }
     
 
         // Method to find recursively Nodes by Type
@@ -142,22 +188,7 @@ namespace FlowChartCore
             return Result;
         }
         
-        // Find Depth 0 Node
-        public Node GetRootNode() {
-            // Fix: Bug when first node at position 1 & depth 0
-            if (depth == 0)
-            {
-                return null;
-            }
 
-            if (parent.Depth == 0)
-            {
-                return parent;
-            } else {
-                return parent.GetRootNode();
-            }
-        }
-        
         // faut refaire toutes les autres ... et du coup on aura juste 2 méthodes
         // FindNodes(Predicate<Node> predicate, bool recurse) & FindNodesUp(Predicate<Node> predicate, bool recurse)
         // et on pourra effacer toutes les autres méthodes .. ! EXCELLENT !
@@ -178,23 +209,23 @@ namespace FlowChartCore
             return null;
         }
 
-        // Method to find a node by predicate DownWard.
-        public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
+        // // Method to find a node by predicate DownWard.
+        // public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
             
-            List<Node> Result = new List<Node>();
+        //     List<Node> Result = new List<Node>();
 
-            if ( this.children.Count > 0 ) {
-                Result.AddRange(this.children.FindAll(predicate));
-                if(recurse)
-                {
-                    foreach (Node item in this.children)
-                    {
-                        Result.AddRange(item.FindNodes(predicate,recurse));
-                    }
-                }
-            }
-            return null;
-        }
+        //     if ( this.children.Count > 0 ) {
+        //         Result.AddRange(this.children.FindAll(predicate));
+        //         if(recurse)
+        //         {
+        //             foreach (Node item in this.children)
+        //             {
+        //                 Result.AddRange(item.FindNodes(predicate,recurse));
+        //             }
+        //         }
+        //     }
+        //     return null;
+        // }
 
         // Method to find a node by type UpWard.
         // Stops When a corresponding node is found
@@ -212,19 +243,19 @@ namespace FlowChartCore
         }
         
         // Method to find a node by type & label UpWard.
-        // Stops When a corresponding node is found
-        public virtual Node FindNodesByLabelUp (String Label) {
+        // // Stops When a corresponding node is found
+        // public virtual Node FindNodesByLabelUp (String Label) {
             
-            if ( this.parent != null ) {
-                if (this.parent.label == Label)
-                {
-                    return this.Parent;
-                } else {
-                    return this.Parent.FindNodesByLabelUp(Label);
-                }
-            }
-            return null;
-        }
+        //     if ( this.parent != null ) {
+        //         if (this.parent.label == Label)
+        //         {
+        //             return this.Parent;
+        //         } else {
+        //             return this.Parent.FindNodesByLabelUp(Label);
+        //         }
+        //     }
+        //     return null;
+        // }
         
         // method to find index of node in parent
         // parent can be parent property, or ParentRoot if
@@ -266,6 +297,8 @@ namespace FlowChartCore
             }
         }
 
+        // Return the id of the next node
+        // if next node is else, elseif or catch, then the parent node id is returned
         public virtual string GetNextId(){
             
             int CurrIndex = FindIndex();
@@ -338,6 +371,7 @@ namespace FlowChartCore
         }
 
         // Method for IsLast property
+        // Return true if node is last
         internal bool GetIsLast() {
             if (GetNextNode() == null) {
                 return true;
@@ -347,6 +381,7 @@ namespace FlowChartCore
         }
 
         // Method for IsFirst property
+        // Return true if node is first
         internal bool GetIsFirst() {
             if (GetPreviousNode() == null) {
                 return true;
@@ -355,6 +390,7 @@ namespace FlowChartCore
             }
         }
 
+        // Return an end_id
         public virtual String GetEndId() {
             return $"end_{Id}";
         }
