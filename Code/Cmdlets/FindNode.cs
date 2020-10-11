@@ -20,31 +20,31 @@ namespace FlowChartCore.Cmdlets {
         private Boolean  _wildcards;
 
         [Parameter(
-        ParameterSetName="Path",
-        Mandatory=true,
-        Position=0,
-        ValueFromPipeline=true,
-        ValueFromPipelineByPropertyName=true
+            ParameterSetName="Path",
+            Mandatory=true,
+            Position=0,
+            ValueFromPipeline=true,
+            ValueFromPipelineByPropertyName=true
         )]
         public String[] Path {
-        get { return _paths; }
-        set {
-            _wildcards = true;
-            _paths = value;
-        }
+            get { return _paths; }
+            set {
+                _wildcards = true;
+                _paths = value;
+            }
         }
 
         [Parameter(
-        ParameterSetName="LiteralPath",
-        Mandatory=true,
-        Position=0,
-        ValueFromPipeline=false,
-        ValueFromPipelineByPropertyName=true
+            ParameterSetName="Path",
+            Mandatory=true,
+            Position=0,
+            ValueFromPipeline=true,
+            ValueFromPipelineByPropertyName=true
         )]
         [Alias("PSPath")]
         public String[] LiteralPath {
-        get { return _paths; }
-        set { _paths = value; }
+            get { return _paths; }
+            set { _paths = value; }
         }
 
 
@@ -57,7 +57,6 @@ namespace FlowChartCore.Cmdlets {
         // This method will be called for each input received from the pipeline to this cmdlet; if no input is received, this method is not called
         protected override void ProcessRecord()
         {
-
             switch (this.ParameterSetName)
             {
                 case "Path":
