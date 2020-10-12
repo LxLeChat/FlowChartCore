@@ -76,7 +76,7 @@ namespace FlowChartCore
             // ou alors le graph du else, ne buildera un edge que depuis le dernier enfant
             // vers la fin du if ...
 
-
+            Graph.Clear();
             if(recursive) {
                 foreach (var child in Children) {
                     child.GenerateGraph(recursive);
@@ -94,6 +94,7 @@ namespace FlowChartCore
             // ou alors le graph du else, ne buildera un edge que depuis le dernier enfant
             // vers la fin du if ...
 
+            Graph.Clear();
             if(recursive) {
                 foreach (var child in Children) {
                     child.GenerateGraph(recursive,codeAsText);

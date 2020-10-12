@@ -87,6 +87,7 @@ namespace FlowChartCore
         // pour les catches il y a un CatchClauseAst
 
         public override void GenerateGraph(bool recursive){
+            Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.TryBuilder(this);
             Graph.AddRange(x.DotDefinition);
 
@@ -98,6 +99,7 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive, bool codeBlockAsText){
+            Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.TryBuilder(this);
             Graph.AddRange(x.DotDefinition);
 

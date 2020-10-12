@@ -100,6 +100,7 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive){
+            Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.IfBuilder(this);
             Graph.AddRange(x.DotDefinition);
 
@@ -111,6 +112,7 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive, bool codeAsText){
+            Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.IfBuilder(this);
             Graph.AddRange(x.DotDefinition);
 
