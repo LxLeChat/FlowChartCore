@@ -252,7 +252,7 @@ namespace ExtensionMethods
         // Return ElseIf Clauses as a list of StatementBlockAst
         public static IEnumerable<StatementBlockAst> GetCases (this SwitchStatementAst _ast)
         {
-            if (_ast.Clauses.Count > 1)
+            if (_ast.Clauses.Count >= 1)
             {
                 List<StatementBlockAst> Cases = new List<StatementBlockAst>();
                 for (int i = 0; i < _ast.Clauses.Count; i++)
