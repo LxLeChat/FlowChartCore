@@ -18,9 +18,7 @@ namespace FlowChartCore
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
-            Console.WriteLine("okay...");
             SetLabel();
-            Console.WriteLine("not okay...");
             
         }
 
