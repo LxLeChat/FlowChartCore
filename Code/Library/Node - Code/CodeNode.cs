@@ -1,7 +1,4 @@
-﻿using System.Management.Automation.Language;
-using System.Collections.Generic;
-using ExtensionMethods;
-using System;
+﻿using System;
 
 namespace FlowChartCore
 {
@@ -18,11 +15,13 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive){
+            Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.CodeNodeBuilder(this);
             Graph.AddRange(x.DotDefinition);
         }
 
         public override void GenerateGraph(bool recursive, bool codeAsText){
+            Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.CodeNodeBuilder(this,true);
             Graph.AddRange(x.DotDefinition);
         }
