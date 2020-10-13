@@ -92,6 +92,8 @@ namespace FlowChartCore
                     Node tmpNode = block.CreateNode(0,Position,null,Arbre);
                     Nodes.Add(tmpNode);
                     Position++;
+                    // reset tmp
+                    tmp = true;
                 } else if ( tmp )
                 {
                     // not a valid type, and tmp is false, create code node

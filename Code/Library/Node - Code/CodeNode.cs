@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Management.Automation;
 
 namespace FlowChartCore
 {
@@ -35,6 +36,8 @@ namespace FlowChartCore
             // Fix: Bug when first node at position 1 & depth 0
             Node rootNode = GetRootNode() ?? this;
             String scriptText = rootNode.parentroot.Ast.Extent.Text;
+
+            // return rootNode.parentroot.Ast.Extent.Text;
             
             int a = 0;
             int b = 0;
@@ -63,6 +66,7 @@ namespace FlowChartCore
             {
                 // getpreviousnode offsetscriptblockend +1 && get offsetscriptblockend du parent
                 // si le previous est un try, un if ou un switch, il faut taper sur le offsetglobalend
+
                 Node previousnode = GetPreviousNode();
                 if (previousnode is TryNode || previousnode is IfNode || previousnode is SwitchNode )
                 {
@@ -70,8 +74,17 @@ namespace FlowChartCore
                 } else {
                     a = GetPreviousNode().OffSetScriptBlockEnd;
                 }
+
+                // Bug Fix: en depth 0, parent n'existe pas ..
+                // ca crashait sur new-flowchart
+                if (depth == 0)
+                {
+                    SetOffToRemove();
+                    b = rootNode.parentroot.Ast.Extent.EndOffset - OffSetToRemove ;
+                } else {
+                    b = parent.OffSetScriptBlockEnd;
+                }
                 
-                b = parent.OffSetScriptBlockEnd;
                 return scriptText.Substring(a, b - a).Trim();
             }
 
