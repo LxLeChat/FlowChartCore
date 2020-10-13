@@ -69,7 +69,11 @@ namespace FlowChartCore.Cmdlets {
                     }
                     break;
                 case "Script":
-
+                    // Fix issue #20
+                    if (ScriptBlock == null)
+                    {
+                        throw new System.ArgumentException("Parameter cannot be null", "ScriptBlock") ;
+                    }
                     WriteObject(FlowChartCore.Utility.ParseScriptBlock(ScriptBlock));
                     break;
                 default:
