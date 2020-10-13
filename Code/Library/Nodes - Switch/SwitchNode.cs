@@ -69,6 +69,19 @@ namespace FlowChartCore
             }
         }
 
+        // Fix: Issue #22, override was mssing
+        public override void GenerateGraph(bool recursive, bool codeastext){
+            Graph.Clear();
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.SwitchBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive,codeastext);
+                }
+            }
+        }
+
         public override String GetEndId() {
             return $"end_{Id}";
         }
