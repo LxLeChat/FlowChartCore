@@ -190,5 +190,10 @@ The cmdlet also support the pipeline so you can do something like
 PS > Find-FLowChartNodes -ScriptBlock $sb | New-FLowChartGraph -CodeAsText
 ```
 
+# Rendering the graph
+If you want to render the Dot Definition, you can for example user ``Export-PSGraph`` from the ``PSGraph`` module.
+
+You can also use https://dreampuf.github.io/GraphvizOnline/ . Just copy/paste the dot definition and it will render the graph
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
+
