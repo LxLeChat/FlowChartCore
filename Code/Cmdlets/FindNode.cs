@@ -14,6 +14,7 @@ namespace FlowChartCore.Cmdlets {
             ValueFromPipeline = false,
             ValueFromPipelineByPropertyName = true,
             ParameterSetName = "Script")]
+        [ValidateNotNullAttribute]
         public ScriptBlock ScriptBlock { get; set; }
 
         private String[] _paths;
@@ -69,11 +70,6 @@ namespace FlowChartCore.Cmdlets {
                     }
                     break;
                 case "Script":
-                    // Fix issue #20
-                    if (ScriptBlock == null)
-                    {
-                        throw new ArgumentNullException("ScriptBlock") ;
-                    }
                     WriteObject(FlowChartCore.Utility.ParseScriptBlock(ScriptBlock));
                     break;
                 default:
