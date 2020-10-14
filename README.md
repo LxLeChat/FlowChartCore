@@ -153,7 +153,7 @@ digraph "a" {
 ```
 Rendering the dot will give:
 
-![Sample1](https://github.com/LxLeChat/FlowChartCore/blob/master/sample1.png?raw=true  | width=100)
+<img src="https://github.com/LxLeChat/FlowChartCore/blob/master/sample1.png?raw=true" width="177" height="513">
 
 With the ``-CodeAsText`` switch, the ``codeblock`` notation in the last label will changed, and will contain the actual code, here ``something else``
 ```
@@ -177,7 +177,7 @@ digraph "a" {
 ```
 Rendering the dot will give:
 
-![Sample2](/sample2.png)
+<img src="https://github.com/LxLeChat/FlowChartCore/blob/master/sample2.png?raw=true" width="177" height="513">
 
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
