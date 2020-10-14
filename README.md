@@ -35,9 +35,10 @@ $SomeVar = If ($x) { Foreach ($y in $x) { "Do SOmething" } }
 ```
 
 Also, the script will not parse function definition, so if you pass a psm1 file, with only definition this will not be great..!
+Maybe at some point i'll find a way to deal with these... I have an idea but i dont know if it will render well..  
 
 ## Working with the module
-The module is cross platform, so it works on Windows Powershell, and PSCore.
+The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).
 When you parse a scriptblock or a script using ``Find-FlowChartNodes``, the cmdlet will return a list of nodes.
 So what is a node?
 A node is a class, representing a know Statement. For example, a If Statement, will return a ``IfNode``. If there is a ``Foreach`` statement in this ``If``statement, a ``ForeachNode`` will be created and added to the parent ``IfNode`` children.
