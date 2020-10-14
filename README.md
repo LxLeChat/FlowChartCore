@@ -8,6 +8,7 @@ It's the first time i'm writing something in c# ... jumping from Powershell... s
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
 ### What it is for? What it is not for ?
+Mainly for helping and documentation purpose.
 The module will play nicely with pure PS1 scripts.
 ```
 If ( $x ) {
@@ -37,8 +38,7 @@ $SomeVar = If ($x) { Foreach ($y in $x) { "Do SOmething" } }
 Also, the script will not parse function definition, so if you pass a psm1 file, with only definition this will not be great..!
 Maybe at some point i'll find a way to deal with these... I have an idea but i dont know if it will render well..  
 
-# Working with the module
-The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).
+### Nodes?
 When you parse a scriptblock or a script using ``Find-FlowChartNodes``, the cmdlet will return a list of nodes.
 So what is a node?
 A node is a class, representing a know Statement. For example, a If Statement, will return a ``IfNode``. If there is a ``Foreach`` statement in this ``If``statement, a ``ForeachNode`` will be created and added to the parent ``IfNode`` children.
@@ -91,8 +91,13 @@ Parent    : FlowChartCore.IfNode
 ....
 ```
 
+
+# Working with the module
+The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).
+Since it's not published in the PSGallery, either fork the project or download it as a zip.
+
 ### Importing the module
-You have to import the ``FlowChartCore.dll`` wichc can be found in ``Code\bin\debug\netstandard2.0\FlowChartCore.dll``
+You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\bin\debug\netstandard2.0\FlowChartCore.dll``
 ```
 PS >Import-module .\Flowchartcore.dll
 PS > Get-Module -Name FlowchartCore
