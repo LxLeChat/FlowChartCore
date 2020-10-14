@@ -152,7 +152,7 @@ digraph "a" {
 }
 ```
 Rendering the dot will give:
-![Sample1](/sample1.png)
+![Sample1](<img src="https://github.com/LxLeChat/FlowChartCore/blob/master/sample1.png" width="20">)
 
 With the ``-CodeAsText`` switch, the ``codeblock`` notation in the last label will changed, and will contain the actual code, here ``something else``
 ```
