@@ -4,10 +4,10 @@ Since i'm discovring a lot of bugs, and strange behavior, the module is not publ
 
 It's the first time i'm writing something in c# ... jumping from Powershell... so, i'm sorry if the code is not as clean as excpected..! I know i'm missing tests for example..
 
-# Why ?
+### Why ?
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
-# What it is for? What it is not for ?
+### What it is for? What it is not for ?
 The module will play nicely with pure PS1 scripts.
 ```
 If ( $x ) {
@@ -18,7 +18,7 @@ If ( $x ) {
 "SomeThing Else"
 ```
 
-# Caveats
+### Caveats
 At the moment, the script will not discover what's inside scriptblocks. For example, if you script is a massive ``Invoke-Command``, the module will discover a simple ``CodeNode`` and the resulting graph will contain only one ``CodeBlock`` (more on nodes in the readme). Same thing for ``Foreach-Object``, ``Where-Object`` ...
 ```
 Invoke-Command -ComputerName Computer1 -ScriptBlock {
@@ -37,7 +37,7 @@ $SomeVar = If ($x) { Foreach ($y in $x) { "Do SOmething" } }
 Also, the script will not parse function definition, so if you pass a psm1 file, with only definition this will not be great..!
 Maybe at some point i'll find a way to deal with these... I have an idea but i dont know if it will render well..  
 
-## Working with the module
+# Working with the module
 The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).
 When you parse a scriptblock or a script using ``Find-FlowChartNodes``, the cmdlet will return a list of nodes.
 So what is a node?
@@ -91,7 +91,7 @@ Parent    : FlowChartCore.IfNode
 ....
 ```
 
-# Importing the module
+### Importing the module
 You have to import the ``FlowChartCore.dll`` wichc can be found in ``Code\bin\debug\netstandard2.0\FlowChartCore.dll``
 ```
 PS >Import-module .\Flowchartcore.dll
@@ -102,7 +102,7 @@ ModuleType Version    Name                                ExportedCommands
 Binary     1.0.0.0    FlowchartCore                       {Find-FLowChartNodes, New-FLowChartGraph}
 ```
 
-# Find-FlowChartNodes
+### Find-FlowChartNodes
 The cmdlet will find nodes in a file (a ps1) or a scriptblock.
 ```
 PS >$Sb = {
@@ -125,7 +125,48 @@ Graph     : {}
 ```
 
 # New-FlowChartGraph
-TBD
+The cmdlet will return a dot definition. It Takes a List of nodes as input.
+There is a parameter ``-codeastext`` that will render discover the code for a given ``codenode`` and display it instead of just a ``codeblock``. We will this the difference in the examples.
+```
+PS > $x=Find-FLowChartNodes -ScriptBlock $sb
+PS > New-FLowChartGraph -Nodes $x
+digraph "a" {
+        "01"[label="If $x",shape=diamond];
+        "end_01"[shape=mdiamond,label="End If"];
+        "01" -> "0110"[label="True"];
+        "end_01" -> "02";
+        "0110"[label="Foreach $x"];
+        "0110" -> "011020";
+        "loop_0110"[shape=ellipse,label="Next item In $x"];
+        "loop_0110" -> "0110";
+        "loop_0110" -> "end_01"[label="Loop End"];
+        "011020"[label="CodeBlock"];
+        "011020" -> "loop_0110";
+        "02"[label="CodeBlock"];
+        "02" -> "end_of_script";
+}
+```
 
-## Dot language
+With the ``-CodeAsText`` switch, the ``codeblock`` notation in the last label will changed, and will contain the actual code, here ``something else``
+```
+PS > $x=Find-FLowChartNodes -ScriptBlock $sb
+PS > New-FLowChartGraph -Nodes $x -CodeAsText
+digraph "a" {
+        "01"[label="If $x",shape=diamond];
+        "end_01"[shape=mdiamond,label="End If"];
+        "01" -> "0110"[label="True"];
+        "end_01" -> "02";
+        "0110"[label="Foreach $x"];
+        "0110" -> "011020";
+        "loop_0110"[shape=ellipse,label="Next item In $x"];
+        "loop_0110" -> "0110";
+        "loop_0110" -> "end_01"[label="Loop End"];
+        "011020"[label="\"Do Something\"",shape=box];
+        "011020" -> "loop_0110";
+        "02"[label="\"Something Else\"\l}",shape=box];
+        "02" -> "end_of_script";
+}
+```
+
+# Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
