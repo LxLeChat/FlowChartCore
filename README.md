@@ -151,6 +151,8 @@ digraph "a" {
         "02" -> "end_of_script";
 }
 ```
+Rendering the dot will give:
+![Sample1](/sample1.png)
 
 With the ``-CodeAsText`` switch, the ``codeblock`` notation in the last label will changed, and will contain the actual code, here ``something else``
 ```
@@ -172,6 +174,8 @@ digraph "a" {
         "02" -> "end_of_script";
 }
 ```
+Rendering the dot will give:
+![Sample2](/sample2.png)
 
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
