@@ -90,7 +90,13 @@ namespace FlowChartCore
 
             if (IsFirst && IsLast)
             {
-                //
+                // Fix #14
+                // it's the only node
+                if (depth == 0)
+                {
+                    return scriptText;
+                }
+
                 a = parent.OffSetScriptBlockStart;
                 b = parent.OffSetScriptBlockEnd;
                 return scriptText.Substring(a, b - a).Trim();

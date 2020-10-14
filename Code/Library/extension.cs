@@ -12,8 +12,7 @@ namespace ExtensionMethods
     {
         // Extensions Methods To Help Create Nodes From an unknown Ast
         // Special case for StatementBlockAST... Go to Extension Methods for this type
-        public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent, Tree _tree)
-        {
+    public static Node CreateNode (this Ast _ast, int _depth, int _position, Node _parent, Tree _tree){
             switch (_ast)
             {
                 case Ast a when _ast is ForEachStatementAst : 
@@ -45,7 +44,6 @@ namespace ExtensionMethods
             }
             return null;
         }
-
     }
 
     public static class PipelineExtention{

@@ -1,5 +1,6 @@
 using System;
 using System.Management.Automation;
+using System.Collections.Generic;
 
 namespace FlowChartCore.Cmdlets {
 
@@ -14,6 +15,7 @@ namespace FlowChartCore.Cmdlets {
             ValueFromPipeline = false,
             ValueFromPipelineByPropertyName = true,
             ParameterSetName = "Script")]
+        [ValidateNotNullAttribute]
         public ScriptBlock ScriptBlock { get; set; }
 
         private String[] _paths;
@@ -57,6 +59,7 @@ namespace FlowChartCore.Cmdlets {
         // This method will be called for each input received from the pipeline to this cmdlet; if no input is received, this method is not called
         protected override void ProcessRecord()
         {
+            List<Node> ListOfNodes = new List<Node>();
             switch (this.ParameterSetName)
             {
                 case "Path":
@@ -65,16 +68,21 @@ namespace FlowChartCore.Cmdlets {
                     foreach (var item in _paths)
                     {
                         String file = _wildcards ? this.SessionState.Path.GetResolvedProviderPathFromPSPath(item, out pi)[0] : this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(item);
-                        WriteObject(FlowChartCore.Utility.ParseFile(file));
+                        ListOfNodes =  FlowChartCore.Utility.ParseFile(file);
+                        if (ListOfNodes.Count > 0 )
+                        {
+                            WriteObject(ListOfNodes);   
+                        }
+
                     }
                     break;
                 case "Script":
-                    // Fix issue #20
-                    if (ScriptBlock == null)
+                    // Changing behavior, for example -scriptblocl {} return 0 nodes. We Want to return 0, not an empty List.
+                    ListOfNodes =  FlowChartCore.Utility.ParseScriptBlock(ScriptBlock);
+                    if (ListOfNodes.Count > 0 )
                     {
-                        throw new ArgumentNullException("ScriptBlock") ;
+                        WriteObject(ListOfNodes);   
                     }
-                    WriteObject(FlowChartCore.Utility.ParseScriptBlock(ScriptBlock));
                     break;
                 default:
                     break;
