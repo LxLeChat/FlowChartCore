@@ -129,6 +129,12 @@ Id        : 01
 Graph     : {}
 ```
 
+Using a Path:
+```
+PS > Find-FlowChartNodes -Path .\somescript.ps1
+PS > Get-ChildItem -Path c:\temp -Filter *.ps1 | Find-FLowChartNodes
+```
+
 # New-FlowChartGraph
 The cmdlet will return a dot definition. It Takes a List of nodes as input.
 There is a parameter ``-codeastext`` that will render discover the code for a given ``codenode`` and display it instead of just a ``codeblock``. We will this the difference in the examples.
@@ -178,6 +184,11 @@ digraph "a" {
 Rendering the dot will give:
 
 <img src="https://github.com/LxLeChat/FlowChartCore/blob/master/sample2.png?raw=true" width="177" height="513">
+
+The cmdlet also support the pipeline so you can do something like
+```
+PS > Find-FLowChartNodes -ScriptBlock $sb | New-FLowChartGraph -CodeAsText
+```
 
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
