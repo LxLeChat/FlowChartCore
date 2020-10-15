@@ -56,9 +56,14 @@ namespace FlowChartCore.Graph
             if (node.label == null)
             {
                 breakablenode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode || x is SwitchNode);
-                specialedge = new DotEdge(node.Id,breakablenode.GetNextId());
-                specialedge.Label = $"Break From {node.Label}";
 
+                // New fix for Issue #17
+                if (breakablenode == null){
+                    specialedge = new DotEdge(node.Id,"end_of_script");
+                } else {
+                    specialedge = new DotEdge(node.Id,breakablenode.GetNextId());
+                    specialedge.Label = $"Break From {node.Label}";
+                }
             } else {
                 breakablenode = node.FindNodesUp(x => x.label == node.label);
                 specialedge = new DotEdge(node.Id,breakablenode.GetNextId());

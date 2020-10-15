@@ -11,13 +11,14 @@ namespace FlowChartCore
         public string Label { get => label;}
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
 
-        public BreakNode(BreakStatementAst _ast, int _depth, int _position, Node _parent)
+        public BreakNode(BreakStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
             name = "BreakNode";
             position = _position;
             depth = _depth;
             parent = _parent;
             RawAst = _ast;
+            parentroot = _tree;
             SetLabel();
             
         }
