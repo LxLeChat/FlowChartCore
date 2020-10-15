@@ -214,6 +214,11 @@ namespace FlowChartCore
                 if ( IsLast ) {
                     return parent.GetEndId();
                 } else {
+                    // Fix issue #25
+                    if ( GetNextNode() is FinallyNode & parent is TryNode) {
+                        return parent.GetEndId();
+                    }
+
                     switch (GetNextNode())
                     {
                         case ElseNode elsenode:
