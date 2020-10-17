@@ -111,7 +111,11 @@ namespace FlowChartCore
         }
 
         internal override void SetCondition(){
-            condition = RawAst.Condition.Extent.Text;
+            // bug fix issue #17
+            // condition can be null, unfortunally
+            if ( RawAst.Condition != null ) {
+                condition = RawAst.Condition.Extent.Text;
+            }
             iterator = RawAst.Iterator.Extent.Text;
         }
 
