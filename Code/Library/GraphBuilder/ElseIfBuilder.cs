@@ -42,17 +42,27 @@ namespace FlowChartCore.Graph
 
         public void CreateFalseEdge()
         {
-            // throw new System.NotImplementedException();
             Node nextnode = node.GetNextNode();
-            if (nextnode.GetType() == typeof(ElseNode) )
+            
+            // Fix issue #17
+            // if no nextnode present
+            if (nextnode == null)
             {
-                DotEdge edge = new DotEdge(node.Id,node.GetNextNode().children[0].Id);
+                DotEdge edge = new DotEdge(node.Id,node.parent.GetEndId());
                 edge.Label = "False";
                 DotDefinition.Add(edge);
             } else {
-                DotEdge edge = new DotEdge(node.Id,node.GetNextNode().Id);
-                edge.Label = "False";
-                DotDefinition.Add(edge);
+                
+                if (nextnode.GetType() == typeof(ElseNode) )
+                {
+                    DotEdge edge = new DotEdge(node.Id,node.GetNextNode().children[0].Id);
+                    edge.Label = "False";
+                    DotDefinition.Add(edge);
+                } else {
+                    DotEdge edge = new DotEdge(node.Id,node.GetNextNode().Id);
+                    edge.Label = "False";
+                    DotDefinition.Add(edge);
+                }
             }
 
         }
