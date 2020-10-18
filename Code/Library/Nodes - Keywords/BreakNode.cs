@@ -48,5 +48,10 @@ namespace FlowChartCore
         }
 
 
+        public BreakStatementAst GetAst() {
+            return RawAst;
+        }
+
+
     }
 }
