@@ -90,7 +90,7 @@ namespace FlowChartCore
             condition = RawAst.Condition.Extent.Text;
         }
 
-        public Ast GetAst() {
+        public override Ast GetAst() {
             return RawAst;
         }
 
