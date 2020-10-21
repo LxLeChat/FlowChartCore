@@ -2,6 +2,7 @@ using System.Management.Automation.Language;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
+using System.Linq;
 
 namespace FlowChartCore
 {
@@ -10,6 +11,13 @@ namespace FlowChartCore
         protected CatchClauseAst RawAst {get;set;}
         internal override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
         internal override int OffSetScriptBlockEnd {get => RawAst.Body.Extent.EndOffset-OffSetToRemove-1;}
+        private List<String> catchtypes = new List<string>();
+        public List<String> CatchTypes
+        {
+            get { return catchtypes; }
+            set { catchtypes = value; }
+        }
+        
 
         public CatchNode(CatchClauseAst _ast, int _depth, int _position, Node _parent)
         {
@@ -22,6 +30,7 @@ namespace FlowChartCore
             SetOffToRemove();
             SetChildren();
             CreateCodeNode(0);
+            SetCatchTypes();
             
         }
 
@@ -65,6 +74,18 @@ namespace FlowChartCore
             }
         }
 
+        // Set Exceptions to Exceptions prop
+        // if any...
+        internal void SetCatchTypes(){
+
+            if (!RawAst.IsCatchAll)
+            {
+                foreach (var item in RawAst.CatchTypes)
+                {
+                    catchtypes.Add(item.TypeName.Name);
+                }
+            };
+        }
         public override String GetEndId() {
             // si le try a un finally node, alors le end id devient le finally id
             // Node finallyNode = parent.children.Find(x => x.GetType() == typeof(FinallyNode)) ?? null;
@@ -99,5 +120,8 @@ namespace FlowChartCore
             }
         }
 
+        public override Ast GetAst() {
+            return RawAst;
+        }
     }
 }

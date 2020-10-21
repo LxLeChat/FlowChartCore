@@ -127,7 +127,7 @@ namespace FlowChartCore
             return $"end_{Id}";
         }
 
-        public IfStatementAst GetAst() {
+        public override Ast GetAst() {
             return RawAst;
         }
 

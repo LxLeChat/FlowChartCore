@@ -99,8 +99,8 @@ namespace FlowChartCore
             return parent.GetEndId();
         }
 
-        public StatementBlockAst GetAst() {
-            return RawAst;
+        public override Ast GetAst() {
+                return RawAst;
         }
 
         internal override void SetCondition(){

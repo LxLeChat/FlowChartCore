@@ -90,7 +90,7 @@ namespace FlowChartCore
             return $"loop_{Id}";
         }
 
-        public Ast GetAst() {
+        public override Ast GetAst() {
             return RawAst;
         }
 

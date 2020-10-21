@@ -106,7 +106,7 @@ namespace FlowChartCore
             return $"loop_{Id}";
         }
 
-        public ForStatementAst GetAst() {
+        public override Ast GetAst() {
             return RawAst;
         }
 

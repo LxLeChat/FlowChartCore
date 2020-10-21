@@ -100,7 +100,7 @@ namespace FlowChartCore
             }
         }
 
-        public WhileStatementAst GetAst() {
+        public override Ast GetAst() {
             return RawAst;
         }
 

@@ -306,6 +306,9 @@ namespace FlowChartCore
         public virtual void GenerateGraph(bool recursive,bool codeBlockAsText){}
         internal virtual void SetCondition(){}
         
+        public virtual Ast GetAst() {
+            throw new NotImplementedException();
+        }
 
     }
 

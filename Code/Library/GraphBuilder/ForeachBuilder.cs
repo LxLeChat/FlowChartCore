@@ -1,7 +1,7 @@
 // using System.Management.Automation.Language;
 using System.Collections.Generic;
+using System.Management.Automation.Language;
 using System.Linq;
-using System;
 using DotNetGraph.Node;
 using DotNetGraph.Edge;
 using DotNetGraph.Core;
@@ -41,7 +41,8 @@ namespace FlowChartCore.Graph
         {
             DotNode newnode = new DotNode(node.GetEndId());
             newnode.Shape = DotNodeShape.Ellipse;
-            newnode.Label = $"Next item In {node.GetAst().Condition}";
+            
+            newnode.Label = $"Next item In {((ForEachStatementAst)node.GetAst()).Condition}";
             DotDefinition.Add(newnode);
         }
 

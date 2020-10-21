@@ -84,7 +84,8 @@ namespace FlowChartCore
         }
 
 
-        public BreakStatementAst GetAst() {
+        // return the rawast
+        public override Ast GetAst() {
             return RawAst;
         }
 
