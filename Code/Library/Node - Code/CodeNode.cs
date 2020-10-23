@@ -112,7 +112,17 @@ namespace FlowChartCore
                 } else {
                     a = GetPreviousNode().OffSetScriptBlockEnd;
                 }
-                b = GetNextNode().OffSetStatementStart;
+
+                // fix issue #40
+                // maybe we can refactor ...
+                // create a OffSetStatementStart property
+                // that mirrors OffSetScriptBlockStart in the catchnode class ...
+                Node nextnode = GetNextNode();
+                if (nextnode is CatchNode){
+                    b = GetNextNode().OffSetScriptBlockStart;
+                } else {
+                    b = GetNextNode().OffSetStatementStart;
+                }
 
                 return scriptText.Substring(a, b - a).Trim();
             }
