@@ -119,6 +119,7 @@ namespace FlowChartCore
                 // that mirrors OffSetScriptBlockStart in the catchnode class ...
                 Node nextnode = GetNextNode();
                 if (nextnode is CatchNode){
+                    // better solution for issue #40
                     // b = GetNextNode().OffSetScriptBlockStart;
                     b = parent.OffSetScriptBlockEnd;
                 } else {
