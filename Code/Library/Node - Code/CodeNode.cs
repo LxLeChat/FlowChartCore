@@ -108,7 +108,7 @@ namespace FlowChartCore
                 Node previousnode = GetPreviousNode();
                 if (previousnode is TryNode || previousnode is IfNode || previousnode is SwitchNode )
                 {
-                    a = previousnode.OffSetGlobalEnd;    
+                    a = previousnode.OffSetGlobalEnd;
                 } else {
                     a = GetPreviousNode().OffSetScriptBlockEnd;
                 }
@@ -119,7 +119,9 @@ namespace FlowChartCore
                 // that mirrors OffSetScriptBlockStart in the catchnode class ...
                 Node nextnode = GetNextNode();
                 if (nextnode is CatchNode){
-                    b = GetNextNode().OffSetScriptBlockStart;
+                    // better solution for issue #40
+                    // b = GetNextNode().OffSetScriptBlockStart;
+                    b = parent.OffSetScriptBlockEnd;
                 } else {
                     b = GetNextNode().OffSetStatementStart;
                 }
