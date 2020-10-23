@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj": {}
+    "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\code\\FlowchartCore.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj": {
+    "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\code\\FlowchartCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+        "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\code\\FlowchartCore.csproj",
         "projectName": "FlowchartCore",
-        "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+        "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\code\\FlowchartCore.csproj",
         "packagesPath": "C:\\Users\\yanas\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\obj\\",
+        "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\code\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yanas\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YiRtdMEw/zEdza14DIVHMr1oql6VRe0GE66bNh3k11/m8L5aJ5hQCMjZ0Rr/ra3NxzrT0wa0PdlSQsRwQoTYjA==",
+  "dgSpecHash": "32cpl98mb7WbUhe7kXPJOxM1XEMRQiqTFZHes8AjPhL0eOj/f1rthIcHoN6hGexj918sSfOQpH0EH8tpQxLfiQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+  "projectFilePath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\code\\FlowchartCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yanas\\.nuget\\packages\\dotnetgraph\\2.6.0\\dotnetgraph.2.6.0.nupkg.sha512",
     "C:\\Users\\yanas\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
