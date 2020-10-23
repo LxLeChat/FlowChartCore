@@ -58,7 +58,8 @@ namespace FlowChartCore
                     b = GetNextNode().OffSetStatementStart;
                 }
                 
-                return scriptText.Substring(a, b - a).Trim();
+                // fix issue #32
+                return scriptText.Substring(a, b - a).TrimStart('{').Trim();
                 
             }
 
@@ -85,7 +86,8 @@ namespace FlowChartCore
                     b = parent.OffSetScriptBlockEnd;
                 }
                 
-                return scriptText.Substring(a, b - a).Trim();
+                //fix issue #32
+                return scriptText.Substring(a, b - a).TrimEnd('}').Trim();
             }
 
             if (IsFirst && IsLast)
@@ -94,7 +96,8 @@ namespace FlowChartCore
                 // it's the only node
                 if (depth == 0)
                 {
-                    return scriptText;
+                    // fix issue #32, when codenode is first in list depth 0, position 1 and is the only node
+                    return scriptText.TrimStart('{').TrimEnd('}');
                 }
 
                 a = parent.OffSetScriptBlockStart;
