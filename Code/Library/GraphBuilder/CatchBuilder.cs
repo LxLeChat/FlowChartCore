@@ -45,7 +45,13 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "Catch";
+            if(node.CatchTypes.Count > 0 ) {
+                string catchtypes = string.Join("\n",node.CatchTypes);
+                newnode.Label = "Catch\n"+catchtypes;
+            } else {
+                newnode.Label = "Catch";
+            }
+            
             DotDefinition.Add(newnode);
         }
 
