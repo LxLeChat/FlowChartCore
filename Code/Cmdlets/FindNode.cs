@@ -10,7 +10,7 @@ namespace FlowChartCore.Cmdlets {
     public class FindFlowChartNodes : PSCmdlet
     {
         [Parameter(
-            Mandatory = false,
+            Mandatory = true,
             Position = 0,
             ValueFromPipeline = false,
             ValueFromPipelineByPropertyName = true,
