@@ -81,6 +81,7 @@
       "path": "netstandard.library/2.0.3",
       "files": [
         ".nupkg.metadata",
+        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "build/netstandard2.0/NETStandard.Library.targets",
@@ -229,11 +230,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+      "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
       "projectName": "FlowchartCore",
-      "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\FlowchartCore.csproj",
+      "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
       "packagesPath": "C:\\Users\\yanas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Code\\obj\\",
+      "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yanas\\AppData\\Roaming\\NuGet\\NuGet.Config"
