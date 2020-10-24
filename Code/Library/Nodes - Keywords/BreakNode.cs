@@ -20,6 +20,8 @@ namespace FlowChartCore
             RawAst = _ast;
             parentroot = _tree;
             SetLabel();
+            // fix issue #32
+            SetOffToRemove();
             
         }
 

@@ -52,10 +52,11 @@ namespace FlowChartCore
                     a = parent.OffSetScriptBlockStart;
                 }
                 
-                if(GetNextNode() is ElseIfNode || GetNextNode() is ElseNode || GetNextNode() is CatchNode ) {
+                Node nextnode = GetNextNode();
+                if(nextnode is ElseIfNode || nextnode is ElseNode || nextnode is CatchNode ) {
                     b = parent.OffSetScriptBlockEnd;
                 } else {
-                    b = GetNextNode().OffSetStatementStart;
+                    b = nextnode.OffSetStatementStart;
                 }
                 
                 // fix issue #32
@@ -126,7 +127,7 @@ namespace FlowChartCore
                     // b = GetNextNode().OffSetScriptBlockStart;
                     b = parent.OffSetScriptBlockEnd;
                 } else {
-                    b = GetNextNode().OffSetStatementStart;
+                    b = nextnode.OffSetStatementStart;
                 }
 
                 return scriptText.Substring(a, b - a).Trim();
