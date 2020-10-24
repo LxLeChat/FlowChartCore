@@ -14,17 +14,22 @@
                 "-NoExit",
                 "-NoProfile",
                 "-Command",
-                "Import-Module ${workspaceFolder}/Code/bin/Debug/netstandard2.0/FlowchartCore.dll",
+                "Import-Module ${workspaceFolder}/src/bin/Debug/netstandard2.0/FlowchartCore.dll",
             ],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
-            "console": "internalConsole"
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
+            "console": "integratedTerminal",
+            // comment if using the .net core attach
+            "justMyCode": false
         }
+        // use this if you want to choose the pswh process where to debug
+        // get the $pid value
+        // ,
+        // {
+        //     "name": ".NET Core Attach",
+        //     "type": "coreclr",
+        //     "request": "attach",
+        //     "processId": "${command:pickProcess}"
+        // }
     ]
 }
