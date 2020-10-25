@@ -36,7 +36,10 @@ namespace FlowChartCore
         // flags: wildcard, regex ..
         // fix issue #54
         internal void SetFlags() {
-            flags = RawAst.Flags.ToString();
+            // if flag is none
+            if (RawAst.Flags != SwitchFlags.None ) {
+                flags = RawAst.Flags.ToString();
+            }
         }
 
         internal override void SetChildren() {
