@@ -54,9 +54,11 @@ namespace FlowChartCore.Graph
             DotEdge specialedge = null;
             if (node.label == null)
             {
-                ContinueNode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode);
+                // fix issue #17
+                ContinueNode = node.FindNodesUp(x => x is ForeachNode || x is WhileNode || x is DoWhileNode || x is DoUntilNode || x is ForNode || x is SwitchNode);
                 specialedge = new DotEdge(node.Id,ContinueNode.Id);
-                specialedge.Label = $"Continue To {node.Label}";
+                // specialedge.Label = $"Continue To {node.Label}";
+                specialedge.Label = $"Continue to next element";
                 
             } else {
                 ContinueNode = node.FindNodesUp(x => x.label == node.label);
