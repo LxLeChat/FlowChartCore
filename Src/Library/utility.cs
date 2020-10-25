@@ -3,7 +3,7 @@ using System.Management.Automation;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
-// using System.Text.RegularExpressions;
+using System.Text.RegularExpressions;
 using System.IO;
 using DotNetGraph.Core;
 
@@ -20,16 +20,14 @@ namespace FlowChartCore
                 typeof(IfStatementAst),
                 typeof(ForEachStatementAst),
                 typeof(ForStatementAst),
-                typeof(DoWhileStatementAst),
                 typeof(WhileStatementAst),
                 typeof(SwitchStatementAst),
-                typeof(WhileStatementAst),
                 typeof(DoWhileStatementAst),
                 typeof(DoUntilStatementAst),
                 typeof(TryStatementAst),
                 typeof(BreakStatementAst),
                 typeof(ContinueStatementAst),
-                typeof(ExitStatementAst),
+                typeof(ExitStatementAst)
                 // typeof(PipelineAst)
             };
 
@@ -116,7 +114,14 @@ namespace FlowChartCore
             g.Elements.AddRange(dotElements);
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
             string compiled = compiler.Compile(true,true);
+
+
+
             string compiledCleaned = compiled.Replace("\\n","\\l").Replace("\\r","\\l");
+            // ca focntionne mais du coup les y a des espace devant les newlines ..
+            // bref tet une regex ??
+            // ou des system.char spéciaux ??
+            // string compiledCleaned = compiled.Replace("\\n\\r","\\l");
             return compiledCleaned;
         }
 

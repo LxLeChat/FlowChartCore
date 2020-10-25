@@ -8,6 +8,8 @@ namespace FlowChartCore
     public class SwitchNode : Node
     {
         protected SwitchStatementAst RawAst {get;set;}
+        protected internal string flags;
+        public string Flags { get => flags; }
         protected internal string condition;
         public string Condition { get => condition; }
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
@@ -27,7 +29,14 @@ namespace FlowChartCore
             SetCondition();
             SetOffToRemove();
             SetChildren();
+            SetFlags();
             
+        }
+
+        // flags: wildcard, regex ..
+        // fix issue #54
+        internal void SetFlags() {
+            flags = RawAst.Flags.ToString();
         }
 
         internal override void SetChildren() {
