@@ -21,6 +21,7 @@ namespace FlowChartCore
             parentroot = _tree;
 
             SetLabel();
+            SetOffToRemove();
             
         }
 
