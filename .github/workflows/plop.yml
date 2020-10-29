@@ -1,0 +1,16 @@
+name: FeatureCI
+on:
+  push:
+    branches:
+      - testci
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo "Only on featuer branches"
+    - name: Run a multi-line script
+      run: |
+        echo "Only on featuer branches1"
+        echo "Only on featuer branches2"
