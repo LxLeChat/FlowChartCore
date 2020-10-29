@@ -197,3 +197,5 @@ You can also use https://dreampuf.github.io/GraphvizOnline/ . Just copy/paste th
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
 
+# Contributions
+Constributions are welcomed! I Speak french, and it's easier for me when dealing with a french contributor, but i'll do my best if you post in english :)
