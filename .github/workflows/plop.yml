@@ -2,7 +2,7 @@ name: FeatureCI
 on:
   push:
     branches:
-      - testci
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
