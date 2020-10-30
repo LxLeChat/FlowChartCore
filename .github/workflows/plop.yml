@@ -1,6 +1,8 @@
 name: FeatureCI
-on: push
-
+on:
+  push:
+    branches:
+      - testci
 jobs:
   build:
     runs-on: ubuntu-latest
