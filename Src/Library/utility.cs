@@ -115,14 +115,12 @@ namespace FlowChartCore
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
             string compiled = compiler.Compile(true,true);
 
+            // fix issue #51
+            Regex Rx = new Regex(@"(?<!\\)\\n");
+            string compiledCleaned = Rx.Replace(compiled,"\\l");
+            string compiledCleaned2 = compiledCleaned.Replace("\\r","\\l");
 
-
-            string compiledCleaned = compiled.Replace("\\n","\\l").Replace("\\r","\\l");
-            // ca focntionne mais du coup les y a des espace devant les newlines ..
-            // bref tet une regex ??
-            // ou des system.char spéciaux ??
-            // string compiledCleaned = compiled.Replace("\\n\\r","\\l");
-            return compiledCleaned;
+            return compiledCleaned2;
         }
 
         public static List<IDotElement> AddGraph (List<Node> nodes) {
