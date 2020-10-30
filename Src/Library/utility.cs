@@ -116,6 +116,7 @@ namespace FlowChartCore
             string compiled = compiler.Compile(true,true);
 
             // fix issue #51
+            // when there is a path  like c:\n\blalal the c:\n was transformed into c:\l
             Regex Rx = new Regex(@"(?<!\\)\\n");
             string compiledCleaned = Rx.Replace(compiled,"\\l");
             string compiledCleaned2 = compiledCleaned.Replace("\\r","\\l");
