@@ -4,6 +4,8 @@ Function Test-Statement{
   Analyze a scriptblock, compile it to a .dot file and displaying the generated graph
 .EXAMPLE
 
+$Env:GRAPHVIZ_DOT='C:\Tools\Graphviz\bin' 
+
 $DefaultParameters=@{
   AsText=$true
   NoDisplay=$false
@@ -36,6 +38,9 @@ Test-Statement @Parameters
    [switch] $Strict
 )
 
+if (-Not (Test-Path Env:GRAPHVIZ_DOT))
+{ Write-Warning "The environment variable 'GRAPHVIZ_DOT' was not found, unable to display the graph." }
+
  try {
    if (Test-Path Variable:E)
    { Remove-Variable -Name E -Scope 1 -ErrorAction Ignore}
@@ -52,14 +57,17 @@ Code=$ScriptBlock
    { 
        $GraphFilename="$FullFileName.graph"
        $Result|Set-Content $GraphFilename
-       if ((Test-path $GraphFilename) -and ((Get-Item $GraphFilename).length -ne 0))
+       if (Test-Path Env:GRAPHVIZ_DOT)
        {
-         &"$Env:GRAPHVIZ_DOT\dot.exe" -Tpng $GraphFilename -o "$FullFileName.png"
-         if (! $NoDisplay.IsPresent)
-         { Invoke-Item "$FullFileName.png" }
+        if ((Test-Path $GraphFilename) -and ((Get-Item $GraphFilename).length -ne 0))
+        {
+          &"$Env:GRAPHVIZ_DOT\dot.exe" -Tpng $GraphFilename -o "$FullFileName.png"
+          if (! $NoDisplay.IsPresent)
+          { Invoke-Item "$FullFileName.png" }
+        }
+        else 
+        { Write-Warning "No file or zero size file." }
        }
-       else 
-       { Write-Warning "No file or zero size file." }
    }
    else
    { Write-Warning "No result."  }
