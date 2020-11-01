@@ -1,11 +1,12 @@
 ﻿[CmdletBinding()]
-param()
+param(
+    [ValidateSet('None','Break','While','Switch','Foreach','DoWhile','DoUntil')]
+      [string[]] $ExcludeCase
+  )
+
 
 #FlowChartCore init
 $ModulePath="$PSScriptRoot\..\Src\bin\Debug\netstandard2.0"
-
-if (-Not (Test-Path Env:GRAPHVIZ_DOT))
-{ $Env:GRAPHVIZ_DOT='C:\Tools\Graphviz\bin' }
 
 unblock-File "$ModulePath\DotNetGraph.dll"
 unblock-File "$ModulePath\FlowchartCore.dll"
@@ -31,13 +32,19 @@ param(
 # Build use cases
 $UseCasesPath="$PSScriptRoot\..\Test\Dev"
 Write-Host "`n`rAdd use cases from :`r`n$UseCasesPath"
-  
+
+$ExcludeCase=Get-ExcludeCase
 $CodeUseCases=Get-Childitem $UseCasesPath |
  Where-Object {$_.Name -match '\.UseCases\.ps1'}|
  Foreach-Object {
    $Statement=$_.FullName -replace '^.*\\(.*?)\.UseCases\.ps1','$1'
-   Write-Host "`t add use cases for '$Statement' statement from $_"
-    . $_.Fullname
+   if ($Statement -notIn $ExcludeCase)
+   {
+     Write-Host "`t add use cases for '$Statement' statement from $_"
+     . $_.Fullname
+   }
+   else
+   { Write-Host "`t exclude use cases for '$Statement' statement." -ForegroundColor Yellow}
  } 
 
 # BeforeAll { 
@@ -48,6 +55,12 @@ $CodeUseCases=Get-Childitem $UseCasesPath |
 #     }
 #     #F°
 # }
+
+if ($Null -eq $CodeUseCases)
+{
+  Write-Host "No use case defined." -ForegroundColor Yellow
+  Return
+}
 
 Describe "FlowChartCode " -Tag 'DevUseCases' {
     Context "When there is no violation" {
@@ -76,4 +89,3 @@ Describe "FlowChartCode " -Tag 'DevUseCases' {
       }
    }
 }
-

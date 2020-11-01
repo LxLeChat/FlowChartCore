@@ -39,6 +39,10 @@ namespace ExtensionMethods
                     return ((ContinueStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is ExitStatementAst : 
                     return ((ExitStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
+                case Ast a when _ast is ReturnStatementAst : 
+                    return ((ReturnStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
+                case Ast a when _ast is ThrowStatementAst : 
+                    return ((ThrowStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is PipelineAst : 
                     return ((PipelineAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
             }
@@ -82,6 +86,30 @@ namespace ExtensionMethods
         public static ExitNode CreateNodeFromAst(this ExitStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
             return new ExitNode(_ast,_depth, _position, _parent,_tree);
+        }
+        
+    }
+
+    public static class ThrowStatementExtension {
+        // ThrowStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static ThrowNode CreateNodeFromAst(this ThrowStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
+        {
+            return new ThrowNode(_ast,_depth, _position, _parent,_tree);
+        }
+        
+    }
+
+    public static class ReturnStatementExtension {
+        // ReturnStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
+        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static ReturnNode CreateNodeFromAst(this ReturnStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
+        {
+            return new ReturnNode(_ast,_depth, _position, _parent,_tree);
         }
         
     }
