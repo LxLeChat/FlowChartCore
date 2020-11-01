@@ -8,7 +8,7 @@ namespace FlowChartCore
     public class ReturnNode : Node
     {
         protected ReturnStatementAst RawAst {get;set;}
-        public string Label { get => label;}
+        public string Pipeline { get => RawAst.Pipeline.Extent.Text;}
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
 
         public ReturnNode(ReturnStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)

@@ -6,7 +6,7 @@ namespace FlowChartCore
     public class ThrowNode : Node
     {
         protected ThrowStatementAst RawAst {get;set;}
-        public string Label { get => label;}
+        public string Pipeline { get => RawAst.Pipeline.Extent.Text;}
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
 
         public ThrowNode(ThrowStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)

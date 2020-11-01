@@ -24,7 +24,7 @@ namespace FlowChartCore.Graph
         public void CreateNode()
         {
             DotNode newnode = new DotNode(node.Id);
-            newnode.Label = "Throw";
+            newnode.Label = $"Throw\n{node.Pipeline}";
             DotDefinition.Add(newnode);
         }
 

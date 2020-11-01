@@ -70,7 +70,12 @@ namespace FlowChartCore.Graph
                         edge.Label="False";
                         DotDefinition.Add(edge);
                     }
-                }   
+                }  else {
+                    // Implicit False edge
+                    DotEdge edge = new DotEdge(node.Id,node.GetEndId());
+                    edge.Label = "False";
+                    DotDefinition.Add(edge);
+                } 
             }
         }
 
