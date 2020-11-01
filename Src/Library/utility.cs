@@ -27,7 +27,9 @@ namespace FlowChartCore
                 typeof(TryStatementAst),
                 typeof(BreakStatementAst),
                 typeof(ContinueStatementAst),
-                typeof(ExitStatementAst)
+                typeof(ExitStatementAst),
+                typeof(ThrowStatementAst),
+                typeof(ReturnStatementAst),
                 // typeof(PipelineAst)
             };
 
@@ -117,11 +119,11 @@ namespace FlowChartCore
 
             // fix issue #51
             // when there is a path  like c:\n\blalal the c:\n was transformed into c:\l
-            Regex Rx = new Regex(@"(?<!\\)\\n");
+            Regex Rx = new Regex(@"(?<!\\)\\(n|r)");
             string compiledCleaned = Rx.Replace(compiled,"\\l");
-            string compiledCleaned2 = compiledCleaned.Replace("\\r","\\l");
+            // string compiledCleaned2 = compiledCleaned.Replace("\\r","\\l");
 
-            return compiledCleaned2;
+            return compiledCleaned;
         }
 
         public static List<IDotElement> AddGraph (List<Node> nodes) {
