@@ -1,9 +1,31 @@
-﻿[CmdletBinding()]
+﻿<#
+To parameterize the test :
+ $container = New-PesterContainer -Path 'G:\PS\FlowChartCore\Test\UseCases.Tests.ps1' -Data @{ExcludeCase=@('Break','While','Switch','Foreach')}
+ Invoke-Pester -Container $container 
+#or
+ Invoke-Pester -Container $container -PassThru #Renvoi un objet de type 'Pester.Run'
+
+To run the test :
+ $container = New-PesterContainer -Path 'G:\PS\FlowChartCore\Test\UseCases.Tests.ps1' 
+ Invoke-Pester -Container $Container -Output Detailed 
+
+Require Pester v5.1.0 rc1 ou >
+
+#>
+[CmdletBinding()]
 param(
-    [ValidateSet('None','Break','While','Switch','Foreach','DoWhile','DoUntil')]
-      [string[]] $ExcludeCase
+     # To exclude statements
+     [Parameter(Mandatory=$False)]
+    [string[]] $ExcludeCase
   )
 
+#Delay the validity check otherwise, when binding, Pester
+# fails because of the presence of validateset on the parameter.
+If ( $null -eq $ExcludeCase)
+{ $ExcludeCase=@('None') }
+
+[ValidateSet('None','Break','While','Switch','Foreach','DoWhile','DoUntil')] 
+[string[]] $ExcludeCase=$ExcludeCase
 
 #FlowChartCore init
 $ModulePath="$PSScriptRoot\..\Src\bin\Debug\netstandard2.0"
@@ -33,7 +55,6 @@ param(
 $UseCasesPath="$PSScriptRoot\..\Test\Dev"
 Write-Host "`n`rAdd use cases from :`r`n$UseCasesPath"
 
-$ExcludeCase=Get-ExcludeCase
 $CodeUseCases=Get-Childitem $UseCasesPath |
  Where-Object {$_.Name -match '\.UseCases\.ps1'}|
  Foreach-Object {
