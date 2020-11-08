@@ -15,7 +15,7 @@ RootModule = '.\FlowchartCore.dll'
 ModuleVersion = '0.1.0'
 
 # Éditions PS prises en charge
-CompatiblePSEditions = 'Core'
+CompatiblePSEditions = 'Core' 
 
 # ID utilisé pour identifier de manière unique ce module
 GUID = '7ec5cdcb-6d15-44df-8985-754c9b54e482'
