@@ -17,13 +17,13 @@
           "C:\\Users\\yanas\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.0": {
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -34,21 +34,15 @@
         }
       },
       "frameworks": {
-        "netstandard2.0": {
+        "netcoreapp3.1": {
           "dependencies": {
             "DotNetGraph": {
               "target": "Package",
               "version": "[2.6.0, )"
             },
-            "NETStandard.Library": {
-              "suppressParent": "All",
+            "System.Management.Automation": {
               "target": "Package",
-              "version": "[2.0.3, )",
-              "autoReferenced": true
-            },
-            "PowerShellStandard.Library": {
-              "target": "Package",
-              "version": "[5.1.0, )"
+              "version": "[7.0.3, )"
             }
           },
           "imports": [
@@ -61,6 +55,11 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }

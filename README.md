@@ -7,6 +7,9 @@ It's the first time i'm writing something in c# ... jumping from Powershell... s
 ### Why ?
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
+### Small Warning
+Quiet recently the module was compatible between Windows Powershell and Powershell 6+ . This is not the case anymore. The module wont work on Windows Powershell. Why ? Because netstandard2.0 does not implement some newly AST (ternaryexpressionAST ...) available in Powershell 6+.
+
 ### What it is for? What it is not for ?
 Mainly for helping and documentation purpose.
 The module will play nicely with pure PS1 scripts.
@@ -93,11 +96,12 @@ Parent    : FlowChartCore.IfNode
 
 
 # Working with the module
-The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).
+~~The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).~~
+The Module is CrossPlatform, but is not WindowsPowershell Compatible.
 Since it's not published in the PSGallery, either fork the project or download it as a zip.
 
 ### Importing the module
-You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\bin\debug\netstandard2.0\FlowChartCore.dll``
+You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\bin\debug\netcoreapp3.1\FlowChartCore.dll``
 ```
 PS >Import-module .\Flowchartcore.dll
 PS > Get-Module -Name FlowchartCore

@@ -14,7 +14,7 @@
                 "-NoExit",
                 "-NoProfile",
                 "-Command",
-                "Import-Module ${workspaceFolder}/src/bin/Debug/netstandard2.0/FlowchartCore.dll",
+                "Import-Module ${workspaceFolder}/src/bin/Debug/netcoreapp3.1/FlowchartCore.dll",
             ],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -31,22 +31,5 @@
         //     "request": "attach",
         //     "processId": "${command:pickProcess}"
         // }
-        {
-            "name": "PowerShell cmdlets: powershell",
-            "type": "clr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "powershell",
-            "args": [
-                "-NoExit",
-                "-NoProfile",
-                "-Command",
-                "Import-Module ${workspaceFolder}/src/bin/Debug/netstandard2.0/flowchartcore.dll",
-            ],
-            "cwd": "${workspaceFolder}",
-            "stopAtEntry": false,
-            "console": "integratedTerminal",
-            "justMyCode": false
-        }
     ]
 }
