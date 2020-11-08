@@ -15,7 +15,7 @@ RootModule = '.\FlowchartCore.dll'
 ModuleVersion = '0.1.0'
 
 # Éditions PS prises en charge
-CompatiblePSEditions = 'Desktop', 'Core'
+CompatiblePSEditions = 'Core' 
 
 # ID utilisé pour identifier de manière unique ce module
 GUID = '7ec5cdcb-6d15-44df-8985-754c9b54e482'
@@ -33,7 +33,7 @@ Copyright = 'Copyleft'
 Description = 'The main goal is to document Powershell scripts. The module will allow you to generate a dot graph definition.'
 
 # Version minimale du moteur Windows PowerShell requise par ce module
-PowerShellVersion = '5.1'
+PowerShellVersion = '7.0'
 
 # Architecture de processeur (None, X86, Amd64) requise par ce module
 ProcessorArchitecture = 'None'
@@ -77,7 +77,7 @@ PrivateData = @{
     PSData = @{
 
         # Des balises ont été appliquées à ce module. Elles facilitent la découverte des modules dans les galeries en ligne.
-        Tags = @('PSEdition_Desktop','PSEdition_Core','graph','graphviz','diagram','AST','AbstractSyntaxTree')
+        Tags = @('PSEdition_Core','graph','graphviz','diagram','AST','AbstractSyntaxTree')
 
         # URL vers la licence de ce module.
         # LicenseUri = ''

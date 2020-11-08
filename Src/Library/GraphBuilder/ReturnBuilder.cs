@@ -31,9 +31,12 @@ namespace FlowChartCore.Graph
         public void CreateEdgeToNextSibling()
         {
             // si y a un sibling, on fait des petits points..
-            DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextId());
-            edge.Style = DotEdgeStyle.Dotted;
-            DotDefinition.Add(edge);
+            if (!(node.IsLast && node.depth == 0))
+            {
+                DotEdge edge = new DotEdge(node.GetEndId(),node.GetNextId());
+                edge.Style = DotEdgeStyle.Dotted;
+                DotDefinition.Add(edge);
+            }
         }
 
         public void CreateEdgeToFirstChildren()
