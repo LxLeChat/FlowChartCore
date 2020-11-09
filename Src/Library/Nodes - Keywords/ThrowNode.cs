@@ -6,7 +6,12 @@ namespace FlowChartCore
     public class ThrowNode : Node
     {
         protected ThrowStatementAst RawAst {get;set;}
-        public string Pipeline { get => RawAst.Pipeline.Extent.Text;}
+        private string pipeline;
+        public string Pipeline
+        {
+            get { return pipeline; }
+            set {}
+        }
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
 
         public ThrowNode(ThrowStatementAst _ast, int _depth, int _position, Node _parent, Tree _tree)
@@ -17,8 +22,15 @@ namespace FlowChartCore
             parent = _parent;
             RawAst = _ast;
             parentroot = _tree;
+            SetPipeline();
             SetOffToRemove();
-            
+        }
+        
+        // Fix Issue #17, if throw has no message
+        internal void SetPipeline(){
+            if ( RawAst.Pipeline != null ){
+                pipeline = RawAst.Pipeline.Extent.Text;
+            }
         }
 
         public override String GetEndId() {
