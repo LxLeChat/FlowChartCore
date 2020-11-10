@@ -22,4 +22,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Pester Test(s)
-      run: Invoke-Pester -Path .\Test\UseCases.Test.ps1 -Output Detailed
+      run: Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
