@@ -26,7 +26,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Pester Test(s)
       run: |
-        Set-PSRepository psgallery -InstallationPolicy trusted
-        Install-Module -Name Pester -confirm:$false -Force
         Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
       shell: pwsh
