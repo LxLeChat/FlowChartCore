@@ -198,8 +198,10 @@ PS > Find-FLowChartNodes -ScriptBlock $sb | New-FLowChartGraph -CodeAsText
 If you want to render the Dot Definition, you can for example user ``Export-PSGraph`` from the ``PSGraph`` module.
 
 You can also use https://dreampuf.github.io/GraphvizOnline/ . Just copy/paste the dot definition and it will render the graph
+
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
 
 # Contributions
 Constributions are welcomed! I Speak french, and it's easier for me when dealing with a french contributor, but i'll do my best if you post in english :)
+Big Thanks to @LaurentDardenne for his many contributions !
