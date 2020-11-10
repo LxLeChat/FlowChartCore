@@ -27,5 +27,6 @@ jobs:
     - name: Pester Test(s)
       run: |
         Set-Location -Path .\Test
+        Get-ChildItem ..\src\bin\debug\netcoreapp3.1
         Invoke-Pester -Path .\UseCases.Tests.ps1 -Output Detailed -CI
       shell: pwsh

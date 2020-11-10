@@ -28,7 +28,7 @@ If ( $null -eq $ExcludeCase)
 [string[]] $ExcludeCase=$ExcludeCase
 
 #FlowChartCore init
-$ModulePath="$PSScriptRoot\..\Src\bin\Debug\netcoreapp3.1"
+$ModulePath="..\Src\bin\Debug\netcoreapp3.1"
 
 # unblock-File "$ModulePath\DotNetGraph.dll"
 # unblock-File "$ModulePath\FlowchartCore.dll"
@@ -52,7 +52,7 @@ param(
 }
 
 # Build use cases
-$UseCasesPath="$PSScriptRoot\..\Test\Dev"
+$UseCasesPath="..\Test\Dev"
 Write-Host "`n`rAdd use cases from :`r`n$UseCasesPath"
 
 $CodeUseCases=Get-Childitem $UseCasesPath |
