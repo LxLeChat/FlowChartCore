@@ -17,9 +17,16 @@ jobs:
     - name: Build
       run: dotnet build .\src\ --no-restore
   tests:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.platform }}
     needs: build
     steps:
     - uses: actions/checkout@v1
     - name: Pester Test(s)
-      run: Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
+      run: |
+        Set-PSRepository psgallery -InstallationPolicy trusted
+        Install-Module -Name Pester -confirm:$false -Force
+        Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
+      shell: pwsh
