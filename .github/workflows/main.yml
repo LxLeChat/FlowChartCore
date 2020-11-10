@@ -26,5 +26,5 @@ jobs:
     - uses: actions/checkout@v1
     - name: Pester Test(s)
       run: |
-        Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
+        Invoke-Pester -Path ./Test/UseCases.Tests.ps1 -Output Detailed -CI
       shell: pwsh
