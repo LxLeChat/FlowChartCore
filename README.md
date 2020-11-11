@@ -1,6 +1,6 @@
 # OnGoing Problem
-Right Know i tried to migrate for netstandard2.0 fo netcoreapp3.1 ... i thought i was successfull .. until i tried to laod the module onto linux ... wich failed miserably!
-so right know it will work on powershell 7 on windows... trying to figure out how to make it work ... but unfortunally i really dont know what i'm doing here ^^ (not joking!) ... maybe i'll fall back to netstandard2.0
+~~Right Know i tried to migrate for netstandard2.0 fo netcoreapp3.1 ... i thought i was successfull .. until i tried to laod the module onto linux ... wich failed miserably!
+so right know it will work on powershell 7 on windows... trying to figure out how to make it work ... but unfortunally i really dont know what i'm doing here ^^ (not joking!) ... maybe i'll fall back to netstandard2.0~~
 Progress: It'now working on windows and linux ... just struggling with the CI part ... as soon as it's done it will be publisehd on the master/main branch :)
 
 # FlowChartCore
