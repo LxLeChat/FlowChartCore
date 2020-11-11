@@ -28,10 +28,10 @@ If ( $null -eq $ExcludeCase)
 [string[]] $ExcludeCase=$ExcludeCase
 
 #FlowChartCore init
-$ModulePath="$PSScriptRoot\..\Src\bin\Debug\netstandard2.0"
+$ModulePath="$PSScriptRoot\..\Src\bin\Debug\netcoreapp3.1"
 
-# unblock-File "$ModulePath\DotNetGraph.dll"
-# unblock-File "$ModulePath\FlowchartCore.dll"
+unblock-File "$ModulePath\DotNetGraph.dll"
+unblock-File "$ModulePath\FlowchartCore.dll"
  #first time, close and open PS console
 Import-Module "$ModulePath\FlowchartCore.dll"
 
