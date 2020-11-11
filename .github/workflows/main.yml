@@ -19,8 +19,8 @@ jobs:
   tests:
     strategy:
       matrix:
-        # platform: [windows-latest,ubuntu-latest]
-        platform: [ubuntu-18.04]
+        platform: [windows-latest]
+        # platform: [ubuntu-18.04]
     runs-on: ${{ matrix.platform }}
     needs: build
     steps:
