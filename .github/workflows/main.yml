@@ -17,9 +17,14 @@ jobs:
     - name: Build
       run: dotnet build .\src\ --no-restore
   tests:
-    runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [windows-latest]
+        # platform: [ubuntu-18.04]
+    runs-on: ${{ matrix.platform }}
     needs: build
     steps:
     - uses: actions/checkout@v1
     - name: Pester Test(s)
       run: Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
+      shell: pwsh

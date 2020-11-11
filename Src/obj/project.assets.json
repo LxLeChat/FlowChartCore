@@ -243,7 +243,7 @@
           }
         }
       },
-      "Microsoft.NETCore.Platforms/3.1.1": {
+      "Microsoft.NETCore.Platforms/3.1.0": {
         "type": "package",
         "compile": {
           "lib/netstandard1.0/_._": {}
@@ -252,7 +252,7 @@
           "lib/netstandard1.0/_._": {}
         }
       },
-      "Microsoft.PowerShell.CoreCLR.Eventing/7.0.3": {
+      "Microsoft.PowerShell.CoreCLR.Eventing/7.0.0": {
         "type": "package",
         "dependencies": {
           "System.Diagnostics.EventLog": "4.7.0"
@@ -544,12 +544,12 @@
           }
         }
       },
-      "System.Management.Automation/7.0.3": {
+      "System.Management.Automation/7.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.ApplicationInsights": "2.13.1",
           "Microsoft.Management.Infrastructure": "2.0.0",
-          "Microsoft.PowerShell.CoreCLR.Eventing": "7.0.3",
+          "Microsoft.PowerShell.CoreCLR.Eventing": "7.0.0",
           "Microsoft.PowerShell.Native": "7.0.0",
           "Microsoft.Win32.Registry.AccessControl": "4.7.0",
           "Newtonsoft.Json": "12.0.3",
@@ -557,11 +557,11 @@
           "System.DirectoryServices": "4.7.0",
           "System.IO.FileSystem.AccessControl": "4.7.0",
           "System.Management": "4.7.0",
-          "System.Runtime.CompilerServices.Unsafe": "4.7.1",
+          "System.Runtime.CompilerServices.Unsafe": "4.7.0",
           "System.Security.AccessControl": "4.7.0",
           "System.Security.Cryptography.Pkcs": "4.7.0",
           "System.Security.Permissions": "4.7.0",
-          "System.Text.Encoding.CodePages": "4.7.1"
+          "System.Text.Encoding.CodePages": "4.7.0"
         },
         "compile": {
           "ref/netcoreapp3.1/System.Management.Automation.dll": {}
@@ -577,7 +577,7 @@
           }
         }
       },
-      "System.Runtime.CompilerServices.Unsafe/4.7.1": {
+      "System.Runtime.CompilerServices.Unsafe/4.7.0": {
         "type": "package",
         "compile": {
           "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll": {}
@@ -685,10 +685,10 @@
           }
         }
       },
-      "System.Text.Encoding.CodePages/4.7.1": {
+      "System.Text.Encoding.CodePages/4.7.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.NETCore.Platforms": "3.1.1"
+          "Microsoft.NETCore.Platforms": "3.1.0"
         },
         "compile": {
           "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {}
@@ -868,32 +868,31 @@
         "runtimes/win81-x86/native/miutils.dll"
       ]
     },
-    "Microsoft.NETCore.Platforms/3.1.1": {
-      "sha512": "RmINcaqiEkawM9C8oxFMN/CZmn1fGKWVsosbSY/8ARUNdHqV47hqhPVbrG3qUqLaRQI5w4HuqFOqrbhoSWcH6w==",
+    "Microsoft.NETCore.Platforms/3.1.0": {
+      "sha512": "z7aeg8oHln2CuNulfhiLYxCVMPEwBl3rzicjvIX+4sUuCwvXw5oXQEtbiU2c0z4qYL5L3Kmx0mMA/+t/SbY67w==",
       "type": "package",
-      "path": "microsoft.netcore.platforms/3.1.1",
+      "path": "microsoft.netcore.platforms/3.1.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard1.0/_._",
-        "microsoft.netcore.platforms.3.1.1.nupkg.sha512",
+        "microsoft.netcore.platforms.3.1.0.nupkg.sha512",
         "microsoft.netcore.platforms.nuspec",
         "runtime.json",
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
     },
-    "Microsoft.PowerShell.CoreCLR.Eventing/7.0.3": {
-      "sha512": "ZMs1qMmqmaISqlLPbnX7uXM8/IpEGUB4qoSlBOgfFQrah16pxn+3E2+eLV6t/fUOVGLzm0kVXrcezABOmHudhA==",
+    "Microsoft.PowerShell.CoreCLR.Eventing/7.0.0": {
+      "sha512": "bX1HxVGw4e5LRW4CkukufgUfVT3RceLLWT1WAAmRgpWetwLspIbqpXzPmBuD0qyJA2Ud2+9X2AVag4qcBkekRw==",
       "type": "package",
-      "path": "microsoft.powershell.coreclr.eventing/7.0.3",
+      "path": "microsoft.powershell.coreclr.eventing/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "microsoft.powershell.coreclr.eventing.7.0.3.nupkg.sha512",
+        "microsoft.powershell.coreclr.eventing.7.0.0.nupkg.sha512",
         "microsoft.powershell.coreclr.eventing.nuspec",
         "ref/netcoreapp3.1/System.Management.Automation.dll",
         "runtimes/win/lib/netcoreapp3.1/Microsoft.PowerShell.CoreCLR.Eventing.dll"
@@ -1306,45 +1305,40 @@
         "version.txt"
       ]
     },
-    "System.Management.Automation/7.0.3": {
-      "sha512": "mtqw4JAkwgSAqWf/yi5026w/b+cmUNqxT6CJ7lJOXdnvlJ3GzvvJ54YfJYqJLN6BJH9VtIYYA4vJKke3gHkWYQ==",
+    "System.Management.Automation/7.0.0": {
+      "sha512": "VRCxKA4+RVXt6Fp6wv7RAx1IQr0TUtawT9/O2X3SYuyLxpsW3KW4yuBLKHj/grZBpi3Gtt9+Q0cR6HrKW2f8vw==",
       "type": "package",
-      "path": "system.management.automation/7.0.3",
+      "path": "system.management.automation/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "ref/netcoreapp3.1/System.Management.Automation.dll",
         "runtimes/unix/lib/netcoreapp3.1/System.Management.Automation.dll",
         "runtimes/win/lib/netcoreapp3.1/System.Management.Automation.dll",
-        "system.management.automation.7.0.3.nupkg.sha512",
+        "system.management.automation.7.0.0.nupkg.sha512",
         "system.management.automation.nuspec"
       ]
     },
-    "System.Runtime.CompilerServices.Unsafe/4.7.1": {
-      "sha512": "zOHkQmzPCn5zm/BH+cxC1XbUS3P4Yoi3xzW7eRgVpDR2tPGSzyMZ17Ig1iRkfJuY0nhxkQQde8pgePNiA7z7TQ==",
+    "System.Runtime.CompilerServices.Unsafe/4.7.0": {
+      "sha512": "IpU1lcHz8/09yDr9N+Juc7SCgNUz+RohkCQI+KsWKR67XxpFr8Z6c8t1iENCXZuRuNCc4HBwme/MDHNVCwyAKg==",
       "type": "package",
-      "path": "system.runtime.compilerservices.unsafe/4.7.1",
+      "path": "system.runtime.compilerservices.unsafe/4.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        "ref/net461/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-        "system.runtime.compilerservices.unsafe.4.7.1.nupkg.sha512",
+        "system.runtime.compilerservices.unsafe.4.7.0.nupkg.sha512",
         "system.runtime.compilerservices.unsafe.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -1651,14 +1645,13 @@
         "version.txt"
       ]
     },
-    "System.Text.Encoding.CodePages/4.7.1": {
-      "sha512": "i2fOvznVVgOOTLUz8FgSap/MsR98I4Iaoz99VXcOW/e7Y2OdY42zhYpBYpZyivk5alYY/UsOWAVswhtjxceodA==",
+    "System.Text.Encoding.CodePages/4.7.0": {
+      "sha512": "aeu4FlaUTemuT1qOd1MyU4T516QR4Fy+9yDbwWMPHOHy7U8FD6SgTzdZFO7gHcfAPHtECqInbwklVvUK4RHcNg==",
       "type": "package",
-      "path": "system.text.encoding.codepages/4.7.1",
+      "path": "system.text.encoding.codepages/4.7.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "Icon.png",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/MonoAndroid10/_._",
@@ -1686,7 +1679,7 @@
         "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll",
         "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.dll",
         "runtimes/win/lib/netstandard2.0/System.Text.Encoding.CodePages.xml",
-        "system.text.encoding.codepages.4.7.1.nupkg.sha512",
+        "system.text.encoding.codepages.4.7.0.nupkg.sha512",
         "system.text.encoding.codepages.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -1717,7 +1710,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "DotNetGraph >= 2.6.0",
-      "System.Management.Automation >= 7.0.3"
+      "System.Management.Automation >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -1726,11 +1719,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
+      "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore2\\Src\\FlowchartCore.csproj",
       "projectName": "FlowchartCore",
-      "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
+      "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore2\\Src\\FlowchartCore.csproj",
       "packagesPath": "C:\\Users\\yanas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\obj\\",
+      "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore2\\Src\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\yanas\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -1761,7 +1754,7 @@
           },
           "System.Management.Automation": {
             "target": "Package",
-            "version": "[7.0.3, )"
+            "version": "[7.0.0, )"
           }
         },
         "imports": [
