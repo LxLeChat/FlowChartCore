@@ -19,7 +19,7 @@ jobs:
   tests:
     strategy:
       matrix:
-        platform: [windows-latest]
+        platform: [windows-latest,ubuntu-latest]
     runs-on: ${{ matrix.platform }}
     needs: build
     steps:
