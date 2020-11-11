@@ -26,10 +26,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Pester Test(s)
       run: |
-        # Get-ChildItem
-        # Get-ChildItem .\src\bin\debug\netcoreapp3.1
-        # Set-Location -Path .\Test
-        # Get-ChilItem
-        # Get-ChildItem ..\src\bin\debug\netcoreapp3.1
+        Get-Location
         Invoke-Pester -Path .\Test\UseCases.Tests.ps1 -Output Detailed -CI
       shell: pwsh
