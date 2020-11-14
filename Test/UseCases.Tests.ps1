@@ -33,7 +33,7 @@ $ModulePath="$PSScriptRoot\..\Src\bin\Debug\netcoreapp3.1"
 # unblock-File "$ModulePath\DotNetGraph.dll"
 # unblock-File "$ModulePath\FlowchartCore.dll"
  #first time, close and open PS console
-Import-Module "$ModulePath\FlowchartCore.dll"
+Import-Module "$ModulePath\FlowChartCore.dll"
 
 Function New-CodeUseCase{
 #New-PSCustomObjectFunction -Noun CodeUseCase -Parameters Name,Code -file
