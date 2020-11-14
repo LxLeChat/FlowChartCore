@@ -19,7 +19,7 @@ param(
     [string[]] $ExcludeCase
   )
 
-#Delay the validity check otherwise, when binding, Pester
+# Delay the validity check otherwise, when binding, Pester
 # fails because of the presence of validateset on the parameter.
 If ( $null -eq $ExcludeCase)
 { $ExcludeCase=@('None') }
@@ -30,9 +30,12 @@ If ( $null -eq $ExcludeCase)
 #FlowChartCore init
 $ModulePath="$PSScriptRoot\..\Src\bin\Debug\netcoreapp3.1"
 
-# unblock-File "$ModulePath\DotNetGraph.dll"
-# unblock-File "$ModulePath\FlowchartCore.dll"
- #first time, close and open PS console
+If ( !$IsLinux ) {
+  UnBlock-File "$ModulePath\DotNetGraph.dll"
+  UnBlock-File "$ModulePath\FlowchartCore.dll"
+}
+
+#first time, close and open PS console
 Import-Module "$ModulePath\FlowChartCore.dll"
 
 Function New-CodeUseCase{
