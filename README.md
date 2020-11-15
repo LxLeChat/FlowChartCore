@@ -208,6 +208,11 @@ You can also use https://dreampuf.github.io/GraphvizOnline/ . Just copy/paste th
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
 
+# Building the project
+Clone the project.
+You can use the ``build.ps1``.
+Or you can use the VSCode task by pressing F1, then typing task, you should be able to use the "Tasks: Run build task"
+
 # Contributions
 Constributions are welcomed! I Speak french, and it's easier for me when dealing with a french contributor, but i'll do my best if you post in english :)
 Big Thanks to @LaurentDardenne for his many contributions !
