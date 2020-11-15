@@ -45,17 +45,6 @@ namespace FlowChartCore.Graph
             DotDefinition.Add(newnode);
         }
 
-        // public void CreateNode(bool codeAsText)
-        // {
-        //     DotNode newnode = new DotNode(node.Id);
-        //     // need to replace \n in label with \l
-        //     // this will align text to the left
-        //     // Change made in DotNetGraph DotCompiler, FormatString Method
-        //     String label = node.discovercode();
-        //     newnode.Label = label;
-        //     newnode.Shape = DotNodeShape.Box;
-        //     DotDefinition.Add(newnode);
-        // }
     }
 
 }

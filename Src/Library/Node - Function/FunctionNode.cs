@@ -10,6 +10,8 @@ namespace FlowChartCore
         protected FunctionDefinitionAst RawAst {get;set;}
         public string FunctionName { get => RawAst.Name;}
         internal override int OffSetStatementStart {get => RawAst.Extent.StartOffset-OffSetToRemove;}
+        internal override int OffSetScriptBlockStart {get => RawAst.Body.Extent.StartOffset-OffSetToRemove+1;}
+        internal override int OffSetScriptBlockEnd {get => RawAst.Body.Extent.EndOffset-OffSetToRemove;}
 
         public FunctionNode(FunctionDefinitionAst _ast, int _depth, int _position, Node _parent, Tree _tree)
         {
