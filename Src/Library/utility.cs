@@ -30,6 +30,7 @@ namespace FlowChartCore
                 typeof(ExitStatementAst),
                 typeof(ThrowStatementAst),
                 typeof(ReturnStatementAst),
+                typeof(FunctionDefinitionAst)
                 // typeof(PipelineAst)
             };
 

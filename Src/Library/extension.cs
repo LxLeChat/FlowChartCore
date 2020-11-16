@@ -43,8 +43,10 @@ namespace ExtensionMethods
                     return ((ReturnStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is ThrowStatementAst : 
                     return ((ThrowStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
-                case Ast a when _ast is PipelineAst : 
-                    return ((PipelineAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
+                case Ast a when _ast is FunctionDefinitionAst : 
+                    return ((FunctionDefinitionAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
+                // case Ast a when _ast is PipelineAst : 
+                //     return ((PipelineAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
             }
             return null;
         }
@@ -78,11 +80,21 @@ namespace ExtensionMethods
         }
     }
 
-    public static class ExitStatementExtension {
-        // ContinueStatementAst Extension Methods
+    public static class FunctionDefinitionExtension {
+        // FunctionDefinitionAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
+        public static FunctionNode CreateNodeFromAst(this FunctionDefinitionAst _ast,int _depth, int _position, Node _parent, Tree _tree)
+        {
+            return new FunctionNode(_ast,_depth, _position, _parent,_tree);
+        }
+        
+    }
+
+    public static class ExitStatementExtension {
+        // ExitStatementAst Extension Methods
+        // New Methods Available:
+        // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
         public static ExitNode CreateNodeFromAst(this ExitStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
             return new ExitNode(_ast,_depth, _position, _parent,_tree);
@@ -94,7 +106,6 @@ namespace ExtensionMethods
         // ThrowStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
         public static ThrowNode CreateNodeFromAst(this ThrowStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
             return new ThrowNode(_ast,_depth, _position, _parent,_tree);
@@ -106,7 +117,6 @@ namespace ExtensionMethods
         // ReturnStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
         public static ReturnNode CreateNodeFromAst(this ReturnStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
             return new ReturnNode(_ast,_depth, _position, _parent,_tree);
@@ -118,7 +128,6 @@ namespace ExtensionMethods
         // ContinueStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
         public static ContinueNode CreateNodeFromAst(this ContinueStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
             return new ContinueNode(_ast,_depth, _position, _parent,_tree);
@@ -130,7 +139,6 @@ namespace ExtensionMethods
         // BreakStatementAst Extension Methods
         // New Methods Available:
         // - CreateNodeFromAST(NodeDepth, NodePosition, Parent) => Creates a Node
-        // - GetChildAst() => retourne only ASTs we are looking for ...
         public static BreakNode CreateNodeFromAst(this BreakStatementAst _ast,int _depth, int _position, Node _parent, Tree _tree)
         {
             return new BreakNode(_ast,_depth, _position, _parent,_tree);
