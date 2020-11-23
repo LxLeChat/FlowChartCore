@@ -48,23 +48,23 @@ jobs:
           
           ## Create module Path if it does not exist
           if ( -not (test-path -path .\src\module\FlowChartCore) ){
-            New-Item -ItemType Directory -Path .\src\module\FlowChartCore -Force
+            New-Item -ItemType Directory -Path .\src\module -Force
           } Else {
             Remove-Item -Path .\src\module\* -Recurse -Exclude '*.psd1'
           }
           
           ## Copy DLL Directories
-          Copy-Item -Path .\src\bin\debug\netcoreapp3.1\*.dll -Destination .\src\module\FlowChartCore -Force -PassThru
+          Copy-Item -Path .\src\bin\debug\netcoreapp3.1\*.dll -Destination .\src\module\ -Force -PassThru
           
           ## Copy Docs
-          Get-ChildItem -Path .\docs -Directory | Copy-Item -Container -Destination .\src\module\FlowChartCore -Recurse -Force -PassThru
+          Get-ChildItem -Path .\docs -Directory | Copy-Item -Container -Destination .\src\module\ -Recurse -Force -PassThru
           
           ## Generate External help files
           $DocFolders = @('en-US','fr-FR')
           Foreach ( $HFolder in $DocFolders ) {
-            $MDFiles = Get-ChildItem -Path ".\src\module\FlowChartCore\$HFolder" -filter *.md
+            $MDFiles = Get-ChildItem -Path ".\src\module\$HFolder" -filter *.md
             Write-OutPut $MDFiles.Count
-            New-ExternalHelp -Path $MDFiles -OutputPath ".\src\module\FlowChartCore\$Hfolder" -Force -Verbose
+            New-ExternalHelp -Path $MDFiles -OutputPath ".\src\module\$Hfolder" -Force -Verbose
           }
       - name: Commit & Push to Main
         run: |
