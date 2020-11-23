@@ -57,7 +57,7 @@ jobs:
           Copy-Item -Path .\src\bin\debug\netcoreapp3.1\*.dll -Destination .\src\module\FlowChartCore -Force -PassThru
           
           ## Copy Docs
-          Get-ChildItem -Path .\docs -Directory | Copy-Item -Container -Destination .\src\module\FlowChartCore -Recurse -Force -PassTrhu
+          Get-ChildItem -Path .\docs -Directory | Copy-Item -Container -Destination .\src\module\FlowChartCore -Recurse -Force -PassThru
           
           ## Generate External help files
           $DocFolders = @('en-US','fr-FR')
