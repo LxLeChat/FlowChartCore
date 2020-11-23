@@ -1,0 +1,74 @@
+name: PR Post Process, Build & Generate Docs
+on:
+  workflow_dispatch:
+  pull_request:
+    types: closed
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Clean bin\debug
+      run: remove-item -path .\Src\bin\Debug\netcoreapp3.1\FlowChartCore.* -force
+      shell: pwsh
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Install dependencies
+      run: dotnet restore .\src\
+    - name: Build & Upload Artifact
+      run: dotnet build .\src\ --no-restore
+    - uses: actions/upload-artifact@v2
+      with:
+        name: Build
+        path: .\Src\bin\Debug\netcoreapp3.1\
+
+  report:
+    runs-on: windows-latest
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
+        with:
+          name: Build
+          path: .\temp
+      - name: Copy EveryThing From Artifact To Debug
+        run: |
+          copy-item .\temp\* .\Src\bin\Debug\netcoreapp3.1\ -Force
+          rmdir .\temp -recurse -force
+        shell: pwsh
+      - name: Copy & Generate Help Files
+        run: |
+          ## Install & Load PlatyPS
+          Install-Module PlatyPS -force
+          Import-Module PlatyPS -force
+          
+          ## Create module Path if it does not exist
+          if ( -not (test-path -path .\src\module) ){
+            New-Item -ItemType Directory -Path .\src\module -Force
+          } Else {
+            Remove-Item -path .\src\module\* -recurse
+          }
+          
+          ## Copy DLL Directories
+          Copy-Item -Path .\src\bin\debug\netcoreapp3.1\*.dll -Destination .\src\module -force
+          
+          ## Copy Docs
+          Get-ChildItem -Path .\docs -Directory | Copy-Item -Container -Destination .\src\module -recurse -force
+          
+          ## Generate External help files
+          $DocFolders = @('en-US','fr-FR')
+          Foreach ( $HFolder in $DocFolders ) {
+            $MDFiles = Get-ChildItem -Path ".\src\module\$HFolder" -filter *.md
+            New-ExternalHelp -Path $MDFiles -OutputPath ".\src\module\$Hfolder" -Force
+          }
+      - name: Commit & Push to Main
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+          git add --all
+          git commit -m 'Auto Commit'
+          git push
