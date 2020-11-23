@@ -1,9 +1,3 @@
-# OnGoing Problem
-~~Right Know i tried to migrate for netstandard2.0 fo netcoreapp3.1 ... i thought i was successfull .. until i tried to laod the module onto linux ... wich failed miserably!
-so right know it will work on powershell 7 on windows... trying to figure out how to make it work ... but unfortunally i really dont know what i'm doing here ^^ (not joking!) ... maybe i'll fall back to netstandard2.0~~
-~~Progress: It'now working on windows and linux ... just struggling with the CI part ... as soon as it's done it will be publisehd on the master/main branch :)~~
-Progress: The module should work on PS 7 windows/Linux. The CI is broken for ubuntun dont know why.. doing some test on another project.
-
 # FlowChartCore
 The main goal is to document Powershell Scripts. The Module will allow you to generate a dot graph definition. This definition can then be consumed by GraphViz to generate a nice flow chart of your script.
 
@@ -15,8 +9,9 @@ This project allows me also to experiment on new stuff .. like CI.. !
 ### Why ?
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
-### Small Warning
-Quiet recently the module was compatible between Windows Powershell and Powershell 6+ . This is not the case anymore. It's PS7+ compatible.
+
+### Compatibility
+This module works only on Powershell 7.
 
 ### What it is for? What it is not for ?
 Mainly for helping and documentation purpose.
