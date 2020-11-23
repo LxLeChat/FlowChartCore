@@ -9,6 +9,7 @@ This project allows me also to experiment on new stuff .. like CI.. !
 ### Why ?
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
+
 ### Compatibility
 This module works only on Powershell 7.
 
@@ -203,6 +204,11 @@ You can also use https://dreampuf.github.io/GraphvizOnline/ . Just copy/paste th
 
 # Dot language
 To create the dot graph, i use a library called DotNetGraph. https://github.com/vfrz/DotNetGraph
+
+# Building the project
+Clone the project.
+You can use the ``build.ps1``.
+Or you can use the VSCode task by pressing F1, then typing task, you should be able to use the "Tasks: Run build task"
 
 # Contributions
 Constributions are welcomed! I Speak french, and it's easier for me when dealing with a french contributor, but i'll do my best if you post in english :)
