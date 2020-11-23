@@ -47,7 +47,7 @@ jobs:
           Import-Module PlatyPS -Force -PassThru
           
           ## Create module Path if it does not exist
-          if ( -not (test-path -path .\src\module\FlowChartCore) ){
+          if ( -not (test-path -path .\src\module) ){
             New-Item -ItemType Directory -Path .\src\module -Force
           } Else {
             Remove-Item -Path .\src\module\* -Recurse -Exclude '*.psd1'
