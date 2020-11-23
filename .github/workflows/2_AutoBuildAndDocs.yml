@@ -50,7 +50,7 @@ jobs:
           if ( -not (test-path -path .\src\module) ){
             New-Item -ItemType Directory -Path .\src\module -Force
           } Else {
-            Remove-Item -path .\src\module\* -recurse
+            Remove-Item -path .\src\module\* -recurse -Exclude '*.psd1'
           }
           
           ## Copy DLL Directories
