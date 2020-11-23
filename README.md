@@ -9,8 +9,8 @@ This project allows me also to experiment on new stuff .. like CI.. !
 ### Why ?
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
-### Small Warning
-Quiet recently the module was compatible between Windows Powershell and Powershell 6+ . This is not the case anymore. The module wont work on Windows Powershell. Why ? Because netstandard2.0 does not implement some newly AST (ternaryexpressionAST ...) available in Powershell 6+.
+### Compatibility
+This module works only on Powershell 7.
 
 ### What it is for? What it is not for ?
 Mainly for helping and documentation purpose.
