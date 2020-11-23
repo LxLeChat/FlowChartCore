@@ -5,10 +5,12 @@ so right know it will work on powershell 7 on windows... trying to figure out ho
 Progress: The module should work on PS 7 windows/Linux. The CI is broken for ubuntun dont know why.. doing some test on another project.
 
 # FlowChartCore
-The main goal is to document Powershell Scripts. The Module will allow you to generate a dot graph definition. This definition can then be consumed by GraphViz to generate a nice flow chart of your script
-Since i'm discovring a lot of bugs, and strange behavior, the module is not published in the PSGallery at the moment.
+The main goal is to document Powershell Scripts. The Module will allow you to generate a dot graph definition. This definition can then be consumed by GraphViz to generate a nice flow chart of your script.
 
-It's the first time i'm writing something in c# ... jumping from Powershell... so, i'm sorry if the code is not as clean as excpected..! I know i'm missing tests for example..
+# Disclaimer
+- Since i'm discovring a lot of bugs, and strange behavior, the module is not published in the PSGallery at the moment.
+This project allows me also to experiment on new stuff .. like CI.. !
+- It's the first time i'm writing something in c# ... jumping from Powershell... so, i'm sorry if the code is not as clean as excpected..! I know i'm missing c# tests for example..
 
 ### Why ?
 First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
