@@ -63,7 +63,7 @@ jobs:
           $DocFolders = @('en-US','fr-FR')
           Foreach ( $HFolder in $DocFolders ) {
             $MDFiles = Get-ChildItem -Path ".\src\module\FlowChartCore\$HFolder" -filter *.md
-            New-ExternalHelp -Path $MDFiles -OutputPath ".\src\module\FlowChartCore$Hfolder" -Force
+            New-ExternalHelp -Path $MDFiles -OutputPath ".\src\module\FlowChartCore\$Hfolder" -Force
           }
       - name: Commit & Push to Main
         run: |
