@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-FLowChartGraph
 
 ## SYNOPSIS
-Génére un fichier .dot (Graphviz) à partir d'un graph construit à l'aide Find-FLowChartNodes.
+Génére un fichier .dot (Graphviz) à partir d'un graph construit à l'aide du cmdlet Find-FLowChartNodes.
 
 ## SYNTAX
 
@@ -24,8 +24,6 @@ Cet outil tier nécessite un fichier au format .dot
 ## EXAMPLES
 
 ### Genération d'un graph au format .dot
-@{paragraph=PS C:\\\>}
-
 ```
 $Sb={
  If ( $x ) 
@@ -54,8 +52,6 @@ Dans cette exemple le résultat est une chaîne de caractères contenant une dé
 
 .
 ### Genération d'un graph détaillé au format .dot
-@{paragraph=PS C:\\\>}
-
 ```
 $Sb={
  If ( $x ) 
@@ -83,8 +79,6 @@ Dans cette exemple le label associé au code liée au If contient [label="\"Do S
 
 .
 ### Genération d'un graph et affichage d'un graphique au format png
-@{paragraph=PS C:\\\>}
-
 ```
 $Sb={
  If ( $x ) 
