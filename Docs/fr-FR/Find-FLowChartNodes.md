@@ -8,7 +8,7 @@ schema: 2.0.0
 # Find-FLowChartNodes
 
 ## SYNOPSIS
-Construit un graph des instructions contenues dans un script Powershell.
+Construit un graph à partir des instructions contenues dans un script Powershell.
 
 Voici la liste instructions gérées :
 
@@ -43,8 +43,6 @@ Par exemple, pour une instruction If le cmdlet renvoit un objet IfNode et ainsi 
 ## EXAMPLES
 
 ### Analyser un scriptblock
-@{paragraph=PS C:\\\>}
-
 ```
 $Sb={
  If ( $x ) 
@@ -74,8 +72,6 @@ Le résultat peut être vide si le code ne contient pas d'instruction reconnue.
 
 .
 ### Afficher tous les noeuds
-@{paragraph=PS C:\\\>}
-
 ```
 $Sb={
  If ( $x ) 
@@ -100,8 +96,6 @@ Le cmdlet analyse le scriptblock et renvoi une liste de noeud. On recherche et a
 
 .
 ### Analyser un script
-@{paragraph=PS C:\\\>}
-
 ```
 Find-FlowChartNodes -Path .\somescript.ps1
 Get-ChildItem -Path c:\temp -Filter *.ps1 | Find-FLowChartNodes
@@ -114,8 +108,6 @@ Le cmdlet analyse le ou les fichiers et renvoi une liste de noeud. On recherche 
 .
 
 ### Afficher tous les noms de classes dérivés de la classse 'FlowChartCore.Node'
-@{paragraph=PS C:\\\>}
-
 ```
 [FlowChartCore.Node].Assembly.ExportedTypes|
  Where-Object {$_.IsSubclassOf([FlowChartCore.Node])}|
