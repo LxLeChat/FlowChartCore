@@ -96,7 +96,7 @@ Describe "FlowChartCode " -Tag 'DevUseCases' {
 
           #Pas d'exception
          {   [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
-           $script:Result=Find-FLowChartNodes -ScriptBlock $Code } | Should -Not -Throw
+           $script:Result=Get-FLowChartNode -ScriptBlock $Code } | Should -Not -Throw
           
           #Le résultat doit être renseigné
          $script:Result |Should -Not -BeNullOrEmpty
