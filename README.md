@@ -2,6 +2,7 @@
 The main goal is to document Powershell Scripts. The Module will allow you to generate a dot graph definition. This definition can then be consumed by GraphViz to generate a nice flow chart of your script.
 
 # Disclaimer
+- Breaking Change: the cmdlet ``Find-FlowChartNodes`` as been renamed as ``Get-FlowChartNode``
 - It's the first time i'm writing something in c# ... jumping from Powershell... so, i'm sorry if the code is not as clean as excpected..! I know i'm missing c# tests for example..
 - Since i'm discovring a lot of bugs, and strange behavior, the module is not published in the PSGallery at the moment.
 This project allows me also to experiment on new stuff .. like CI.. !
@@ -57,7 +58,7 @@ PS >$Sb = {
     }
   }
 }
-PS >$x = Find-FlowChartNodes -ScriptBlock $Sb
+PS >$x = Get-FlowChartNode -ScriptBlock $Sb
 PS >$x
 Condition : $x
 Name      : IfNode
@@ -111,7 +112,7 @@ PS > Get-Module -Name FlowchartCore
 
 ModuleType Version    Name                                ExportedCommands
 ---------- -------    ----                                ----------------
-Binary     1.0.0.0    FlowchartCore                       {Find-FLowChartNodes, New-FLowChartGraph}
+Binary     1.0.0.0    FlowchartCore                       {Get-FLowChartNode, New-FLowChartGraph}
 ```
 
 ### Find-FlowChartNodes
@@ -125,7 +126,7 @@ PS >$Sb = {
   }
 }
 
-PS > Find-FlowChartNodes -ScriptBlock $Sb
+PS > Get-FlowChartNode -ScriptBlock $Sb
 Condition : $x
 Name      : IfNode
 Children  : {ForeachNode}
@@ -138,15 +139,15 @@ Graph     : {}
 
 Using a Path:
 ```
-PS > Find-FlowChartNodes -Path .\somescript.ps1
-PS > Get-ChildItem -Path c:\temp -Filter *.ps1 | Find-FLowChartNodes
+PS > Get-FlowChartNode -Path .\somescript.ps1
+PS > Get-ChildItem -Path c:\temp -Filter *.ps1 | Get-FLowChartNode
 ```
 
 # New-FlowChartGraph
 The cmdlet will return a dot definition. It Takes a List of nodes as input.
 There is a parameter ``-codeastext`` that will render discover the code for a given ``codenode`` and display it instead of just a ``codeblock``. We will this the difference in the examples.
 ```
-PS > $x=Find-FLowChartNodes -ScriptBlock $sb
+PS > $x=Get-FLowChartNode -ScriptBlock $sb
 PS > New-FLowChartGraph -Nodes $x
 digraph "a" {
         "01"[label="If $x",shape=diamond];
@@ -194,7 +195,7 @@ Rendering the dot will give:
 
 The cmdlet also support the pipeline so you can do something like
 ```
-PS > Find-FLowChartNodes -ScriptBlock $sb | New-FLowChartGraph -CodeAsText
+PS > Get-FLowChartNode -ScriptBlock $sb | New-FLowChartGraph -CodeAsText
 ```
 
 # Rendering the graph
