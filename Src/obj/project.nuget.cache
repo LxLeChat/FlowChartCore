@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OCFnlCRtTOdnujlOFaH1a6+hGwTvUE2qntT8BZBzJPc6sDK+vgFf35VGw3Bg0Y0xC1vqb3lAWGSnG4T/uriMKQ==",
+  "dgSpecHash": "BTf2eu8v8JEbN0Ne44wUQvzhbY2IhzS3q/qtBzejhYefJHZxjtSVLjCoddT1IKKUdO+V9Ca+E1NEzjWUJY6TXA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore2\\Src\\FlowchartCore.csproj",
+  "projectFilePath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\yanas\\.nuget\\packages\\dotnetgraph\\2.6.0\\dotnetgraph.2.6.0.nupkg.sha512",
     "C:\\Users\\yanas\\.nuget\\packages\\microsoft.applicationinsights\\2.13.1\\microsoft.applicationinsights.2.13.1.nupkg.sha512",

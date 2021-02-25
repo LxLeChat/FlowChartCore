@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Collections.Generic;
 
@@ -18,17 +19,11 @@ namespace FlowChartCore.Cmdlets {
 
         /// <summary>
         /// Path parameter.
-        /// The paths of the files.
+        /// The paths of the files to calculate hash values.
         /// Resolved wildcards.
         /// </summary>
         /// <value></value>
-        [Parameter(
-            Mandatory = true,
-            ParameterSetName = PathParameterSet,
-            Position = 0,
-            ValueFromPipeline = true,
-            ValueFromPipelineByPropertyName = true
-        )]
+        [Parameter(Mandatory = true, ParameterSetName = PathParameterSet, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public string[] Path
         {
             get
@@ -44,16 +39,11 @@ namespace FlowChartCore.Cmdlets {
 
         /// <summary>
         /// LiteralPath parameter.
-        /// The literal paths of the files.
+        /// The literal paths of the files to calculate a hashs.
         /// Don't resolved wildcards.
         /// </summary>
         /// <value></value>
-        [Parameter(
-            Mandatory = true,
-            ParameterSetName = LiteralPathParameterSet,
-            Position = 0,
-            ValueFromPipelineByPropertyName = true
-        )]
+        [Parameter(Mandatory = true, ParameterSetName = LiteralPathParameterSet, Position = 0, ValueFromPipelineByPropertyName = true)]
         [Alias("PSPath", "LP")]
         public string[] LiteralPath
         {
@@ -85,44 +75,53 @@ namespace FlowChartCore.Cmdlets {
         // This method will be called for each input received from the pipeline to this cmdlet; if no input is received, this method is not called
         protected override void ProcessRecord()
         {
+
+            List<string> pathsToProcess = new List<string>();
+            ProviderInfo provider = null;
             List<Node> ListOfNodes = new List<Node>();
-            ProviderInfo pi;
-            switch (this.ParameterSetName)
+  
+            switch (ParameterSetName)
             {
                 case PathParameterSet:
-                    foreach (var item in _paths)
+                    foreach (string path in _paths)
                     {
-                        String file = this.SessionState.Path.GetResolvedProviderPathFromPSPath(item, out pi)[0];
-                        ListOfNodes =  FlowChartCore.Utility.ParseFile(file);
-                        if (ListOfNodes.Count > 0 )
+                        try
                         {
-                            WriteObject(ListOfNodes);   
+                            Collection<string> newPaths = this.SessionState.Path.GetResolvedProviderPathFromPSPath(path, out provider);
+                            if (newPaths != null)
+                            {
+                                pathsToProcess.AddRange(newPaths);
+                            }
                         }
-
+                        catch (ItemNotFoundException e)
+                        {
+                            if (!WildcardPattern.ContainsWildcardCharacters(path))
+                            {
+                                ErrorRecord errorRecord = new ErrorRecord(e,
+                                    "FileNotFound",
+                                    ErrorCategory.ObjectNotFound,
+                                    path);
+                                WriteError(errorRecord);
+                            }
+                        }
                     }
                     break;
                 case LiteralPathParameterSet :
-                    foreach (var item in _paths)
+                    foreach (string path in _paths)
                     {
-                        String file = this.SessionState.Path.GetResolvedProviderPathFromPSPath(item, out pi)[0];
-                        ListOfNodes =  FlowChartCore.Utility.ParseFile(file);
-                        if (ListOfNodes.Count > 0 )
-                        {
-                            WriteObject(ListOfNodes);   
-                        }
+                        string newPath = this.SessionState.Path.GetUnresolvedProviderPathFromPSPath(path);
+                        pathsToProcess.Add(newPath);
+                    }
+                    break;
+            }
 
-                    }
-                    break;
-                case ScriptBlockParameterSet:
-                    // Changing behavior, for example -scriptblocl {} return 0 nodes. We Want to return 0, not an empty List.
-                    ListOfNodes =  FlowChartCore.Utility.ParseScriptBlock(ScriptBlock);
-                    if (ListOfNodes.Count > 0 )
-                    {
-                        WriteObject(ListOfNodes);   
-                    }
-                    break;
-                default:
-                    break;
+            foreach (string path in pathsToProcess)
+            {
+                ListOfNodes =  FlowChartCore.Utility.ParseFile(path);
+                if (ListOfNodes.Count > 0 )
+                {
+                    WriteObject(ListOfNodes);   
+                }
             }
         
         }
@@ -130,6 +129,15 @@ namespace FlowChartCore.Cmdlets {
         // This method will be called once at the end of pipeline execution; if no input is received, this method is not called
         protected override void EndProcessing()
         {
+            List<Node> ListOfNodes = new List<Node>();
+            if (ParameterSetName == ScriptBlockParameterSet)
+            {
+                ListOfNodes =  FlowChartCore.Utility.ParseScriptBlock(ScriptBlock);
+                if (ListOfNodes.Count > 0 )
+                {
+                    WriteObject(ListOfNodes);   
+                }
+            }
         }
     }
 
