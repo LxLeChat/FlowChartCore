@@ -27,6 +27,14 @@ namespace FlowChartCore
             Graph.AddRange(x.DotDefinition);
         }
 
+        // Fix #103
+        // Pass a PSinstance to use PSSA to format code
+        public override void GenerateGraph(bool recursive, bool codeAsText, PowerShell PSinstance){
+            Graph.Clear();
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.CodeNodeBuilder(this,true,PSinstance);
+            Graph.AddRange(x.DotDefinition);
+        }
+
         public override String GetEndId() {
             return Id;
         }
@@ -74,7 +82,7 @@ namespace FlowChartCore
                 {
                     a = previousnode.OffSetGlobalEnd;    
                 } else {
-                    a = GetPreviousNode().OffSetScriptBlockEnd;
+                    a = GetPreviousNode().OffSetScriptBlockEnd + 1;
                 }
 
                 // Bug Fix: en depth 0, parent n'existe pas ..
@@ -88,7 +96,10 @@ namespace FlowChartCore
                 }
                 
                 //fix issue #32
-                return scriptText.Substring(a, b - a).TrimEnd('}').Trim();
+                var text = scriptText.Substring(a, b - a).TrimEnd('}').Trim();
+                // var text = scriptText.Substring(a).TrimEnd('}').Trim();
+                return text;
+
             }
 
             if (IsFirst && IsLast)

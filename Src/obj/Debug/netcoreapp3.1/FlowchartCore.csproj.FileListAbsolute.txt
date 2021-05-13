@@ -6,3 +6,4 @@ C:\Users\yanas\GitPerso\FlowChartCore\Src\obj\Debug\netcoreapp3.1\FlowchartCore.
 C:\Users\yanas\GitPerso\FlowChartCore\Src\obj\Debug\netcoreapp3.1\FlowchartCore.csproj.CoreCompileInputs.cache
 C:\Users\yanas\GitPerso\FlowChartCore\Src\obj\Debug\netcoreapp3.1\FlowchartCore.dll
 C:\Users\yanas\GitPerso\FlowChartCore\Src\obj\Debug\netcoreapp3.1\FlowchartCore.pdb
+C:\Users\yanas\GitPerso\FlowChartCore\Src\bin\Debug\netcoreapp3.1\FlowchartCore.pdb

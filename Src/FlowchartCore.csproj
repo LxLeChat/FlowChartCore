@@ -1,12 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- For PS 6+ netcoreapp3.1 -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <PackageReference Include="DotNetGraph" Version="2.6.0" />
     <PackageReference Include="System.Management.Automation" Version="7.0.0" />
+    <!-- <Reference Include="Microsoft.Windows.PowerShell.ScriptAnalyzer">
+      <HintPath>Microsoft.Windows.PowerShell.ScriptAnalyzer.dll</HintPath>
+    </Reference> -->
+  </ItemGroup>
+
+  <!-- For PS 5 netstandard2.0 -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="DotNetGraph" Version="2.6.0" />
+    <PackageReference Include="PowerShellStandard.Library" Version="5.1.0" />
   </ItemGroup>
 
 </Project>

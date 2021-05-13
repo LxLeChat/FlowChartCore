@@ -1,7 +1,6 @@
 using System.Management.Automation.Language;
-using System.Collections.Generic;
+using System.Management.Automation;
 using System;
-using System.Text.RegularExpressions;
 
 namespace FlowChartCore
 {
@@ -52,6 +51,11 @@ namespace FlowChartCore
             Graph.AddRange(x.DotDefinition);
         }
 
+        public override void GenerateGraph(bool recursive, bool codeAsText, PowerShell PSinstance){
+            Graph.Clear();
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.ReturnBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+        }
 
         // return the rawast
         public override Ast GetAst() {
