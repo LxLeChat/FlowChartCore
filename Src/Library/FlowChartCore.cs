@@ -1,4 +1,5 @@
-﻿using System.Management.Automation.Language;
+﻿using System.Management.Automation;
+using System.Management.Automation.Language;
 using System.Collections.Generic;
 using System;
 using DotNetGraph.Core;
@@ -304,6 +305,7 @@ namespace FlowChartCore
 
         public virtual void GenerateGraph(bool recursive){}
         public virtual void GenerateGraph(bool recursive,bool codeBlockAsText){}
+        public virtual void GenerateGraph(bool recursive,bool codeBlockAsText,PowerShell PSInstance){}
         internal virtual void SetCondition(){}
         
         public virtual Ast GetAst() {

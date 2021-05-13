@@ -1,4 +1,5 @@
 using System.Management.Automation.Language;
+using System.Management.Automation;
 using System.Collections.Generic;
 using System;
 using System.Text.RegularExpressions;
@@ -80,6 +81,12 @@ namespace FlowChartCore
         }
 
         public override void GenerateGraph(bool recursive, bool codeAsText){
+            Graph.Clear();
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.BreakBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+        }
+
+        public override void GenerateGraph(bool recursive, bool codeAsText, PowerShell PSinstance){
             Graph.Clear();
             FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.BreakBuilder(this);
             Graph.AddRange(x.DotDefinition);

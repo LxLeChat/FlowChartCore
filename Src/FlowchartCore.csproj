@@ -4,15 +4,13 @@
     <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
-  <!-- <ItemGroup>
-    <PackageReference Include="DotNetGraph" Version="2.6.0" />
-    <PackageReference Include="System.Management.Automation" Version="7.0.0" />
-  </ItemGroup> -->
-
   <!-- For PS 6+ netcoreapp3.1 -->
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <PackageReference Include="DotNetGraph" Version="2.6.0" />
     <PackageReference Include="System.Management.Automation" Version="7.0.0" />
+    <!-- <Reference Include="Microsoft.Windows.PowerShell.ScriptAnalyzer">
+      <HintPath>Microsoft.Windows.PowerShell.ScriptAnalyzer.dll</HintPath>
+    </Reference> -->
   </ItemGroup>
 
   <!-- For PS 5 netstandard2.0 -->

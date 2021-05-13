@@ -1924,11 +1924,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
+      "projectUniqueName": "c:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
       "projectName": "FlowchartCore",
-      "projectPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
+      "projectPath": "c:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\FlowchartCore.csproj",
       "packagesPath": "C:\\Users\\yanas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\obj\\",
+      "outputPath": "c:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "configFilePaths": [
