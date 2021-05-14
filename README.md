@@ -101,11 +101,13 @@ Parent    : FlowChartCore.IfNode
 
 # Working with the module
 ~~The module is cross platform, so it works on Windows Powershell, and PSCore (tested on WSL).~~
-The Module is CrossPlatform, but is not WindowsPowershell Compatible.
+~~The Module is CrossPlatform, but is not WindowsPowershell Compatible.~~
+The Module is CrossPlatform, AND WindowsPowershell Compatible.
 Since it's not published in the PSGallery, either fork the project or download it as a zip.
 
 ### Importing the module
-You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\bin\debug\netcoreapp3.1\FlowChartCore.dll``
+PS7:  You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\src\bin\debug\netcoreapp3.1\FlowChartCore.dll``
+PSV5: You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\src\bin\debug\netsandard2.0\FlowChartCore.dll``
 ```
 PS >Import-module .\Flowchartcore.dll
 PS > Get-Module -Name FlowchartCore
@@ -146,6 +148,7 @@ PS > Get-ChildItem -Path c:\temp -Filter *.ps1 | Get-FLowChartNode
 # New-FlowChartGraph
 The cmdlet will return a dot definition. It Takes a List of nodes as input.
 There is a parameter ``-codeastext`` that will render discover the code for a given ``codenode`` and display it instead of just a ``codeblock``. We will this the difference in the examples.
+``-codeastext`` parameter, in the background, use PSSA to reformat the discovercode... if PSSA is not available, a warning will be displayed.
 ```
 PS > $x=Get-FLowChartNode -ScriptBlock $sb
 PS > New-FLowChartGraph -Nodes $x
@@ -208,6 +211,7 @@ To create the dot graph, i use a library called DotNetGraph. https://github.com/
 
 # Building the project
 Clone the project.
+You will need ``.Net Core SKD`` to build the solution, available here https://dotnet.microsoft.com/download/dotnet/3.1
 You can use the ``build.ps1``.
 Or you can use the VSCode task by pressing F1, then typing task, you should be able to use the "Tasks: Run build task"
 
