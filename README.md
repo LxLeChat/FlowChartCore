@@ -107,6 +107,7 @@ Since it's not published in the PSGallery, either fork the project or download i
 ### Importing the module
 PS7:  You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\src\bin\debug\netcoreapp3.1\FlowChartCore.dll``
 PSV5: You have to import the ``FlowChartCore.dll`` wich can be found in ``Code\src\bin\debug\netsandard2.0\FlowChartCore.dll``
+
 ```
 PS >Import-module .\Flowchartcore.dll
 PS > Get-Module -Name FlowchartCore
@@ -147,7 +148,7 @@ PS > Get-ChildItem -Path c:\temp -Filter *.ps1 | Get-FLowChartNode
 # New-FlowChartGraph
 The cmdlet will return a dot definition. It Takes a List of nodes as input.
 There is a parameter ``-codeastext`` that will render discover the code for a given ``codenode`` and display it instead of just a ``codeblock``. We will this the difference in the examples.
-``-codeastext`` parameter, in the background, use PSSA to reformat the discovercode... if PSSA is not available, a warning will be displayed.
+``-codeastext`` parameter, if using the ``Formatted`` keyword, will use PSScriptAnalyzer to reformat the discovercode... if PSScriptAnalyzer is not available, a warning will be displayed.
 ```
 PS > $x=Get-FLowChartNode -ScriptBlock $sb
 PS > New-FLowChartGraph -Nodes $x
@@ -171,7 +172,7 @@ Rendering the dot will give:
 
 <img src="https://github.com/LxLeChat/FlowChartCore/blob/master/sample1.png?raw=true" width="177" height="513">
 
-With the ``-CodeAsText`` parameter, the ``codeblock`` notation in the last label will change, and will contain the actual code, here ``something else``. It's a validateSet. You can choose between ``standard`` or ``formatted``. ``formatted`` will try to use ``PSScriptAnalyzer`` to format the code nicely. If ``PSScriptAnalyzer`` is not installed, it will fallback to the ``standard`` formatting method. The code might look strange! but it works
+With the ``-CodeAsText`` parameter, the ``codeblock`` notation in the last label will change, and will contain the actual code, here ``something else``. It's a validateSet. You can choose between ``standard`` or ``formatted``. ``formatted`` will try to use ``PSScriptAnalyzer`` to format the code nicely. If ``PSScriptAnalyzer`` is not installed, it will fallback to the ``standard`` formatting method. The code might look strange! but it works.
 Also, something to take in consideration, is that using ``PSScriptanalyzer`` can slow the rendering
 ```
 PS > $x=Find-FLowChartNodes -ScriptBlock $sb
