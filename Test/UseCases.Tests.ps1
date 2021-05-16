@@ -107,7 +107,7 @@ Describe "FlowChartCode " -Tag 'DevUseCases' {
         $script:OutView |Should -Not -BeNullOrEmpty
          # Même chose mais avec -CodeAsText
          {   [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
-           $script:OutViewAsText=New-FLowChartGraph -Nodes $script:Result -CodeAsText} | Should -Not -Throw
+           $script:OutViewAsText=New-FLowChartGraph -Nodes $script:Result -CodeAsText Standard} | Should -Not -Throw
          
            $script:OutViewAsText|Should -Not -BeNullOrEmpty
       }
