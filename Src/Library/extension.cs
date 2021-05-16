@@ -43,8 +43,8 @@ namespace ExtensionMethods
                     return ((ReturnStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 case Ast a when _ast is ThrowStatementAst : 
                     return ((ThrowStatementAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
-                case Ast a when _ast is FunctionDefinitionAst : 
-                    return ((FunctionDefinitionAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
+                // case Ast a when _ast is FunctionDefinitionAst : 
+                //     return ((FunctionDefinitionAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
                 // case Ast a when _ast is PipelineAst : 
                 //     return ((PipelineAst)_ast).CreateNodeFromAst(_depth, _position, _parent, _tree);
             }

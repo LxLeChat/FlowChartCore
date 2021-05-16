@@ -11,61 +11,70 @@ namespace FlowChartCore.Cmdlets {
     public class NewFlowChartGraph : PSCmdlet
     {
         // List of nodes
-        [Parameter(
-            Mandatory = true,
-            Position = 0,
-            ValueFromPipeline = true
-        )]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public List<Node> Nodes { get; set; }
 
+        [Parameter(Mandatory = false, ValueFromPipeline = false)]
+        [ValidateSet("Standard","Formatted")]
+        public String CodeAsText { get; set; }
 
-        [Parameter(
-            Mandatory = false,
-            Position = 1,
-            ValueFromPipeline = false
-        )]
-        public SwitchParameter CodeAsText { get; set; }
-
-                [Parameter(
-            Mandatory = false,
-            Position = 1,
-            ValueFromPipeline = false
-        )]        
         private PowerShell psinstance {get;set;}
         private bool IsPSSAPresent {get;set;}
 
         // This method gets called once for each cmdlet in the pipeline when the pipeline starts executing
         protected override void BeginProcessing()
         {
-            // Create a PowerShell instance, in order to call PSSA
-            if( CodeAsText.IsPresent ) {
-                WriteVerbose("Creating an new PowerShell instance for PSScriptAnalyzer...");
-                psinstance = PowerShell.Create();
+            if (CodeAsText == "Formatted")
+            {
+                // Create a PowerShell instance, in order to call PSSA
                 string moduleName = "PSScriptAnalyzer";
+                WriteVerbose($"Creating an new PowerShell instance for {moduleName}...");
+                psinstance = PowerShell.Create();
 
-                WriteVerbose("Checing if Module PSScriptAnalyzer is Present...");
-                psinstance.AddScript($"Get-Module -ListAvailable -Name {moduleName}");
+                WriteVerbose($"Checing if Module {moduleName} is Present...");
+                psinstance.AddScript($"Get-Module -ListAvailable -Name {moduleName}").Invoke();
                 var result = psinstance.Invoke();
 
                 if( result.Count > 0 ) {
                     IsPSSAPresent = true;
-                    WriteVerbose("Module PSScriptAnalyzer is Present...");
+                    WriteVerbose($"Module {moduleName} is Present...");
                 } else {
-                    IsPSSAPresent = false;
-                    WriteVerbose("Module PSScriptAnalyzer is Missing...");
-                    WriteWarning("Module PSScriptAnalyzer is missing... CodeBlock(s) representation might be strange...");
+                    WriteVerbose($"Module {moduleName} is not installed... is it loaded ?");    
+                    // Maybe PSSA has been loaded from source ?
+                    psinstance.Commands.Clear();
+                    var result2 = psinstance.AddScript($"Get-Module -Name {moduleName}").Invoke();
+
+                    if( result2.Count > 0 ) {
+                        IsPSSAPresent = true;
+                        WriteVerbose($"Module {moduleName} is Loaded...");
+                    } else {
+                        IsPSSAPresent = false;
+                        WriteVerbose($"Module {moduleName} is Missing, try 'Install-Module -Name PSScriptAnalyzer'...");
+                    }
                 }
                 psinstance.Commands.Clear();
+                
+                // If PSSA was not found, or not loaded from source,
+                // we dont need the psinstance anymore
+                if ( !IsPSSAPresent )
+                {
+                    WriteWarning($"Module {moduleName} is missing... Falling back to a Standard CodeBlock(s) representation...");
+                    WriteVerbose("Disposing of the PowerShell instance...");
+                    psinstance.Dispose();
+                }
             }
         }
 
         // This method will be called for each input received from the pipeline to this cmdlet; if no input is received, this method is not called
         protected override void ProcessRecord()
         {
-            WriteVerbose($"Processing {Nodes.Count} Nodes...");
+            WriteVerbose($"Processing Nodes...");
             foreach (Node item in Nodes)
             {
-                if (CodeAsText.IsPresent)
+
+                // revoir les conditions
+                // reesayer une az fonction en c# voir les erreurs
+                if (CodeAsText == "Formatted")
                 {
                     if ( IsPSSAPresent )
                     {
@@ -89,7 +98,7 @@ namespace FlowChartCore.Cmdlets {
         // This method will be called once at the end of pipeline execution; if no input is received, this method is not called
         protected override void EndProcessing()
         {
-            if ( CodeAsText.IsPresent ) {
+            if ( CodeAsText == "Formatted" && IsPSSAPresent ) {
                 WriteVerbose("Disposing of the Powershell instance...");
                 psinstance.Dispose();
             }

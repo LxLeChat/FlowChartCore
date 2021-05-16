@@ -304,8 +304,8 @@ namespace FlowChartCore
         }
 
         public virtual void GenerateGraph(bool recursive){}
-        public virtual void GenerateGraph(bool recursive,bool codeBlockAsText){}
-        public virtual void GenerateGraph(bool recursive,bool codeBlockAsText,PowerShell PSInstance){}
+        public virtual void GenerateGraph(bool recursive, bool codeBlockAsText){}
+        public virtual void GenerateGraph(bool recursive, bool codeBlockAsText, PowerShell PSInstance){}
         internal virtual void SetCondition(){}
         
         public virtual Ast GetAst() {

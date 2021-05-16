@@ -1,4 +1,5 @@
 using System.Management.Automation.Language;
+using System.Management.Automation;
 using System.Collections.Generic;
 using ExtensionMethods;
 using System;
@@ -109,5 +110,18 @@ namespace FlowChartCore
                 }
             }
         }
+
+        public override void GenerateGraph(bool recursive, bool codeBlockAsText, PowerShell PSinstance){
+            Graph.Clear();
+            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.TryBuilder(this);
+            Graph.AddRange(x.DotDefinition);
+
+            if(recursive) {
+                foreach (var child in Children) {
+                    child.GenerateGraph(recursive,codeBlockAsText,PSinstance);
+                }
+            }
+        }
+
     }
 }
