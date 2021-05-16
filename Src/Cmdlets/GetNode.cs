@@ -12,6 +12,7 @@ namespace FlowChartCore.Cmdlets {
     {
         [Parameter(
             Mandatory = true,
+            Position = 0,
             ParameterSetName = ScriptBlockParameterSet
         )]
         [ValidateNotNullAttribute]

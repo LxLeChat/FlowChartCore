@@ -50,12 +50,6 @@ namespace FlowChartCore
             Graph.AddRange(x.DotDefinition);
         }
 
-        public override void GenerateGraph(bool recursive, bool codeAsText, PowerShell PSinstance){
-            Graph.Clear();
-            FlowChartCore.Graph.IBuilder x = new FlowChartCore.Graph.ThrowBuilder(this);
-            Graph.AddRange(x.DotDefinition);
-        }
-
 
         // return the rawast
         public override Ast GetAst() {

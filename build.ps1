@@ -1,3 +1,9 @@
+[CmdletBinding()]
+param (
+    [Parameter()]
+    [TypeName]
+    $ParameterName
+)
 $Messages = @{
     DotNetBuild = "Building Project..."
     BuildSuccessfull = "Build Successfull.."

@@ -2,17 +2,16 @@
 The main goal is to document Powershell Scripts. The Module will allow you to generate a dot graph definition. This definition can then be consumed by GraphViz to generate a nice flow chart of your script.
 
 # Disclaimer
-- Breaking Change: the cmdlet ``Find-FlowChartNodes`` as been renamed as ``Get-FlowChartNode``
 - It's the first time i'm writing something in c# ... jumping from Powershell... so, i'm sorry if the code is not as clean as excpected..! I know i'm missing c# tests for example..
 - Since i'm discovring a lot of bugs, and strange behavior, the module is not published in the PSGallery at the moment.
 This project allows me also to experiment on new stuff .. like CI.. !
 
 ### Why ?
-First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantics scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
+First because i had a bad experience at a client, who asked me to add new functiunalities to a HUGE script (actually it was 3 gigantic scripts... anyway... ). Every modification i made had some impacts on other scripts... so i was tired every time to look a all these scripts... and thought ... maybe having a graph representation might make my life easier !
 
 
 ### Compatibility
-This module works only on Powershell 7.
+This module works on PS v5 & v7
 
 ### What it is for? What it is not for ?
 Mainly for helping and documentation purpose.
@@ -27,7 +26,7 @@ If ( $x ) {
 ```
 
 ### Caveats
-At the moment, the script will not discover what's inside scriptblocks. For example, if you script is a massive ``Invoke-Command``, the module will discover a simple ``CodeNode`` and the resulting graph will contain only one ``CodeBlock`` (more on nodes in the readme). Same thing for ``Foreach-Object``, ``Where-Object`` ...
+At the moment, the script will not discover what's inside nested scriptblocks. For example, if you script is a massive ``Invoke-Command``, the module will discover a simple ``CodeNode`` and the resulting graph will contain only one ``CodeBlock`` (more on nodes in the readme). Same thing for ``Foreach-Object``, ``Where-Object`` ...
 ```
 Invoke-Command -ComputerName Computer1 -ScriptBlock {
   If ( $x ) {
@@ -46,7 +45,7 @@ Also, the script will not parse function definition, so if you pass a psm1 file,
 Maybe at some point i'll find a way to deal with these... I have an idea but i dont know if it will render well..  
 
 ### Nodes?
-When you parse a scriptblock or a script using ``Find-FlowChartNodes``, the cmdlet will return a list of nodes.
+When you parse a scriptblock or a script using ``Get-FlowChartNode``, the cmdlet will return a list of nodes.
 So what is a node?
 A node is a class, representing a know Statement. For example, a If Statement, will return a ``IfNode``. If there is a ``Foreach`` statement in this ``If``statement, a ``ForeachNode`` will be created and added to the parent ``IfNode`` children.
 So there is a notion of Parent and Children. Essentially, the module is recreating a tree from the script.
@@ -117,7 +116,7 @@ ModuleType Version    Name                                ExportedCommands
 Binary     1.0.0.0    FlowchartCore                       {Get-FLowChartNode, New-FLowChartGraph}
 ```
 
-### Find-FlowChartNodes
+### Get-FlowChartNode
 The cmdlet will find nodes in a file (a ps1) or a scriptblock.
 ```
 PS >$Sb = {
@@ -172,10 +171,11 @@ Rendering the dot will give:
 
 <img src="https://github.com/LxLeChat/FlowChartCore/blob/master/sample1.png?raw=true" width="177" height="513">
 
-With the ``-CodeAsText`` switch, the ``codeblock`` notation in the last label will changed, and will contain the actual code, here ``something else``
+With the ``-CodeAsText`` parameter, the ``codeblock`` notation in the last label will change, and will contain the actual code, here ``something else``. It's a validateSet. You can choose between ``standard`` or ``formatted``. ``formatted`` will try to use ``PSScriptAnalyzer`` to format the code nicely. If ``PSScriptAnalyzer`` is not installed, it will fallback to the ``standard`` formatting method. The code might look strange! but it works
+Also, something to take in consideration, is that using ``PSScriptanalyzer`` can slow the rendering
 ```
 PS > $x=Find-FLowChartNodes -ScriptBlock $sb
-PS > New-FLowChartGraph -Nodes $x -CodeAsText
+PS > New-FLowChartGraph -Nodes $x -CodeAsText Standard
 digraph "a" {
         "01"[label="If $x",shape=diamond];
         "end_01"[shape=mdiamond,label="End If"];
@@ -198,7 +198,7 @@ Rendering the dot will give:
 
 The cmdlet also support the pipeline so you can do something like
 ```
-PS > Get-FLowChartNode -ScriptBlock $sb | New-FLowChartGraph -CodeAsText
+PS > Get-FLowChartNode -ScriptBlock $sb | New-FLowChartGraph -CodeAsText Standard
 ```
 
 # Rendering the graph
