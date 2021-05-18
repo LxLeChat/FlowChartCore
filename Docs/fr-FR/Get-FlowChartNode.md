@@ -5,7 +5,7 @@ online version:
 schema: 2.0.0
 ---
 
-# Find-FLowChartNodes
+# Get-FlowChartNode
 
 ## SYNOPSIS
 Construit un graph à partir des instructions contenues dans un script Powershell.
@@ -28,16 +28,16 @@ Note: l'analyse des conteneurs de code n'est pas implémenté. Par exemple l'aff
 
 ### Script
 ```
-Find-FLowChartNodes [-ScriptBlock] <ScriptBlock> [<CommonParameters>]
+Get-FlowChartNode [-ScriptBlock] <ScriptBlock> [<CommonParameters>]
 ```
 
 ### Path
 ```
-Find-FLowChartNodes [-Path] <String[]> [[-LiteralPath] <String[]>] [<CommonParameters>]
+Get-FlowChartNode [-Path] <String[]> [[-LiteralPath] <String[]>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Lorsque vous analysez un scriptblock ou un script à l'aide de Find-FlowChartNodes, la cmdlet renvoie une liste de nœuds.
+Lorsque vous analysez un scriptblock ou un script à l'aide de Get-FlowChartNode, la cmdlet renvoie une liste de nœuds.
 Par exemple, pour une instruction If le cmdlet renvoit un objet IfNode et ainsi de suite.
 
 ## EXAMPLES
@@ -51,7 +51,7 @@ $Sb={
     { "Do Something" }
  }
 }
-$List=Find-FlowChartNodes -Scriptblock $Sb
+$List = Get-FlowChartNode -Scriptblock $Sb
 $List
 
 #Condition : $x
@@ -80,8 +80,8 @@ $Sb={
     { "Do Something" }
  }
 }
-$List=Find-FlowChartNodes -Scriptblock $Sb
-$List[0].FindNodes({$args[0] -is [FlowChartCore.Node]},$true)|Select-Object Name
+$List=Get-FlowChartNode -Scriptblock $Sb
+$List[0].FindNodes({$args[0] -is [FlowChartCore.Node]},$true) | Select-Object Name
 
 #Name
 #----
@@ -97,8 +97,8 @@ Le cmdlet analyse le scriptblock et renvoi une liste de noeud. On recherche et a
 .
 ### Analyser un script
 ```
-Find-FlowChartNodes -Path .\somescript.ps1
-Get-ChildItem -Path c:\temp -Filter *.ps1 | Find-FLowChartNodes
+Get-FlowChartNode -Path .\somescript.ps1
+Get-ChildItem -Path c:\temp -Filter *.ps1 | Get-FlowChartNode
 ```
 
 Description

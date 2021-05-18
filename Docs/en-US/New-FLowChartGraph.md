@@ -8,7 +8,7 @@ schema: 2.0.0
 # New-FLowChartGraph
 
 ## SYNOPSIS
-Génére un fichier .dot (Graphviz) à partir d'un graph construit à l'aide Find-FLowChartNodes
+Génére un fichier .dot (Graphviz) à partir d'un graph construit à l'aide Get-FLowChartNode
 
 ## SYNTAX
 
@@ -53,6 +53,10 @@ Accept wildcard characters: False
 
 ### -CodeAsText
 Le contenu d'un noeud correspond au code analysé.Par defaut le contenu d'un noeud de code est'Code block'.
+CodeAsText permet d'afficher le code entre deux noeuds.
+CodeAsText est un validateSet et peut prendre comme valeur: Standard, Formatted.
+Standard: le code est affiché tel quel.
+Formatted: PSScriptAnalyzer est utilisé pour formater le code. Si PSScriptAnalyazer n'est pas présent, le formattage du code sera standard.
 
 ```yaml
 Type: SwitchParameter
