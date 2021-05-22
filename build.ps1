@@ -20,12 +20,12 @@ Write-Information -MessageData $Messages.DotNetBuild -InformationAction Continue
 
 
 ## build offline, configuration offline packages & config file
-Set-Location -Path .\Src
-remove-item .\Packages\* -Recurse
-Expand-Archive .\resources\Packages.zip -DestinationPath .\Packages
-[xml]$NugetConfig = Get-Content .\packages\nuget.config
-$NugetConfig.configuration.packageSources.add.value = "$($(Get-Item .\packages\nuget.config).Directory)"
-$NugetConfig.Save($(get-item .\packages\nuget.config).FullName)
+# Set-Location -Path .\Src
+# remove-item .\Packages\* -Recurse
+# Expand-Archive .\resources\Packages.zip -DestinationPath .\Packages
+# [xml]$NugetConfig = Get-Content .\packages\nuget.config
+# $NugetConfig.configuration.packageSources.add.value = "$($(Get-Item .\packages\nuget.config).Directory)"
+# $NugetConfig.Save($(get-item .\packages\nuget.config).FullName)
 
 ## cleaning dotnet output directories
 # dotnet clean
