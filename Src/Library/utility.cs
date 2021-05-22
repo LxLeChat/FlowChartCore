@@ -46,7 +46,7 @@ namespace FlowChartCore
 
             int Position = 1;
             List<Node> Nodes = new List<Node>();
-            Tree Arbre = new Tree(Nodes,scriptBlock.Ast);
+            Tree Arbre = new Tree(Nodes,scriptBlock.Ast,NodesOrigin.ScriptBlock);
             bool tmp = true;
 
             foreach ( var block in enumerable ) {
@@ -55,6 +55,8 @@ namespace FlowChartCore
                     // valid type found
                     Node tmpNode = block.CreateNode(0,Position,null,Arbre);
                     Nodes.Add(tmpNode);
+                    // tmpNode.Origin = NodesOrigin.ScriptBlock;
+
                     Position++;
                     // reset tmp
                     tmp = true;
@@ -64,6 +66,8 @@ namespace FlowChartCore
                     tmp = false;
                     Node tmpNode = new CodeNode(0,Position,null,Arbre);
                     Nodes.Add(tmpNode);
+                    // tmpNode.Origin = NodesOrigin.ScriptBlock;
+
                     Position++;
                 } 
             }
@@ -76,6 +80,8 @@ namespace FlowChartCore
             
             string script = File.ReadAllText(file);
 
+            FileInfo ScriptFileInfo = new FileInfo(file);
+
             ScriptBlock scriptblock = ScriptBlock.Create(script);
             Ast NamedBlock = scriptblock.Ast.Find(Args => Args is NamedBlockAst, false);
             // IEnumerable<Ast> enumerable = NamedBlock.FindAll(Args => Args is Ast && FlowChartCore.Utility.GetValidTypes().Contains(Args.GetType()) && Args.Parent == NamedBlock, false);
@@ -83,7 +89,7 @@ namespace FlowChartCore
 
             int Position = 1;
             List<Node> Nodes = new List<Node>();
-            Tree Arbre = new Tree(Nodes,scriptblock.Ast);
+            Tree Arbre = new Tree(Nodes,scriptblock.Ast,NodesOrigin.File,ScriptFileInfo);
             bool tmp = true;
 
             foreach ( var block in enumerable ) {
@@ -91,6 +97,9 @@ namespace FlowChartCore
                 {
                     // valid type found
                     Node tmpNode = block.CreateNode(0,Position,null,Arbre);
+                    // tmpNode.Origin = NodesOrigin.File;
+                    // tmpNode.FileInfo = ScriptFileInfo;
+
                     Nodes.Add(tmpNode);
                     Position++;
                     // reset tmp
@@ -100,6 +109,9 @@ namespace FlowChartCore
                     // not a valid type, and tmp is false, create code node
                     tmp = false;
                     Node tmpNode = new CodeNode(0,Position,null,Arbre);
+                    // tmpNode.Origin = NodesOrigin.File;
+                    // tmpNode.FileInfo = ScriptFileInfo;
+
                     Nodes.Add(tmpNode);
                     Position++;
                 }
@@ -114,6 +126,22 @@ namespace FlowChartCore
             
             
             DotNetGraph.DotGraph g = new DotNetGraph.DotGraph("a",true);
+            g.Elements.AddRange(dotElements);
+            DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
+            string compiled = compiler.Compile(true,true);
+
+            // fix issue #51
+            // when there is a path  like c:\n\blalal the c:\n was transformed into c:\l
+            Regex Rx = new Regex(@"(?<!\\)\\(n|r)");
+            string compiledCleaned = Rx.Replace(compiled,"\\l");
+
+            return compiledCleaned;
+        }
+
+        public static String CompileDot(List<IDotElement> dotElements, string graphName ){
+            
+            
+            DotNetGraph.DotGraph g = new DotNetGraph.DotGraph($"{graphName}",true);
             g.Elements.AddRange(dotElements);
             DotNetGraph.Compiler.DotCompiler compiler = new DotNetGraph.Compiler.DotCompiler(g);
             string compiled = compiler.Compile(true,true);

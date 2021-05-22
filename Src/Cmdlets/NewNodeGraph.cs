@@ -91,7 +91,14 @@ namespace FlowChartCore.Cmdlets {
             }
 
             List<IDotElement> dotElements = FlowChartCore.Utility.AddGraph(Nodes);
-            String dotGraph = FlowChartCore.Utility.CompileDot(dotElements);
+            Tree TreeRoot = Nodes[0].GetTree();
+            String dotGraph = null;
+            if ( TreeRoot.NodesOrigin == NodesOrigin.ScriptBlock) {
+                dotGraph = FlowChartCore.Utility.CompileDot(dotElements,"ScriptBlock");    
+            } else {
+                string GraphName = TreeRoot.FileInfo.Name;
+                dotGraph = FlowChartCore.Utility.CompileDot(dotElements,GraphName);
+            }
             WriteObject(dotGraph);
         }
 

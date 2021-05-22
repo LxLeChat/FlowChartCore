@@ -15,14 +15,14 @@
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "configFilePaths": [
-          "C:\\Users\\yanas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\Packages\\nuget.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1",
           "netstandard2.0"
         ],
         "sources": {
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Users\\yanas\\GitPerso\\FlowChartCore\\Src\\packages": {}
         },
         "frameworks": {
           "netcoreapp3.1": {

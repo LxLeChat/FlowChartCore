@@ -2,12 +2,18 @@
 using System.Management.Automation.Language;
 using System.Collections.Generic;
 using System;
+using System.IO;
 using DotNetGraph.Core;
 
 namespace FlowChartCore
 {
     public enum StatementType{
         Else,ElseIf,SwitchCase,SwitchDefault,Finally
+    }
+
+    public enum NodesOrigin {
+        File,
+        ScriptBlock
     }
 
     public enum GraphType{
@@ -18,13 +24,30 @@ namespace FlowChartCore
         public List<Node> Nodes { get; private set; }
         private Ast _ast {get;set;}
         public Ast Ast {get=> _ast;}
+        private NodesOrigin _nodesOrigin {get;set;}
+        public NodesOrigin NodesOrigin {get=> _nodesOrigin;}
+        private FileInfo _fileInfo {get;set;}
+        public FileInfo FileInfo {get=> _fileInfo;}
 
         public Tree (List<Node> nodes,Ast ast) {
             Nodes = nodes;
             _ast = ast;
         }
 
-                // Method to find a node by predicate.
+        public Tree (List<Node> nodes,Ast ast, NodesOrigin nodesOrigin) {
+            Nodes = nodes;
+            _ast = ast;
+            _nodesOrigin = nodesOrigin;
+        }
+
+        public Tree (List<Node> nodes,Ast ast, NodesOrigin nodesOrigin, FileInfo fileInfo) {
+            Nodes = nodes;
+            _ast = ast;
+            _nodesOrigin = nodesOrigin;
+            _fileInfo = fileInfo;
+        }
+
+        // Method to find a node by predicate.
         // Pwsh: FinNodes({$args[0] -is [FlowChartCore.IfNode]},$True)
         // will search all nodes of types Ifnode, recursively
         public IEnumerable<Node> FindNodes (Predicate<Node> predicate,bool recurse) {
@@ -79,6 +102,8 @@ namespace FlowChartCore
         internal virtual int OffSetScriptBlockEnd {get;set;}
         internal virtual int OffSetGlobalEnd {get;set;}
         internal int OffSetToRemove { get; set;}
+        // public NodesOrigin Origin {get;set;}
+        // public FileInfo FileInfo {get;set;}
 
 
         // igraphElement
@@ -310,6 +335,20 @@ namespace FlowChartCore
         
         public virtual Ast GetAst() {
             throw new NotImplementedException();
+        }
+
+        //Add Method to return Tree
+        //help fix issue #110
+        public Tree GetTree () {
+            if ( this.ParentRoot != null )
+            {
+                return this.ParentRoot;
+            }
+            else
+            {
+                return this.parent.GetTree();
+            }
+
         }
 
     }
